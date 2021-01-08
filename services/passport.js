@@ -21,7 +21,7 @@ passport.use(
         {
             clientID: keys.googleClientID,
             clientSecret: keys.googleClientSecret,
-            callbackURL: 'https://floating-wildwood-24017.herokuapp.com//auth/google/callback'
+            callbackURL: 'https://floating-wildwood-24017.herokuapp.com/auth/google/callback'
         },
         (accessToken, refreshToken, profile, done) => {
             User.findOne({ googleId: profile.id })
