@@ -11,13 +11,10 @@ export default {
     return axios.delete("/api/game/" + id);
   },
   saveGame: function(game) {
-    return axios.post("/api/game/", game);
+    return axios.post("/api/game/create/", game);
   },
   updateGame: function(id){
     return axios.put("/api/game/" + id);
-  },
-  getUser: function(id) {
-    return axios.get("/api/user/" + id)
   },
   getUserGames: function(userId) {
     return axios.get("/api/games/" + userId);
