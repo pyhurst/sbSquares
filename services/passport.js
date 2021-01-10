@@ -1,16 +1,14 @@
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
-const mongoose = require('mongoose');
 const keys = require('../config/keys');
-
-const User = mongoose.model('users');
+const db = require('../models');
 
 passport.serializeUser((user, done) => {
     done(null, user.id);
 });
 
 passport.deserializeUser((id, done) => {
-    User.findById(id)
+    db.User.findById(id)
         .then(user => {
             done(null, user);
         });
@@ -25,13 +23,13 @@ passport.use(
             proxy: true
         },
         async (accessToken, refreshToken, profile, done) => {
-            const existingUser = await User.findOne({ googleId: profile.id })
+            const existingUser = await db.User.findOne({ googleId: profile.id })
 
             if (existingUser) {
                 return done(null, existingUser);
             }
             
-            const user = await new User({ googleId: profile.id }).save()
+            const user = await db.User.create({ googleId: profile.id })
             done(null, user);
         })
 );

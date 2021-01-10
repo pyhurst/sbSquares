@@ -1,8 +1,11 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+const { Schema, model } = require("mongoose");
 
 const userSchema = new Schema({
     googleId: String
 });
 
-mongoose.model('users', userSchema);
+
+
+const Game = model("User", userSchema);
+
+module.exports = Game;
