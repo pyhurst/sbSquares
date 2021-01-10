@@ -34,8 +34,11 @@ app.use(
 );
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 require('./routes/authRoutes')(app);
+require('./routes/gameRoutes')(app);
 
 const PORT = process.env.PORT || 5000;
 
