@@ -13,8 +13,8 @@ export default {
   saveGame: function(game) {
     return axios.post("/api/game/create/", game);
   },
-  updateGame: function(id){
-    return axios.put("/api/game/" + id);
+  updateGame: function(id,data){
+    return axios.put("/api/game/" + id,{squares:data});
   },
   getUserGames: function(userId) {
     return axios.get("/api/games/" + userId);
