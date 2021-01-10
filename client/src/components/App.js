@@ -6,6 +6,7 @@ import * as actions from '../actions';
 import Landing from '../pages/Landing/Landing';
 import UserProfile from '../pages/User_Profile/User_Profile';
 import Header from './Header/Header';
+import Game from '../pages/Game/Game'
 
 class App extends Component {
     componentDidMount() {
@@ -19,6 +20,7 @@ class App extends Component {
                     <div>
                         <Header />
                         <Route exact path="/" component={Landing} />
+                        <Route exact path="/game" component={Game} />
                         <Route exact path="/userprofile" component={UserProfile} />
                     </div>
                 </BrowserRouter>
