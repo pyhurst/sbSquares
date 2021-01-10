@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from "react";
 import Square from "../../components/Square/Square.js"
 import API from "../../utils/API"
+import io from "socket.io-client"
 
-let tempArray = [];
-const Game = () => {
 
-    const [table, setTable] = useState([]);
-    const [name, setName] = useState("");
+// var socket;
+let pendingSquares = [];
+const Game = (props) => {
 
+    const [game, setGame] = useState({});
+    const [squares, setSquares] = useState({})
+    
 
     const [isFlipped, setIsFlipped] = useState(false);
     const [isFlipped1, setIsFlipped1] = useState(false);
@@ -149,23 +152,23 @@ const Game = () => {
         let chosenAlready = false;
 
         //delete from array on second click
-        for (var i = 0; i < tempArray.length; i++) {
-            if (tempArray[i] == value) {
+        for (var i = 0; i < pendingSquares.length; i++) {
+            if (pendingSquares[i] == value) {
                 chosenAlready = true
                 if (i == 0) {
-                    tempArray.shift();
+                    pendingSquares.shift();
                 } else {
-                    var temp = tempArray[0];
-                    tempArray[0] = tempArray[i];
-                    tempArray[i] = temp;
-                    tempArray.shift();
+                    var temp = pendingSquares[0];
+                    pendingSquares[0] = pendingSquares[i];
+                    pendingSquares[i] = temp;
+                    pendingSquares.shift();
                 }
             }
         }
 
         //add to array on first click
         if (chosenAlready == false) {
-            tempArray.push(value)
+            pendingSquares.push(value)
         }
 
         let number = parseInt(event.target.id);
@@ -476,30 +479,24 @@ const Game = () => {
 
         }
 
-        console.log(tempArray);
+        console.log(pendingSquares);
     }
 
 
     useEffect(() => {
-        start();
-
+        API.getGame(props.match.params.id).then((game)=>{
+            setGame(game[0])
+            setSquares(game[0].squares)
+        })
 
     }, []);
 
-    const start = () => {
-        setTable(isFlippedRow1);
-        setName("Francis");
-        console.log(name)
-        console.log(isFlippedRow1.length)
-    }
-
-
-    const APIs = (id) => {
-        API.getGames().then((data) => { })
-        API.getGame(id).then((data) => { })
-        API.saveGame(id).then((data) => { });
-        API.updateGame(id).then((data) => { })
-        API.deleteGame(id).then((data) => { })
+    const updateGame = () =>{
+        API.updateGame(props.match.params.id, pendingSquares);
+        API.getGame(props.match.params.id).then((data)=>{
+            setSquares(data[0].squares);
+            setGame(data[0])
+        })
     }
 
     const clear = () => {
@@ -619,7 +616,7 @@ const Game = () => {
                         <div className="col-4">
                         </div>
                         <div className="col-4 text-center">
-                            <input placeholder="name"></input><button onClick={clear}>submit</button>
+                            <input placeholder="name"></input><button onClick={updateGame}>submit</button>
                         </div>
                         <div className="col-4"></div>
                     </div>
