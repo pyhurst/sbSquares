@@ -20,7 +20,7 @@ class App extends Component {
                     <div>
                         <Header />
                         <Route exact path="/" component={Landing} />
-                        <Route exact path="/game" component={Game} />
+                        <Route exact path="/game/:id" component={Game} />
                         <Route exact path="/userprofile" component={UserProfile} />
                     </div>
                 </BrowserRouter>
