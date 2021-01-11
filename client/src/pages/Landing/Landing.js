@@ -1,19 +1,25 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
+import { connect } from 'react-redux';
 import "./Landing.css";
 
-const Landing = () => {
+const Landing = (props) => {
 
-    const [email, setEmail] = useState("");
+    const renderContent = () => {
+        switch (props.auth) {
+            case null:
+                return <a href='/auth/google'><h4>Create Game</h4></a>
+            case false:
+                return <a href='/auth/google'><h4>Create Game</h4></a>
+            default:
+                return <a href='/userprofile'><h4>Create Game</h4></a>
+        }
+    }
 
     useEffect(() => {
     }, []);
 
     const handleFormSubmit = (event) => {
         event.preventDefault();
-    };
-
-    const handleCreateGame = (event) => {
-        window.location = '/auth/google';
     };
 
     if(window.innerWidth > 500){
@@ -26,8 +32,8 @@ const Landing = () => {
                         <h4>Search Game:</h4>
                         <input></input>
                     </div>
-                    <div className='create-game' onClick={handleCreateGame} >
-                        <h4>Create Game</h4>
+                    <div className='create-game' >
+                        {renderContent()}
                     </div>
                 </div>
             </>
@@ -45,4 +51,8 @@ const Landing = () => {
 
 }
 
-export default Landing;
+function mapStateToProps({ auth }) {
+    return { auth };
+}
+
+export default connect(mapStateToProps)(Landing);

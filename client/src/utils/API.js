@@ -10,7 +10,7 @@ export default {
   ,deleteGame: function(id) {
     return axios.delete("/api/game/" + id);
   },
-  saveGame: function(game) {
+  createGame: function(game) {
     return axios.post("/api/game/create/", game);
   },
   updateGame: function(id,data){
