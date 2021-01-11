@@ -65,7 +65,7 @@ for (var i = 0; i < 100; i++) {
     let squareSeed =
     {
         _id: "",
-        name: "",
+        name: "OPEN",
         active: true,
         color: ""
 

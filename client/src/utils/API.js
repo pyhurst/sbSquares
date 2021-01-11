@@ -14,7 +14,7 @@ export default {
     return axios.post("/api/game/create/", game);
   },
   updateGame: function(id,data){
-    return axios.put("/api/game/" + id,{squares:data});
+    return axios.put("/api/game/" + id, data);
   },
   getUserGames: function(userId) {
     return axios.get("/api/games/" + userId);

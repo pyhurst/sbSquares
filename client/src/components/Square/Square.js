@@ -14,7 +14,7 @@ const Square = (props) => {
 
                     </div>
 
-                    <div className="bg-info text-center justify-content-center pt-2 cardDimensions" id={props.id} data-value={props.data} onClick={props.flipFunciton}>
+                    <div className="bg-info text-center justify-content-center cardDimensions" id={props.id} data-value={props.data} onClick={props.flipFunciton}>
                         Francis
                     </div>
                 </ReactCardFlip>
@@ -25,10 +25,10 @@ const Square = (props) => {
 
             <ReactCardFlip isFlipped="false" flipDirection="horizontal" flipSpeedFrontToBack="1.5" flipSpeedFrontToBack="1.5">
                 <div className={props.color} id={props.id}>
-                    <h1>{props.name}</h1>
+                    {props.name}
                 </div>
                 <div className={props.color} id={props.id}>
-                    <h1>{props.squareId}</h1>
+                    {props.name}
                 </div>
             </ReactCardFlip>
         )
