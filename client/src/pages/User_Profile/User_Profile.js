@@ -5,32 +5,43 @@ import './User_Profile.css';
 
 class UserProfile extends React.Component {
     createGame = () => {
-        // console.log(this.props.auth.googleId)
-        API.saveGame({
-            ownerId: this.props.auth.googleId
+        console.log(this.props.auth._id)
+        API.createGame({
+            ownerId: this.props.auth._id
         })
             .then(result => console.log(result))
     }
-    
-    render(){
-    // console.log(this.props.auth.googleId)
-    if(window.innerWidth > 500){
-        return (
-            <>
-                <div className='profile'>
-                    <h2>User Profile Desktop</h2>
-                    <div className='created-games'></div>
-                    <button type='button' className='btn btn-success' onClick={this.createGame}>Create Game</button>
-                </div>
-            
-            </>
-        )
 
-    }else{
-          
-        return (
-            <div>User Profile Mobile</div>
-        )
+    getUserGames = () => {
+        API.getUserGames(this.props.auth._id)
+            .then(result => 
+                console.log(result)
+            )
+    }
+
+    render() {
+        // console.log(this.props.auth.googleId)
+        if (!this.props.auth) {
+            return <div>Loading...</div>
+        } else {
+            if (window.innerWidth > 500) {
+                return (
+                    <>
+                        <div className='profile'>
+                            <h2>User Profile Desktop</h2>
+                            <div className='created-games'>{this.getUserGames()}</div>
+                            <button type='button' className='btn btn-success' onClick={this.createGame}>Create Game</button>
+                        </div>
+
+                    </>
+                )
+
+            } else {
+
+                return (
+                    <div>User Profile Mobile</div>
+                )
+            }
         }
     }
 }
