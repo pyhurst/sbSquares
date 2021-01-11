@@ -1,47 +1,60 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from 'react-redux';
 import API from '../../utils/API';
+import UserGameList from '../../components/UserGameList/UserGameList';
 import './User_Profile.css';
 
-class UserProfile extends React.Component {
-    createGame = () => {
-        console.log(this.props.auth._id)
+const UserProfile = (props) => {
+    const [userGames, setUserGames] = useState([]);
+
+    useEffect(() => {
+        getUserGames();
+    }, [props.auth]);
+
+    const createGame = () => {
+        console.log(props.auth._id)
         API.createGame({
-            ownerId: this.props.auth._id
+            ownerId: props.auth._id
         })
             .then(result => console.log(result))
     }
 
-    getUserGames = () => {
-        API.getUserGames(this.props.auth._id)
-            .then(result => 
-                console.log(result)
-            )
+    const getUserGames = () => {
+        if(!props.auth){
+            return;
+        }
+
+        API.getUserGames(props.auth._id)
+            .then(result => {
+                console.log(result.data)
+                setUserGames(result.data)
+        })
     }
 
-    render() {
-        // console.log(this.props.auth.googleId)
-        if (!this.props.auth) {
-            return <div>Loading...</div>
-        } else {
-            if (window.innerWidth > 500) {
-                return (
-                    <>
-                        <div className='profile'>
-                            <h2>User Profile Desktop</h2>
-                            <div className='created-games'>{this.getUserGames()}</div>
-                            <button type='button' className='btn btn-success' onClick={this.createGame}>Create Game</button>
+    if (!props.auth) {
+        return <div>Loading...</div>
+    } else {
+        if (window.innerWidth > 500) {
+            return (
+                <>
+                    <div className='profile'>
+                        <h2>User Profile Desktop</h2>
+                        <div className='created-games'>
+                            <ul>
+                                <UserGameList userGames={userGames} />
+                            </ul>
                         </div>
+                        <button type='button' className='btn btn-success' onClick={createGame}>Create Game</button>
+                    </div>
 
-                    </>
-                )
+                </>
+            )
 
-            } else {
+        } else {
 
-                return (
-                    <div>User Profile Mobile</div>
-                )
-            }
+            return (
+                <div>User Profile Mobile</div>
+            )
         }
     }
 }
