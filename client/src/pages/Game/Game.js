@@ -5,7 +5,7 @@ import socketIOClient from "socket.io-client"
 import {preSetSquares} from "../../utils/statesPrimer"
 
 
-
+console.log("mayneeee")
 
 
 
@@ -46,7 +46,10 @@ const Game = (props) => {
             }
         })
 
-        return () => socket.disconnect();
+
+        return () => {
+            pendingSquares = [];
+            socket.disconnect()};
     }, []);
 
 
