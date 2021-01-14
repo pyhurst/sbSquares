@@ -33,12 +33,14 @@ const Game = (props) => {
         console.log("useEffect")
         socket = socketIOClient();
         socket.on(props.match.params.id, (game) => {
+            console.log(game)
             setGame(game)
             setSquares(game.squares)
         });
 
         API.getGame(props.match.params.id).then((game) => {
             if (game.data !== "") {
+                console.log(game)
                 setGame(game.data)
                 setSquares(game.data.squares)
             } else {
@@ -135,7 +137,7 @@ const Game = (props) => {
                                     <div className="col-1" key={i}>
                                         <h2 className="text-center">{i}</h2>
                                         <Square squareId="1-2" id={i} color="bg-danger text-center justify-content-center cardDimensions" flipFunciton={flipFunction} isFlipped={flipStatus[i]} active={squares[i].active}>
-                                            {squares[i].name}
+                                            {squares[i].initials}
                                         </Square>
                                     </div>
                                 ))}
@@ -144,7 +146,7 @@ const Game = (props) => {
                                 {rowLength.map((user, i) => (
                                     <div className="col-1" key={i + 10}>
                                         <Square squareId="1-2" id={i + 10} color="bg-danger text-center justify-content-center cardDimensions" flipFunciton={flipFunction} isFlipped={flipStatus[i + 10]} active={squares[i + 10].active}>
-                                            {squares[i + 10].name}
+                                            {squares[i + 10].initials}
                                         </Square>
                                     </div>
                                 ))}
@@ -153,7 +155,7 @@ const Game = (props) => {
                                 {rowLength.map((user, i) => (
                                     <div className="col-1" key={i + 20}>
                                         <Square squareId="1-2" id={i + 20} color="bg-danger text-center justify-content-center cardDimensions" flipFunciton={flipFunction} isFlipped={flipStatus[i + 20]} active={squares[i + 20].active}>
-                                            {squares[i + 20].name}
+                                            {squares[i + 20].initials}
                                         </Square>
                                     </div>
                                 ))}
@@ -162,7 +164,7 @@ const Game = (props) => {
                                 {rowLength.map((user, i) => (
                                     <div className="col-1" key={i + 30}>
                                         <Square squareId="1-2" id={i + 30} color="bg-danger text-center justify-content-center cardDimensions" flipFunciton={flipFunction} isFlipped={flipStatus[i + 30]} active={squares[i + 30].active}>
-                                            {squares[i + 30].name}
+                                            {squares[i + 30].initials}
                                         </Square>
                                     </div>
                                 ))}
@@ -171,7 +173,7 @@ const Game = (props) => {
                                 {rowLength.map((user, i) => (
                                     <div className="col-1" key={i + 40}>
                                         <Square squareId="1-2" id={i + 40} color="bg-danger text-center justify-content-center cardDimensions" flipFunciton={flipFunction} isFlipped={flipStatus[i + 40]} active={squares[i + 40].active}>
-                                            {squares[i + 40].name}
+                                            {squares[i + 40].initials}
                                         </Square>
                                     </div>
                                 ))}
@@ -180,7 +182,7 @@ const Game = (props) => {
                                 {rowLength.map((user, i) => (
                                     <div className="col-1" key={i + 50}>
                                         <Square squareId="1-2" id={i + 50} color="bg-danger text-center justify-content-center cardDimensions" flipFunciton={flipFunction} isFlipped={flipStatus[i + 50]} active={squares[i + 50].active}>
-                                            {squares[i + 50].name}
+                                            {squares[i + 50].initials}
                                         </Square>
                                     </div>
                                 ))}
@@ -189,7 +191,7 @@ const Game = (props) => {
                                 {rowLength.map((user, i) => (
                                     <div className="col-1" key={i + 60}>
                                         <Square squareId="1-2" id={i + 60} color="bg-danger text-center justify-content-center cardDimensions" flipFunciton={flipFunction} isFlipped={flipStatus[i + 60]} active={squares[i + 60].active}>
-                                            {squares[i + 60].name}
+                                            {squares[i + 60].initials}
                                         </Square>
                                     </div>
                                 ))}
@@ -198,7 +200,7 @@ const Game = (props) => {
                                 {rowLength.map((user, i) => (
                                     <div className="col-1" key={i + 70}>
                                         <Square squareId="1-2" id={i + 70} color="bg-danger text-center justify-content-center cardDimensions" flipFunciton={flipFunction} isFlipped={flipStatus[i + 70]} active={squares[i + 70].active}>
-                                            {squares[i + 70].name}
+                                            {squares[i + 70].initials}
                                         </Square>
                                     </div>
                                 ))}
@@ -207,7 +209,7 @@ const Game = (props) => {
                                 {rowLength.map((user, i) => (
                                     <div className="col-1" key={i + 80}>
                                         <Square squareId="1-2" id={i + 80} color="bg-danger text-center justify-content-center cardDimensions" flipFunciton={flipFunction} isFlipped={flipStatus[i + 80]} active={squares[i + 80].active}>
-                                            {squares[i + 80].name}
+                                            {squares[i + 80].initials}
                                         </Square>
                                     </div>
                                 ))}
@@ -216,7 +218,7 @@ const Game = (props) => {
                                 {rowLength.map((user, i) => (
                                     <div className="col-1" key={i + 90}>
                                         <Square squareId="1-2" id={i + 90} color="bg-danger text-center justify-content-center cardDimensions" flipFunciton={flipFunction} isFlipped={flipStatus[i + 90]} active={squares[i + 90].active}>
-                                            {squares[i + 90].name}
+                                            {squares[i + 90].initials}
                                         </Square>
                                     </div>
                                 ))}
