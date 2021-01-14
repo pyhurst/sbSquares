@@ -3,41 +3,56 @@ const { xArray, yArray, squaresPreSet } = require('../utils/GameFunctions');
 
 module.exports = app => {
 
-    app.get('/api/game/:id', (req,res)=>{
-        db.Game.find({_id:req.params.id}).then((game)=>{
-            res.json(game[0])
-        })
+    app.get('/api/game/:id', async (req, res) => {
+
+        try {
+            console.log(req.params.id)
+            let game = await db.Game.find({ ownerId: req.params.id });
+            res.json(game[0]);
+
+        } catch (error) {
+            res.status(500).send()
+        }
     })
 
-    app.put('/api/game/:id', (req, res) => {
-        db.Game.find({_id:req.params.id}).then((game)=>{
-            console.log(game[0])
-            console.log(req.body);
-            let squares = game[0].squares
+    app.put('/api/game/:id', async (req, res) => {
+
+        try {
+            let pendingArray = [];
             let name = req.body.firstName + " " + req.body.lastName;
-            for (let i =0; i < req.body.pendingSquares.length; i++ ){
-                squares[parseInt(req.body.pendingSquares[i])].name = name;
-                squares[parseInt(req.body.pendingSquares[i])].active = false;
-            }
-            db.Game.updateOne({_id:req.params.id},{squares:squares}).then(()=>{
-                res.json({name:name})
-            })
-        })
+            let game = await db.Game.find({ ownerId: req.params.id });
+            let squares = game[0].squares;
+            for (let i = 0; i < req.body.pendingSquares.length; i++) {
+                if(squares[parseInt(req.body.pendingSquares[i])].active === true){
+                    squares[parseInt(req.body.pendingSquares[i])].name = name;
+                    squares[parseInt(req.body.pendingSquares[i])].active = false;
+                }
+            };
+            await db.Game.updateOne({ ownerId: req.params.id }, { squares: squares });
+            let updatedGame = await db.Game.find({ ownerId: req.params.id });
+            res.json(updatedGame);
+
+        } catch (error) {
+            res.status(500).send();
+        }
+    });
+
+
+    app.post('/api/game/create/', async (req, res) => {
+
+        try {
+            req.body.xArray = xArray();
+            req.body.yArray = yArray();
+            req.body.squares = squaresPreSet();
+            let dbModel = await db.Game.create(req.body);
+            res.json(dbModel)
+
+        } catch (error) {
+            res.status(500).send();
+        }
     });
 
 
 
-    app.post('/api/game/create/', (req, res) => {
-        req.body.xArray = xArray();
-        req.body.yArray = yArray();
-        req.body.squares = squaresPreSet();
-        console.log(req.body);
-        db.Game.create(req.body)
-            .then(dbModel => res.json(dbModel))
-            .catch(err => res.status(422).json(err))
-    });
 
-
-
-    
 }

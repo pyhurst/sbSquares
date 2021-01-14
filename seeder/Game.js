@@ -81,7 +81,7 @@ console.log(squareArray)
 
 let gameSeed = 
   {
-    ownerId: 1,
+    ownerId: 2,
     xArray: xArray,
     yArray: yArray
 
@@ -92,7 +92,7 @@ let gameSeed =
 
 let start = async ()=> {
   console.time()
-  await db.Game.deleteMany({})
+  // await db.Game.deleteMany({})
   let data = await db.Game.create(gameSeed);
   await db.Game.updateOne({ _id: data._id }, { squares: squareArray });
   console.log(data);

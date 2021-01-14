@@ -2,29 +2,20 @@ import React, { useEffect, useState } from "react";
 import Square from "../../components/Square/Square.js"
 import API from "../../utils/API"
 import socketIOClient from "socket.io-client"
-import {preSetSquares} from "../../utils/statesPrimer"
-
-
-
-
-
-
+ console.log("beforer game function")
 let socket;
 let pendingSquares = [];
-
-
-
 const Game = (props) => {
+    console.log("gameProp popping off")
 
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [game, setGame] = useState({});
-    const [squares, setSquares] = useState(preSetSquares);
-
+    const [squares, setSquares] = useState([{ name: "", active: true }, { name: "", active: true }, { name: "", active: true }, { name: "", active: true }, { name: "", active: true }, { name: "", active: true }, { name: "", active: true }, { name: "", active: true }, { name: "", active: true }, { name: "", active: true }, { name: "", active: true }, { name: "", active: true }, { name: "", active: true }, { name: "", active: true }, { name: "", active: true }, { name: "", active: true }, { name: "", active: true }, { name: "", active: true }, { name: "", active: true }, { name: "", active: true }, { name: "", active: true }, { name: "", active: true }, { name: "", active: true }, { name: "", active: true }, { name: "", active: true }, { name: "", active: true }, { name: "", active: true }, { name: "", active: true }, { name: "", active: true }, { name: "", active: true }, { name: "", active: true }, { name: "", active: true }, { name: "", active: true }, { name: "", active: true }, { name: "", active: true }, { name: "", active: true }, { name: "", active: true }, { name: "", active: true }, { name: "", active: true }, { name: "", active: true }, { name: "", active: true }, { name: "", active: true }, { name: "", active: true }, { name: "", active: true }, { name: "", active: true }, { name: "", active: true }, { name: "", active: true }, { name: "", active: true }, { name: "", active: true }, { name: "", active: true }, { name: "", active: true }, { name: "", active: true }, { name: "", active: true }, { name: "", active: true }, { name: "", active: true }, { name: "", active: true }, { name: "", active: true }, { name: "", active: true }, { name: "", active: true }, { name: "", active: true }, { name: "", active: true }, { name: "", active: true }, { name: "", active: true }, { name: "", active: true }, { name: "", active: true }, { name: "", active: true }, { name: "", active: true }, { name: "", active: true }, { name: "", active: true }, { name: "", active: true }, { name: "", active: true }, { name: "", active: true }, { name: "", active: true }, { name: "", active: true }, { name: "", active: true }, { name: "", active: true }, { name: "", active: true }, { name: "", active: true }, { name: "", active: true }, { name: "", active: true }, { name: "", active: true }, { name: "", active: true }, { name: "", active: true }, { name: "", active: true }, { name: "", active: true }, { name: "", active: true }, { name: "", active: true }, { name: "", active: true }, { name: "", active: true }, { name: "", active: true }, { name: "", active: true }, { name: "", active: true }, { name: "", active: true }, { name: "", active: true }, { name: "", active: true }, { name: "", active: true }, { name: "", active: true }, { name: "", active: true }, { name: "", active: true }, { name: "", active: true }]);
     let flip = [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false];
-
+    
     const [flipStatus, setFlipStatus] = useState(flip);
-
+    
 
 
     const rowLength = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
@@ -38,10 +29,10 @@ const Game = (props) => {
         });
 
         API.getGame(props.match.params.id).then((game) => {
-            if (game.data !== "") {
+            if(game.data !== ""){
                 setGame(game.data)
                 setSquares(game.data.squares)
-            } else {
+            }else{
                 window.location.href = "/"
             }
         })
@@ -59,7 +50,7 @@ const Game = (props) => {
         for (var i = 0; i < pendingSquares.length; i++) {
             if (pendingSquares[i] == chosenSquare) {
                 chosenAlready = true
-                pendingSquares.splice(i, 1)
+                pendingSquares.splice(i,1)
             }
         }
 
@@ -87,11 +78,11 @@ const Game = (props) => {
 
 
 
-    
+    if (window.innerWidth > 500) {
 
         return (
             <>
-                <div className="text-white justify-content-center game-square">
+                <div className="text-white justify-content-center">
                     <div className="row">
                         <div className="col-4">
                         </div>
@@ -104,7 +95,7 @@ const Game = (props) => {
                         <div className="col-4"></div>
                     </div>
                     <div className="row">
-                        <div className="col-2 col-md-3 justify-content-right text-dark">
+                        <div className="col-3 justify-content-right text-dark">
                             <div className="row">
                                 <div className="col-10">
                                     <h2 className="text-right mt-5">H</h2>
@@ -127,7 +118,7 @@ const Game = (props) => {
                             </div>
 
                         </div>
-                        <div className="col-10 col-md-8">
+                        <div className="col-8">
                             <div className="row">
                                 {rowLength.map((user, i) => (
                                     <div className="col-1" key={i}>
@@ -228,10 +219,20 @@ const Game = (props) => {
             </>
         )
 
-    }
+    } else {
 
+        return (
+            <div>Join Mobile</div>
+        )
+
+    }
+}
 
 export default Game;
 
 
+{()=>{if(squares.length > 1){
+                                            
+}else{
 
+}}}
