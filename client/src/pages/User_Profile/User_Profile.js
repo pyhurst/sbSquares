@@ -15,7 +15,7 @@ const UserProfile = (props) => {
         console.log(props.auth._id)
         API.createGame({
             ownerId: props.auth._id
-        }).then(result => setUserGames(result.data))
+        }).then(result => console.log(result.data))
     }
 
     const getUserGames = () => {
