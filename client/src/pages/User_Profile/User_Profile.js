@@ -15,15 +15,13 @@ const UserProfile = (props) => {
         console.log(props.auth._id)
         API.createGame({
             ownerId: props.auth._id
-        })
-            .then(result => console.log(result))
+        }).then(result => setUserGames(result.data))
     }
 
     const getUserGames = () => {
         if(!props.auth){
             return;
         }
-
         API.getUserGames(props.auth._id)
             .then(result => {
                 console.log(result.data)
