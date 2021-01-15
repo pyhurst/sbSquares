@@ -1,5 +1,5 @@
 const db = require('../models');
-const { xArray, yArray, squaresPreSet } = require('../utils/gameFunctions');
+const { xArray, yArray, squaresPreSet, classArray } = require('../utils/gameFunctions');
 
 
 
@@ -45,10 +45,20 @@ module.exports = app => {
             let name = req.body.firstName + " " + req.body.lastName;
             let game = await db.Game.find({ _id: req.params.id });
             let squares = game[0].squares;
+            let color = classArray[Math.floor(Math.random() * classArray.length)];
+            console.log(color)
+            for (let i = 0; i < squares.length; i++){
+                if(squares[i].name === name){
+                    color = squares[i].color
+                    break;
+                }
+            }
+            console.log(color)
             for (let i = 0; i < req.body.pendingSquares.length; i++) {
                 if(squares[parseInt(req.body.pendingSquares[i])].active === true){
                     squares[parseInt(req.body.pendingSquares[i])].name = name;
                     squares[parseInt(req.body.pendingSquares[i])].active = false;
+                    squares[parseInt(req.body.pendingSquares[i])].color = color;
                 }
             };
             for (let i = 0; i < squares.length; i++) {
