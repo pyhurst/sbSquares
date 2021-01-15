@@ -38,3 +38,17 @@ a {
 .create-game {
     font-size: 32px;
 }
+
+@media only screen 
+and (min-device-width : 375px) 
+and (-webkit-device-pixel-ratio : 3) {
+    #title-box {
+        width: 340px;
+        margin-top: -60px;
+        border: 3.5px solid white;
+    }
+
+    #landing-title {
+        font-size: 90px;
+    }
+}
