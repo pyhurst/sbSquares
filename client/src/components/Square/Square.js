@@ -10,7 +10,7 @@ const Square = (props) => {
             <>
                 <ReactCardFlip isFlipped={props.isFlipped} flipDirection="horizontal" flipSpeedFrontToBack="1.5" flipSpeedFrontToBack="1.5">
                     <div className="bg-warning text-center cardDimensions" id={props.id} data-value={props.data} onClick={props.flipFunciton}>
-                        {props.children}
+                        
                     </div>
 
                     <div className="bg-info text-center justify-content-center cardDimensions" id={props.id} data-value={props.data} onClick={props.flipFunciton}>
