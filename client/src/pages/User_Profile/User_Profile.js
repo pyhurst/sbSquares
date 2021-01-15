@@ -43,7 +43,7 @@ const UserProfile = (props) => {
                             <UserGameList userGames={userGames} />
                         </ul>
                     </div>
-                    <button type='button' className='btn btn-success' onClick={createGame}>Create Game</button>
+                    <button type='button' className='btn btn-success createbtn' onClick={createGame}>Create Game</button>
                 </div>
 
             </>
