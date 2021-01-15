@@ -44,11 +44,13 @@ and (min-device-width : 375px)
 and (-webkit-device-pixel-ratio : 3) {
     #title-box {
         width: 340px;
-        margin-top: -60px;
+        margin-top: -55px;
         border: 3.5px solid white;
     }
 
     #landing-title {
-        font-size: 90px;
+        position: relative;
+        font-size: 80px;
+        margin-left: 20px;
     }
 }
