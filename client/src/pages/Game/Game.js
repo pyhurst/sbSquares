@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
-import Square from "../../components/Square/Square.js"
-import API from "../../utils/API"
-import socketIOClient from "socket.io-client"
-import {preSetSquares} from "../../utils/statesPrimer"
+import Square from "../../components/Square/Square.js";
+import API from "../../utils/API";
+import socketIOClient from "socket.io-client";
+import {preSetSquares} from "../../utils/statesPrimer";
+import Header from '../../components/Header/Header';
 
 
 console.log("mayneeee")
@@ -95,6 +96,7 @@ const Game = (props) => {
 
         return (
             <>
+                <Header />
                 <div className="text-white justify-content-center game-square">
                     <div className="row">
                         <div className="col-4">

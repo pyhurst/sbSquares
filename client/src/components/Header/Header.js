@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import './Header.css';
 
 class Header extends Component {
     renderContent() {
@@ -18,13 +19,13 @@ class Header extends Component {
         console.log(this.props)
         return (
             <div>
-                <nav className="navbar navbar-light bg-light">
-                    <div className="container-fluid">
+                <nav className="navbar">
+                    <div className="container">
                         <Link
                             className="navbar-brand"
                             to={this.props.auth ? '/userprofile' : '/'}
                         >
-                            Squares
+                            <h4 className='navbar-title'>Squares</h4>
                         </Link>
                         {this.renderContent()}
                     </div>

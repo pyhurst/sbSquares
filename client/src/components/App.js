@@ -5,7 +5,6 @@ import * as actions from '../actions';
 
 import Landing from '../pages/Landing/Landing';
 import UserProfile from '../pages/User_Profile/User_Profile';
-import Header from './Header/Header';
 import Game from '../pages/Game/Game'
 
 class App extends Component {
@@ -18,7 +17,6 @@ class App extends Component {
             <div className='container'>
                 <BrowserRouter>
                     <div>
-                        <Header />
                         <Route exact path="/" component={Landing} />
                         <Route exact path="/game/:id" component={Game} />
                         <Route exact path="/userprofile" component={UserProfile} />
