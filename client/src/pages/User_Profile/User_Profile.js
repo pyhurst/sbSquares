@@ -30,6 +30,17 @@ const UserProfile = (props) => {
             })
     }
 
+    const deleteGame = e => {
+        API.deleteGame(e.target.id)
+            .then(() => {
+                API.getUserGames(props.auth._id)
+                .then(result => {
+                    console.log(result.data)
+                    setUserGames(result.data)
+                })
+            })
+    }
+
     if (!props.auth) {
         return <div>Loading...</div>
     } else {
@@ -41,7 +52,7 @@ const UserProfile = (props) => {
                     <h4 id='created-games-title'>Created Games</h4>
                     <div className='created-games'>
                         <ul>
-                            <UserGameList userGames={userGames} />
+                            <UserGameList userGames={userGames} deleteGame={deleteGame} />
                         </ul>
                     </div>
                     <button type='button' className='btn btn-success createbtn' onClick={createGame}>Create Game</button>
