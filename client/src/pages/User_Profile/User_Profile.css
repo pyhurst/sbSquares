@@ -4,11 +4,30 @@
 
 .created-games {
     border: 2px solid black;
-    min-height: 200px;
+    min-height: 50px;
     width: 400px;
     margin: 0 auto;
 }
 
-.btn {
+.createbtn {
+    font-family: 'Nova Square', cursive;
     margin-top: 15px;
+}
+
+#created-games-title {
+    margin-top: 50px;
+}
+
+ul {
+    list-style-type: none;
+}
+
+
+@media only screen 
+and (min-device-width : 375px) 
+and (-webkit-device-pixel-ratio : 3) {
+    .created-games {
+        border-left: 0px solid;
+        border-right: 0px solid;
+    }
 }
