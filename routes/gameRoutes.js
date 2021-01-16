@@ -41,6 +41,13 @@ module.exports = app => {
             .catch(err => res.status(422).json(err))
     });
 
+    app.delete('/api/game/:id', (req, res) => {
+        console.log(req.params.id);
+        db.Game.deleteOne({ _id: req.params.id })
+            .then(dbModel => res.json(dbModel))
+            .catch(err => res.status(422).json(err))
+    });
+
     app.put('/api/game/:id', async (req, res) => {
         try {
             let name = req.body.firstName + " " + req.body.lastName;
