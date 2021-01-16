@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Square from "../../components/Square/Square.js";
 import API from "../../utils/API";
 import socketIOClient from "socket.io-client";
-import {preSetSquares} from "../../utils/statesPrimer";
+import { preSetSquares } from "../../utils/statesPrimer";
 import Header from '../../components/Header/Header';
 import "./Game.css"
 
@@ -44,7 +44,8 @@ const Game = (props) => {
 
         return () => {
             pendingSquares = [];
-            socket.disconnect()};
+            socket.disconnect()
+        };
     }, []);
 
 
@@ -83,144 +84,154 @@ const Game = (props) => {
 
 
 
-    
 
-        return (
-            <>
-                <Header />
-                <div className="text-white justify-content-center game-square">
-                    <div className="row">
-                        <div className="col-3 col-md-4">
-                        </div>
-                        <div className="col-7 col-md-4 text-center">
-                            <input type="name"  style={{display:"inline-block", backgroundColor:"white"}} placeholder="first" value={firstName} onChange={(event) => { setFirstName(event.target.value) }}></input>
-                            <input type="name"  style={{display:"inline-block", backgroundColor:"white"}} placeholder="last" value={lastName} onChange={(event) => { setLastName(event.target.value) }}></input>
-                            <button disabled={!(firstName && lastName)} onClick={updateGame} type="button" className="btn btn-outline-danger mb-2">submit</button>
-                        </div>
-                        <div className="col-2 col-md-4"></div>
+
+    return (
+        <>
+            <Header />
+            <div className="text-white justify-content-center game-square">
+                <div className="row mb-4">
+                    <div className="col-3 col-md-4">
                     </div>
-                    <div className="row">
-                        <div className="col-2 col-md-3 justify-content-right">
-                            <div className="row">
-                                <div className="col-10">
-                                </div>
-                                <div className="col-2 mt-5">
-                                    <h2 className="text-right y-row">0</h2>
-                                    <h2 className="text-right y-row">1</h2>
-                                    <h2 className="text-right y-row">2</h2>
-                                    <h2 className="text-right y-row">3</h2>
-                                    <h2 className="text-right y-row">4</h2>
-                                    <h2 className="text-right y-row">5</h2>
-                                    <h2 className="text-right y-row">6</h2>
-                                    <h2 className="text-right y-row">7</h2>
-                                    <h2 className="text-right y-row">8</h2>
-                                    <h2 className="text-right y-row">9</h2>
-                                </div>
-                            </div>
+                    <div className="col-7 col-md-5 text-center">
+                        <div className="row">
+                            <div className="col-6 col-md-4 pt-1">
+                                <input type="name" className="input-name" placeholder="first" value={firstName} onChange={(event) => { setFirstName(event.target.value) }}></input>
 
-                        </div>
-                        <div className="col-10 col-md-8">
-                            <div className="row">
-                                {rowLength.map((user, i) => (
-                                    <div className="col-1" key={i}>
-                                        <h2 className="text-center">{i}</h2>
-                                        <Square squareId="1-2" id={i} color={squares[i].color} flipFunciton={flipFunction} isFlipped={flipStatus[i]} active={squares[i].active}>
-                                            {squares[i].initials}
-                                        </Square>
-                                    </div>
-                                ))}
                             </div>
-                            <div className="row">
-                                {rowLength.map((user, i) => (
-                                    <div className="col-1" key={i + 10}>
-                                        <Square squareId="1-2" id={i + 10} color={squares[i + 10].color} flipFunciton={flipFunction} isFlipped={flipStatus[i + 10]} active={squares[i + 10].active}>
-                                            {squares[i + 10].initials}
-                                        </Square>
-                                    </div>
-                                ))}
+                            <div className="col-6 col-md-4 pt-1">
+                                <input type="name" className="input-name" placeholder="last" value={lastName} onChange={(event) => { setLastName(event.target.value) }}></input>
+
                             </div>
-                            <div className="row">
-                                {rowLength.map((user, i) => (
-                                    <div className="col-1" key={i + 20}>
-                                        <Square squareId="1-2" id={i + 20} color={squares[i + 20].color} flipFunciton={flipFunction} isFlipped={flipStatus[i + 20]} active={squares[i + 20].active}>
-                                            {squares[i + 20].initials}
-                                        </Square>
-                                    </div>
-                                ))}
-                            </div>
-                            <div className="row">
-                                {rowLength.map((user, i) => (
-                                    <div className="col-1" key={i + 30}>
-                                        <Square squareId="1-2" id={i + 30} color={squares[i + 30].color} flipFunciton={flipFunction} isFlipped={flipStatus[i + 30]} active={squares[i + 30].active}>
-                                            {squares[i + 30].initials}
-                                        </Square>
-                                    </div>
-                                ))}
-                            </div>
-                            <div className="row">
-                                {rowLength.map((user, i) => (
-                                    <div className="col-1" key={i + 40}>
-                                        <Square squareId="1-2" id={i + 40} color={squares[i + 40].color} flipFunciton={flipFunction} isFlipped={flipStatus[i + 40]} active={squares[i + 40].active}>
-                                            {squares[i + 40].initials}
-                                        </Square>
-                                    </div>
-                                ))}
-                            </div>
-                            <div className="row">
-                                {rowLength.map((user, i) => (
-                                    <div className="col-1" key={i + 50}>
-                                        <Square squareId="1-2" id={i + 50} color={squares[i + 50].color} flipFunciton={flipFunction} isFlipped={flipStatus[i + 50]} active={squares[i + 50].active}>
-                                            {squares[i + 50].initials}
-                                        </Square>
-                                    </div>
-                                ))}
-                            </div>
-                            <div className="row">
-                                {rowLength.map((user, i) => (
-                                    <div className="col-1" key={i + 60}>
-                                        <Square squareId="1-2" id={i + 60} color={squares[i + 60].color} flipFunciton={flipFunction} isFlipped={flipStatus[i + 60]} active={squares[i + 60].active}>
-                                            {squares[i + 60].initials}
-                                        </Square>
-                                    </div>
-                                ))}
-                            </div>
-                            <div className="row">
-                                {rowLength.map((user, i) => (
-                                    <div className="col-1" key={i + 70}>
-                                        <Square squareId="1-2" id={i + 70} color={squares[i + 70].color} flipFunciton={flipFunction} isFlipped={flipStatus[i + 70]} active={squares[i + 70].active}>
-                                            {squares[i + 70].initials}
-                                        </Square>
-                                    </div>
-                                ))}
-                            </div>
-                            <div className="row">
-                                {rowLength.map((user, i) => (
-                                    <div className="col-1" key={i + 80}>
-                                        <Square squareId="1-2" id={i + 80} color={squares[i + 80].color} flipFunciton={flipFunction} isFlipped={flipStatus[i + 80]} active={squares[i + 80].active}>
-                                            {squares[i + 80].initials}
-                                        </Square>
-                                    </div>
-                                ))}
-                            </div>
-                            <div className="row">
-                                {rowLength.map((user, i) => (
-                                    <div className="col-1" key={i + 90}>
-                                        <Square squareId="1-2" id={i + 90} color={squares[i + 90].color} flipFunciton={flipFunction} isFlipped={flipStatus[i + 90]} active={squares[i + 90].active}>
-                                            {squares[i + 90].initials}
-                                        </Square>
-                                    </div>
-                                ))}
+                            <div className="col-12 col-md-4 input-button">
+                                <button className="" disabled={!(firstName && lastName)} onClick={updateGame} type="button" className="btn btn-outline-danger">submit</button>
                             </div>
                         </div>
                     </div>
-                    <div className="col-1 bg-danger"></div>
-                    {/* container end div */}
+                    <div className="col-2 col-md-2"></div>
                 </div>
+                <div className="row">
+                    <div className="col-2 col-md-3 justify-content-right">
+                        <div className="row">
+                            <div className="col-10">
+                            </div>
+                            <div className="col-2 mt-5">
+                                <h2 className="text-right y-row">0</h2>
+                                <h2 className="text-right y-row">1</h2>
+                                <h2 className="text-right y-row">2</h2>
+                                <h2 className="text-right y-row">3</h2>
+                                <h2 className="text-right y-row">4</h2>
+                                <h2 className="text-right y-row">5</h2>
+                                <h2 className="text-right y-row">6</h2>
+                                <h2 className="text-right y-row">7</h2>
+                                <h2 className="text-right y-row">8</h2>
+                                <h2 className="text-right y-row">9</h2>
+                            </div>
+                        </div>
 
-            </>
-        )
+                    </div>
+                    <div className="col-10 col-md-8">
+                        <div className="row">
+                            {rowLength.map((user, i) => (
+                                <div className="col-1" key={i}>
+                                    <h2 className="text-center">{i}</h2>
+                                    <Square squareId="1-2" id={i} color={squares[i].color} flipFunciton={flipFunction} isFlipped={flipStatus[i]} active={squares[i].active}>
+                                        {squares[i].initials}
+                                    </Square>
+                                </div>
+                            ))}
+                        </div>
+                        <div className="row">
+                            {rowLength.map((user, i) => (
+                                <div className="col-1" key={i + 10}>
+                                    <Square squareId="1-2" id={i + 10} color={squares[i + 10].color} flipFunciton={flipFunction} isFlipped={flipStatus[i + 10]} active={squares[i + 10].active}>
+                                        {squares[i + 10].initials}
+                                    </Square>
+                                </div>
+                            ))}
+                        </div>
+                        <div className="row">
+                            {rowLength.map((user, i) => (
+                                <div className="col-1" key={i + 20}>
+                                    <Square squareId="1-2" id={i + 20} color={squares[i + 20].color} flipFunciton={flipFunction} isFlipped={flipStatus[i + 20]} active={squares[i + 20].active}>
+                                        {squares[i + 20].initials}
+                                    </Square>
+                                </div>
+                            ))}
+                        </div>
+                        <div className="row">
+                            {rowLength.map((user, i) => (
+                                <div className="col-1" key={i + 30}>
+                                    <Square squareId="1-2" id={i + 30} color={squares[i + 30].color} flipFunciton={flipFunction} isFlipped={flipStatus[i + 30]} active={squares[i + 30].active}>
+                                        {squares[i + 30].initials}
+                                    </Square>
+                                </div>
+                            ))}
+                        </div>
+                        <div className="row">
+                            {rowLength.map((user, i) => (
+                                <div className="col-1" key={i + 40}>
+                                    <Square squareId="1-2" id={i + 40} color={squares[i + 40].color} flipFunciton={flipFunction} isFlipped={flipStatus[i + 40]} active={squares[i + 40].active}>
+                                        {squares[i + 40].initials}
+                                    </Square>
+                                </div>
+                            ))}
+                        </div>
+                        <div className="row">
+                            {rowLength.map((user, i) => (
+                                <div className="col-1" key={i + 50}>
+                                    <Square squareId="1-2" id={i + 50} color={squares[i + 50].color} flipFunciton={flipFunction} isFlipped={flipStatus[i + 50]} active={squares[i + 50].active}>
+                                        {squares[i + 50].initials}
+                                    </Square>
+                                </div>
+                            ))}
+                        </div>
+                        <div className="row">
+                            {rowLength.map((user, i) => (
+                                <div className="col-1" key={i + 60}>
+                                    <Square squareId="1-2" id={i + 60} color={squares[i + 60].color} flipFunciton={flipFunction} isFlipped={flipStatus[i + 60]} active={squares[i + 60].active}>
+                                        {squares[i + 60].initials}
+                                    </Square>
+                                </div>
+                            ))}
+                        </div>
+                        <div className="row">
+                            {rowLength.map((user, i) => (
+                                <div className="col-1" key={i + 70}>
+                                    <Square squareId="1-2" id={i + 70} color={squares[i + 70].color} flipFunciton={flipFunction} isFlipped={flipStatus[i + 70]} active={squares[i + 70].active}>
+                                        {squares[i + 70].initials}
+                                    </Square>
+                                </div>
+                            ))}
+                        </div>
+                        <div className="row">
+                            {rowLength.map((user, i) => (
+                                <div className="col-1" key={i + 80}>
+                                    <Square squareId="1-2" id={i + 80} color={squares[i + 80].color} flipFunciton={flipFunction} isFlipped={flipStatus[i + 80]} active={squares[i + 80].active}>
+                                        {squares[i + 80].initials}
+                                    </Square>
+                                </div>
+                            ))}
+                        </div>
+                        <div className="row">
+                            {rowLength.map((user, i) => (
+                                <div className="col-1" key={i + 90}>
+                                    <Square squareId="1-2" id={i + 90} color={squares[i + 90].color} flipFunciton={flipFunction} isFlipped={flipStatus[i + 90]} active={squares[i + 90].active}>
+                                        {squares[i + 90].initials}
+                                    </Square>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+                <div className="col-1 bg-danger"></div>
+                {/* container end div */}
+            </div>
 
-    }
+        </>
+    )
+
+}
 
 
 export default Game;
