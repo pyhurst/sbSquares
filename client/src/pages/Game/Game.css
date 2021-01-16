@@ -3,10 +3,27 @@
     color: white;
 }
 
+.input-name{
+    background-color: aliceblue;
+    width: 150px;
+}
+
 @media only screen and (max-width: 600px) {
     .y-row{
         margin-bottom: 15px;
         padding-left: 30px;
         color: white;
     }
+    .input-name{
+        width: 100px;
+        padding: 0%;
+        border-width: 0px;
+    }
+    .input-button{
+        margin-top: 10px;
+    }
+
   }
+
+
+  

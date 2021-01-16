@@ -22,14 +22,15 @@ module.exports = app => {
     app.get('/api/game/:id', async (req, res) => {
         try {
             console.log(req.params.id)
-            let game = await db.Game.find({ _id: req.params.id });
+            let game = await db.Game.find({ _id: req.params.id })
+            console.log(game)
             for(let i = 0; i < game[0].squares.length; i++){
                 let index =  game[0].squares[i].name.indexOf(" ");
                 game[0].squares[i].initials = game[0].squares[i].name[0] + game[0].squares[i].name[index + 1]
             }
             res.json(game[0]);
         } catch (error) {
-            res.status(500).send()
+            res.json("")
         }
     })
 
