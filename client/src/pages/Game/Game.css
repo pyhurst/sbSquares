@@ -15,12 +15,12 @@
         color: white;
     }
     .input-name{
-        width: 100px;
-        padding: 0%;
-        border-width: 0px;
+        width: 88px;
+        padding: 0px;
     }
     .input-button{
         margin-top: 10px;
+        
     }
 
   }
