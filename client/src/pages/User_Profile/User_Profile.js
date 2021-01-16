@@ -37,7 +37,8 @@ const UserProfile = (props) => {
             <>
                 <Header />
                 <div className='profile'>
-                    <h2>User Profile</h2>
+                    <h1>User Profile</h1>
+                    <h4 id='created-games-title'>Created Games</h4>
                     <div className='created-games'>
                         <ul>
                             <UserGameList userGames={userGames} />

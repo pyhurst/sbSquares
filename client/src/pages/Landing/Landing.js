@@ -35,7 +35,8 @@ const Landing = (props) => {
                 <div className='instructions'>
                     <h5>1. Create a Game w/ Google</h5>
                     <h5>2. Send Sqaures link to your friends</h5>
-                    <h5>3. Once ALL 100 squares are filled, numbers will be show in random order (0-9)</h5>
+                    <h5>3. Add your name and click Squares you would like to fill... then save!</h5>
+                    <h5>4. Once ALL 100 squares are filled, numbers will be drawn at random for each team (0-9)</h5>
                 </div>
                 <div className='create-game' >
                     {renderContent()}

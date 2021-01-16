@@ -1,7 +1,12 @@
 .copybtn {
     align-items: center;
+    margin-left: 10px;
 }
 
 .user-list-item {
     margin-top: 7px;
+}
+
+li {
+    margin-right: 60px;
 }
