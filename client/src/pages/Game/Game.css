@@ -8,6 +8,10 @@
     width: 150px;
 }
 
+.mod{
+    opacity: .9;
+}
+
 @media only screen and (max-width: 600px) {
     .y-row{
         margin-bottom: 15px;
