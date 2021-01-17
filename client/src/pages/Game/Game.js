@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
+import { connect } from 'react-redux';
 import Square from "../../components/Square/Square.js";
 import API from "../../utils/API";
 import socketIOClient from "socket.io-client";
 import { preSetSquares } from "../../utils/statesPrimer";
 import Header from '../../components/Header/Header';
+import ModalEditSquare from '../../components/ModalEditSquare/ModalEditSquare.js';
 import "./Game.css"
 
 
@@ -13,10 +15,14 @@ let pendingSquares = [];
 
 const Game = (props) => {
 
+    const [modalAdmin, setModalAdmin] = useState("");
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
-    const [game, setGame] = useState({});
+    const [gameID, setGameID] = useState("");
+    const [game, setGame] = useState({name:"schwyn"});
     const [squares, setSquares] = useState(preSetSquares);
+    const [editSquareName, setSquareName] = useState("")
+    const [editSquare, setEditSquare] = useState("")
 
     let flip = [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false];
 
@@ -33,9 +39,16 @@ const Game = (props) => {
 
         API.getGame(props.match.params.id).then((game) => {
             if (game.data !== "") {
-                console.log(game)
+                console.log(game.data.xArray)
+                console.log(game.data.ownerId)
                 setGame(game.data)
+                setGameID(game.data.ownerId)
                 setSquares(game.data.squares)
+                if(props.auth){
+                    adminCheck();
+                }else{
+                    
+                }
             } else {
                 window.location.href = "/"
             }
@@ -46,7 +59,7 @@ const Game = (props) => {
             pendingSquares = [];
             socket.disconnect()
         };
-    }, []);
+    }, [props.auth, modalAdmin]);
 
 
     const flipFunction = (event) => {
@@ -81,9 +94,29 @@ const Game = (props) => {
         }
     }
 
+    const adminCheck = () => {
+        API.getGame(props.match.params.id).then((game) => {
+            if (game.data !== "") {
+                console.log(game.data.xArray)
+                console.log(props.auth._id)
+                console.log(game.data.ownerId)
+                if(props.auth._id === game.data.ownerId){
+                    setModalAdmin("#exampleModal")
+                    console.log(modalAdmin)
+                }
+            }
+        })
+    }
 
+    const adminEdit = (event) =>{
+        console.log("admin edit function")
+        let choice = event.target.id
+        console.log(squares[choice].name)
+        setEditSquare(choice)
+        setSquareName(squares[choice].name)
+    }
 
-
+        
 
 
     return (
@@ -96,7 +129,7 @@ const Game = (props) => {
                     <div className="col-7 col-md-5 text-center">
                         <div className="row">
                             <div className="col-6 col-md-4 pr-1">
-                                <input  type="name" className="input-name" placeholder="first" value={firstName} onChange={(event) => { setFirstName(event.target.value) }}></input>
+                                <input type="name" className="input-name" placeholder="first" value={firstName} onChange={(event) => { setFirstName(event.target.value) }}></input>
                             </div>
                             <div className="col-6 col-md-4 pr-1">
                                 <input type="name" className="input-name" placeholder="last" value={lastName} onChange={(event) => { setLastName(event.target.value) }}></input>
@@ -133,7 +166,7 @@ const Game = (props) => {
                             {rowLength.map((user, i) => (
                                 <div className="col-1" key={i}>
                                     <h2 className="text-center">{i}</h2>
-                                    <Square squareId="1-2" id={i} color={squares[i].color} flipFunciton={flipFunction} isFlipped={flipStatus[i]} active={squares[i].active}>
+                                    <Square squareId="1-2" id={i} adminEdit={adminEdit} color={squares[i].color} modalAdmin={modalAdmin} flipFunciton={flipFunction} isFlipped={flipStatus[i]} active={squares[i].active}>
                                         {squares[i].initials}
                                     </Square>
                                 </div>
@@ -142,7 +175,7 @@ const Game = (props) => {
                         <div className="row">
                             {rowLength.map((user, i) => (
                                 <div className="col-1" key={i + 10}>
-                                    <Square squareId="1-2" id={i + 10} color={squares[i + 10].color} flipFunciton={flipFunction} isFlipped={flipStatus[i + 10]} active={squares[i + 10].active}>
+                                    <Square squareId="1-2" id={i + 10} adminEdit={adminEdit} color={squares[i + 10].color} modalAdmin={modalAdmin} flipFunciton={flipFunction} isFlipped={flipStatus[i + 10]} active={squares[i + 10].active}>
                                         {squares[i + 10].initials}
                                     </Square>
                                 </div>
@@ -151,7 +184,7 @@ const Game = (props) => {
                         <div className="row">
                             {rowLength.map((user, i) => (
                                 <div className="col-1" key={i + 20}>
-                                    <Square squareId="1-2" id={i + 20} color={squares[i + 20].color} flipFunciton={flipFunction} isFlipped={flipStatus[i + 20]} active={squares[i + 20].active}>
+                                    <Square squareId="1-2" id={i + 20} adminEdit={adminEdit} color={squares[i + 20].color} modalAdmin={modalAdmin} flipFunciton={flipFunction} isFlipped={flipStatus[i + 20]} active={squares[i + 20].active}>
                                         {squares[i + 20].initials}
                                     </Square>
                                 </div>
@@ -160,7 +193,7 @@ const Game = (props) => {
                         <div className="row">
                             {rowLength.map((user, i) => (
                                 <div className="col-1" key={i + 30}>
-                                    <Square squareId="1-2" id={i + 30} color={squares[i + 30].color} flipFunciton={flipFunction} isFlipped={flipStatus[i + 30]} active={squares[i + 30].active}>
+                                    <Square squareId="1-2" id={i + 30} adminEdit={adminEdit} color={squares[i + 30].color} modalAdmin={modalAdmin} flipFunciton={flipFunction} isFlipped={flipStatus[i + 30]} active={squares[i + 30].active}>
                                         {squares[i + 30].initials}
                                     </Square>
                                 </div>
@@ -169,7 +202,7 @@ const Game = (props) => {
                         <div className="row">
                             {rowLength.map((user, i) => (
                                 <div className="col-1" key={i + 40}>
-                                    <Square squareId="1-2" id={i + 40} color={squares[i + 40].color} flipFunciton={flipFunction} isFlipped={flipStatus[i + 40]} active={squares[i + 40].active}>
+                                    <Square squareId="1-2" id={i + 40} adminEdit={adminEdit} color={squares[i + 40].color} modalAdmin={modalAdmin} flipFunciton={flipFunction} isFlipped={flipStatus[i + 40]} active={squares[i + 40].active}>
                                         {squares[i + 40].initials}
                                     </Square>
                                 </div>
@@ -178,7 +211,7 @@ const Game = (props) => {
                         <div className="row">
                             {rowLength.map((user, i) => (
                                 <div className="col-1" key={i + 50}>
-                                    <Square squareId="1-2" id={i + 50} color={squares[i + 50].color} flipFunciton={flipFunction} isFlipped={flipStatus[i + 50]} active={squares[i + 50].active}>
+                                    <Square squareId="1-2" id={i + 50} adminEdit={adminEdit} color={squares[i + 50].color} modalAdmin={modalAdmin} flipFunciton={flipFunction} isFlipped={flipStatus[i + 50]} active={squares[i + 50].active}>
                                         {squares[i + 50].initials}
                                     </Square>
                                 </div>
@@ -187,7 +220,7 @@ const Game = (props) => {
                         <div className="row">
                             {rowLength.map((user, i) => (
                                 <div className="col-1" key={i + 60}>
-                                    <Square squareId="1-2" id={i + 60} color={squares[i + 60].color} flipFunciton={flipFunction} isFlipped={flipStatus[i + 60]} active={squares[i + 60].active}>
+                                    <Square squareId="1-2" id={i + 60} adminEdit={adminEdit} color={squares[i + 60].color} modalAdmin={modalAdmin} flipFunciton={flipFunction} isFlipped={flipStatus[i + 60]} active={squares[i + 60].active}>
                                         {squares[i + 60].initials}
                                     </Square>
                                 </div>
@@ -196,7 +229,7 @@ const Game = (props) => {
                         <div className="row">
                             {rowLength.map((user, i) => (
                                 <div className="col-1" key={i + 70}>
-                                    <Square squareId="1-2" id={i + 70} color={squares[i + 70].color} flipFunciton={flipFunction} isFlipped={flipStatus[i + 70]} active={squares[i + 70].active}>
+                                    <Square squareId="1-2" id={i + 70} adminEdit={adminEdit}color={squares[i + 70].color} modalAdmin={modalAdmin} flipFunciton={flipFunction} isFlipped={flipStatus[i + 70]} active={squares[i + 70].active}>
                                         {squares[i + 70].initials}
                                     </Square>
                                 </div>
@@ -205,7 +238,7 @@ const Game = (props) => {
                         <div className="row">
                             {rowLength.map((user, i) => (
                                 <div className="col-1" key={i + 80}>
-                                    <Square squareId="1-2" id={i + 80} color={squares[i + 80].color} flipFunciton={flipFunction} isFlipped={flipStatus[i + 80]} active={squares[i + 80].active}>
+                                    <Square squareId="1-2" id={i + 80} adminEdit={adminEdit} color={squares[i + 80].color} modalAdmin={modalAdmin} flipFunciton={flipFunction} isFlipped={flipStatus[i + 80]} active={squares[i + 80].active}>
                                         {squares[i + 80].initials}
                                     </Square>
                                 </div>
@@ -214,7 +247,7 @@ const Game = (props) => {
                         <div className="row">
                             {rowLength.map((user, i) => (
                                 <div className="col-1" key={i + 90}>
-                                    <Square squareId="1-2" id={i + 90} color={squares[i + 90].color} flipFunciton={flipFunction} isFlipped={flipStatus[i + 90]} active={squares[i + 90].active}>
+                                    <Square squareId="1-2" id={i + 90} adminEdit={adminEdit} color={squares[i + 90].color} modalAdmin={modalAdmin} flipFunciton={flipFunction} isFlipped={flipStatus[i + 90]} active={squares[i + 90].active}>
                                         {squares[i + 90].initials}
                                     </Square>
                                 </div>
@@ -223,6 +256,7 @@ const Game = (props) => {
                     </div>
                 </div>
                 <div className="col-1 bg-danger"></div>
+                <ModalEditSquare modalAdmin={modalAdmin} editSquare={editSquare} editSquareName={editSquareName}></ModalEditSquare>
                 {/* container end div */}
             </div>
 
@@ -232,4 +266,8 @@ const Game = (props) => {
 }
 
 
-export default Game;
+function mapStateToProps({ auth }) {
+    return { auth };
+}
+
+export default connect(mapStateToProps)(Game);
