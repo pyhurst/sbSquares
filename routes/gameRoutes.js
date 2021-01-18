@@ -4,7 +4,7 @@ const { xArray, yArray, squaresPreSet, classArray } = require('../utils/gameFunc
 
 
 module.exports = app => {
-    
+
     app.post('/api/game/create/', async (req, res) => {
         try {
             console.log(req.body)
@@ -24,8 +24,8 @@ module.exports = app => {
             console.log(req.params.id)
             let game = await db.Game.find({ _id: req.params.id })
             console.log(game)
-            for(let i = 0; i < game[0].squares.length; i++){
-                let index =  game[0].squares[i].name.indexOf(" ");
+            for (let i = 0; i < game[0].squares.length; i++) {
+                let index = game[0].squares[i].name.indexOf(" ");
                 game[0].squares[i].initials = game[0].squares[i].name[0] + game[0].squares[i].name[index + 1]
             }
             res.json(game[0]);
@@ -55,24 +55,24 @@ module.exports = app => {
             let squares = game[0].squares;
             let color = classArray[Math.floor(Math.random() * classArray.length)];
             console.log(color)
-            for (let i = 0; i < squares.length; i++){
-                if(squares[i].name === name){
+            for (let i = 0; i < squares.length; i++) {
+                if (squares[i].name.toUpperCase() === name.toUpperCase()) {
                     color = squares[i].color
                     break;
                 }
             }
             console.log(color)
             for (let i = 0; i < req.body.pendingSquares.length; i++) {
-                if(squares[parseInt(req.body.pendingSquares[i])].active === true){
+                if (squares[parseInt(req.body.pendingSquares[i])].active === true) {
                     squares[parseInt(req.body.pendingSquares[i])].name = name;
                     squares[parseInt(req.body.pendingSquares[i])].active = false;
                     squares[parseInt(req.body.pendingSquares[i])].color = color;
                 }
             };
             for (let i = 0; i < squares.length; i++) {
-                delete squares[i].initials  
+                delete squares[i].initials
             };
-            
+
             await db.Game.updateOne({ _id: req.params.id }, { squares: squares });
             let updatedGame = await db.Game.find({ _id: req.params.id });
             res.json(updatedGame);
@@ -80,4 +80,30 @@ module.exports = app => {
             res.status(500).send();
         }
     });
+
+    app.put("/api/square/:id", async (req, res) => {
+        console.log(req.params.id);
+        console.log(req.body)
+        let game = await db.Game.find({ _id: req.params.id });
+        let squares = game[0].squares;
+        squares[req.body.id].name = "";
+        squares[req.body.id].active = true;
+        await db.Game.updateOne({ _id: req.params.id }, { squares: squares });
+        res.json("s")
+
+    })
+    app.delete("/api/square/:id/:name", async (req, res) => {
+        console.log(req.params.name);
+        let game = await db.Game.find({ _id: req.params.id });
+        let squares = game[0].squares;
+        for (let i = 0; i < squares.length; i++) {
+            if (squares[i].name.toUpperCase() === req.params.name.toUpperCase()) {
+                squares[i].name = "";
+                squares[i].active = true;
+            }
+        }
+        await db.Game.updateOne({ _id: req.params.id }, { squares: squares });
+        res.json("s")
+
+    })
 }

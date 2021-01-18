@@ -22,7 +22,7 @@ const Square = (props) => {
     } 
     if(props.modalAdmin){
        return( <ReactCardFlip   isFlipped={false} flipDirection="horizontal" flipSpeedFrontToBack="1.5" flipSpeedFrontToBack="1.5" onClick={props}>
-                <div onClick={props.adminEdit} data-bs-toggle="modal" data-bs-target="#exampleModal" className={props.color} id={props.id}>
+                <div onClick={props.adminEdit} data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-keyboard="false" className={props.color} id={props.id}>
                     {props.children}
                 </div>
                 <div className="bg-info text-center justify-content-center" id={props.id}>
