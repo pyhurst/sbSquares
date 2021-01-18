@@ -15,14 +15,17 @@ let pendingSquares = [];
 
 const Game = (props) => {
 
-    const [modalAdmin, setModalAdmin] = useState("");
+    const [modalAdmin, setModalAdmin] = useState(false);
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
-    const [gameID, setGameID] = useState("");
-    const [game, setGame] = useState({name:"schwyn"});
+    const [gameId, setGameId] = useState("");
+    const [game, setGame] = useState({ name: "schwyn" });
     const [squares, setSquares] = useState(preSetSquares);
     const [editSquareName, setSquareName] = useState("")
-    const [editSquare, setEditSquare] = useState("")
+    const [squareId, setSquareId] = useState("")
+    const [modalColor, setModalColor] = useState("")
+    const [modalButtonColor, setModalButtonColor] = useState("")
+    const [modalSquareCounter, setModalSquareCounter] = useState("")
 
     let flip = [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false];
 
@@ -32,22 +35,19 @@ const Game = (props) => {
     useEffect(() => {
         socket = socketIOClient();
         socket.on(props.match.params.id, (game) => {
-            console.log(game)
             setGame(game)
             setSquares(game.squares)
         });
 
         API.getGame(props.match.params.id).then((game) => {
             if (game.data !== "") {
-                console.log(game.data.xArray)
-                console.log(game.data.ownerId)
                 setGame(game.data)
-                setGameID(game.data.ownerId)
+                setGameId(game.data.ownerId)
                 setSquares(game.data.squares)
-                if(props.auth){
+                if (props.auth) {
                     adminCheck();
-                }else{
-                    
+                } else {
+
                 }
             } else {
                 window.location.href = "/"
@@ -59,7 +59,7 @@ const Game = (props) => {
             pendingSquares = [];
             socket.disconnect()
         };
-    }, [props.auth, modalAdmin]);
+    }, [props.auth]);
 
 
     const flipFunction = (event) => {
@@ -97,26 +97,35 @@ const Game = (props) => {
     const adminCheck = () => {
         API.getGame(props.match.params.id).then((game) => {
             if (game.data !== "") {
-                console.log(game.data.xArray)
-                console.log(props.auth._id)
-                console.log(game.data.ownerId)
-                if(props.auth._id === game.data.ownerId){
-                    setModalAdmin("#exampleModal")
-                    console.log(modalAdmin)
+                if (props.auth._id === game.data.ownerId) {
+                    console.log("Hello Admin")
+                    setModalAdmin(true)
                 }
             }
         })
     }
 
-    const adminEdit = (event) =>{
-        console.log("admin edit function")
-        let choice = event.target.id
-        console.log(squares[choice].name)
-        setEditSquare(choice)
+    const adminEdit = (event) => {
+        let choice = event.target.id;
+        let colorIndex = squares[choice].color.indexOf(" ");
+        let colorBody =  squares[choice].color.slice(0,colorIndex);
+        let colorButton = "btn shadow-lg " + colorBody;
+        colorBody = "modal-body " + colorBody;
+        console.log(colorButton);
+        let a = 0;
+        for(let i = 0; i < squares.length; i++){
+            if(squares[i].name === squares[choice].name){
+                a++
+            }
+        }
+        setModalSquareCounter(a);
+        setModalButtonColor(colorButton);
+        setModalColor(colorBody);
+        setSquareId(choice);
         setSquareName(squares[choice].name)
     }
 
-        
+
 
 
     return (
@@ -159,7 +168,6 @@ const Game = (props) => {
                                 <h2 className="text-right y-row">9</h2>
                             </div>
                         </div>
-
                     </div>
                     <div className="col-10 col-md-8">
                         <div className="row">
@@ -229,7 +237,7 @@ const Game = (props) => {
                         <div className="row">
                             {rowLength.map((user, i) => (
                                 <div className="col-1" key={i + 70}>
-                                    <Square squareId="1-2" id={i + 70} adminEdit={adminEdit}color={squares[i + 70].color} modalAdmin={modalAdmin} flipFunciton={flipFunction} isFlipped={flipStatus[i + 70]} active={squares[i + 70].active}>
+                                    <Square squareId="1-2" id={i + 70} adminEdit={adminEdit} color={squares[i + 70].color} modalAdmin={modalAdmin} flipFunciton={flipFunction} isFlipped={flipStatus[i + 70]} active={squares[i + 70].active}>
                                         {squares[i + 70].initials}
                                     </Square>
                                 </div>
@@ -256,7 +264,7 @@ const Game = (props) => {
                     </div>
                 </div>
                 <div className="col-1 bg-danger"></div>
-                <ModalEditSquare modalAdmin={modalAdmin} editSquare={editSquare} editSquareName={editSquareName}></ModalEditSquare>
+                <ModalEditSquare modalAdmin={modalAdmin} squareId={squareId} editSquareName={editSquareName} modalColor={modalColor} modalButtonColor={modalButtonColor} modalSquareCounter={modalSquareCounter} ></ModalEditSquare>
                 {/* container end div */}
             </div>
 
