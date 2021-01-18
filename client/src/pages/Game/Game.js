@@ -21,11 +21,12 @@ const Game = (props) => {
     const [gameId, setGameId] = useState("");
     const [game, setGame] = useState({ name: "schwyn" });
     const [squares, setSquares] = useState(preSetSquares);
-    const [editSquareName, setSquareName] = useState("")
-    const [squareId, setSquareId] = useState("")
-    const [modalColor, setModalColor] = useState("")
-    const [modalButtonColor, setModalButtonColor] = useState("")
-    const [modalSquareCounter, setModalSquareCounter] = useState("")
+    const [editSquareName, setSquareName] = useState("");
+    const [squareId, setSquareId] = useState("");
+    const [modalColor, setModalColor] = useState("");
+    const [modalButtonColor, setModalButtonColor] = useState("");
+    const [modalSquareCounter, setModalSquareCounter] = useState("");
+    const [modalOptionValue, setModalOptionValue] = useState("");
 
     let flip = [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false];
 
@@ -108,13 +109,13 @@ const Game = (props) => {
     const adminEdit = (event) => {
         let choice = event.target.id;
         let colorIndex = squares[choice].color.indexOf(" ");
-        let colorBody =  squares[choice].color.slice(0,colorIndex);
+        let colorBody = squares[choice].color.slice(0, colorIndex);
         let colorButton = "btn shadow-lg " + colorBody;
         colorBody = "modal-body " + colorBody;
         console.log(colorButton);
         let a = 0;
-        for(let i = 0; i < squares.length; i++){
-            if(squares[i].name === squares[choice].name){
+        for (let i = 0; i < squares.length; i++) {
+            if (squares[i].name === squares[choice].name) {
                 a++
             }
         }
@@ -123,6 +124,25 @@ const Game = (props) => {
         setModalColor(colorBody);
         setSquareId(choice);
         setSquareName(squares[choice].name)
+    }
+
+    const handleChangeModal = (event) => {
+        console.log(event.target.value);
+        setModalOptionValue(event.target.value)
+    }
+
+    const modalSubmitButton = async () => {
+        console.log(modalOptionValue);
+        console.log(squareId);
+        console.log(props.match.params.id)
+        if(modalOptionValue === "Delete"){
+            await API.updateSquare(props.match.params.id, {id: squareId});
+            socket.emit('getUpdatedGame', props.match.params.id);
+        }
+        if(modalOptionValue === "Delete All"){
+            await API.deleteParticipant(props.match.params.id, editSquareName);
+            socket.emit('getUpdatedGame', props.match.params.id);
+        }
     }
 
 
@@ -264,7 +284,7 @@ const Game = (props) => {
                     </div>
                 </div>
                 <div className="col-1 bg-danger"></div>
-                <ModalEditSquare modalAdmin={modalAdmin} squareId={squareId} editSquareName={editSquareName} modalColor={modalColor} modalButtonColor={modalButtonColor} modalSquareCounter={modalSquareCounter} ></ModalEditSquare>
+                <ModalEditSquare modalAdmin={modalAdmin} squareId={squareId} editSquareName={editSquareName} modalColor={modalColor} modalButtonColor={modalButtonColor} modalSquareCounter={modalSquareCounter} handleChangeModal={handleChangeModal} modalOptionValue={modalOptionValue} modalSubmitButton={modalSubmitButton}></ModalEditSquare>
                 {/* container end div */}
             </div>
 
