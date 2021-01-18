@@ -1,3 +1,7 @@
+.game-square{
+    margin-right: 150px;
+}
+
 .y-row{
     margin-bottom: 13px;
     color: white;
@@ -8,11 +12,11 @@
     width: 150px;
 }
 
-.mod{
-    opacity: .9;
-}
-
 @media only screen and (max-width: 600px) {
+
+    .game-square{
+        margin-right: 20px;
+    }
     .y-row{
         margin-bottom: 15px;
         padding-left: 30px;
