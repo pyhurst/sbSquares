@@ -44,9 +44,35 @@ a {
     font-size: 32px;
 }
 
-@media only screen 
-and (min-device-width : 375px) 
-and (-webkit-device-pixel-ratio : 3) {
+@media (max-width : 786px) {
+    #title-box {
+        width: 680px;
+        margin-top: -70px;
+    }
+
+    #landing-title {
+        position: relative;
+        font-size: 112px;
+        margin-left: 128px;
+        margin-right: 128px;
+    }
+}
+
+@media (max-width : 414px) {
+    #title-box {
+        width: 365px;
+        margin-top: -55px;
+    }
+
+    #landing-title {
+        position: relative;
+        font-size: 88px;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+}
+
+@media (max-width : 375px) {
     #title-box {
         width: 340px;
         margin-top: -55px;
@@ -60,3 +86,4 @@ and (-webkit-device-pixel-ratio : 3) {
         margin-right: 10px;
     }
 }
+
