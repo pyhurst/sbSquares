@@ -1,6 +1,7 @@
 const { Schema, model } = require("mongoose");
 
 const gameSchema = new Schema({
+    title: String,
     xArray: [],
     yArray:[],
     ownerId: String,

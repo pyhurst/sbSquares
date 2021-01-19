@@ -25,6 +25,10 @@ ul {
     margin-left: 5px;
 }
 
+.game-title-div {
+    margin-top: 10px;
+}
+
 @media (max-width : 786px) {
 
 }    
