@@ -43,8 +43,14 @@ ul {
         padding: 0;
         margin: 0 0 20px 0;
     }
+
+    .created-games {
+        width: 400px;
+    }
 }
 
 @media (max-width : 375px) {
-    
+    .created-games {
+        width: 360px;
+    }
 }
