@@ -44,11 +44,12 @@ const Landing = (props) => {
                     <form className='search-game'>
                         <h4>Search Game:</h4>
                         <input
+                            className='search-input'
                             placeholder='Search Game by Id'
                             value={searchInput}
                             onChange={e => setSearchInput(e.target.value)}
                         />
-                        <button onClick={handleFormSubmit} >Search</button>
+                        <button className='search-game-button' onClick={handleFormSubmit} >Search</button>
                     </form>
                     <div className='instructions'>
                         <h5>1. Create a Game w/ Google</h5>

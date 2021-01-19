@@ -69,7 +69,9 @@ const UserProfile = (props) => {
                         </ul>
                     </div>
                     <form className='game-title-div'>
+                        <h4>Create a Game:</h4>
                         <input
+                            className='search-input game-title-input'
                             placeholder='Game Title'
                             value={gameTitleInput}
                             onChange={e => setGameTitleInput(e.target.value)} />
