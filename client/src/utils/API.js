@@ -6,8 +6,7 @@ export default {
   },
   getGame: function(id) {
     return axios.get("/api/game/" + id);
-  }
-  ,
+  },
   deleteGame: function(id) {
     return axios.delete("/api/game/" + id);
   },

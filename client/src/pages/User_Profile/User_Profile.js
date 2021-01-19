@@ -16,12 +16,14 @@ const UserProfile = (props) => {
         getUserGames();
     }, [props.auth]);
 
-    const createGame = () => {
-        console.log(gameTitleInput);
+    const createGame = e => {
+        e.preventDefault();
         API.createGame({
             ownerId: props.auth._id,
             title: gameTitleInput
         }).then(() => getUserGames())
+
+        setGameTitleInput('');
     }
 
     const getUserGames = () => {
@@ -66,13 +68,15 @@ const UserProfile = (props) => {
                             <UserGameList userGames={userGames} openConfirmation={openConfirmation} />
                         </ul>
                     </div>
-                    <div className='game-title-div'>
+                    <form className='game-title-div'>
                         <input
                             placeholder='Game Title'
                             value={gameTitleInput}
                             onChange={e => setGameTitleInput(e.target.value)} />
-                    </div>
-                    <button type='button' className='btn btn-success createbtn' onClick={createGame}>Create Game</button>
+                        <div>
+                            <button className='btn btn-success createbtn' onClick={createGame}>Create Game</button>
+                        </div>
+                    </form>
                 </div>
 
             </>

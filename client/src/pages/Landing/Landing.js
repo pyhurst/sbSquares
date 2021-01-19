@@ -1,8 +1,12 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+import API from '../../utils/API';
 import "./Landing.css";
 
 const Landing = (props) => {
+    const [searchInput, setSearchInput] = useState('');
+    let history = useHistory();
 
     const renderContent = () => {
         switch (props.auth) {
@@ -18,8 +22,17 @@ const Landing = (props) => {
     useEffect(() => {
     }, []);
 
-    const handleFormSubmit = (event) => {
-        event.preventDefault();
+    const handleFormSubmit = e => {
+        e.preventDefault();
+        console.log(searchInput);
+        API.getGame(searchInput)
+            .then(result => {
+                if(result.data === '') {
+                    return alert('sorry game not found')
+                }
+
+                history.push(`/game/${result.data._id}`)
+            })
     };
 
 
@@ -28,18 +41,23 @@ const Landing = (props) => {
             <div className='container'>
                 <h1 id='landing-title'>Squares</h1>
                 <div id='title-box'>
-                <div className='search-game'>
-                    <h4>Search Game:</h4>
-                    <input></input>
-                </div>
-                <div className='instructions'>
-                    <h5>1. Create a Game w/ Google</h5>
-                    <h5>2. Send Sqaures link to your friends</h5>
-                    <h5>3. Add your name and click Squares you would like to fill... then save!</h5>
-                    <h5>4. Once ALL 100 squares are filled, numbers will be drawn at random for each team (0-9)</h5>
-                </div>
-                <div className='create-game' >
-                    {renderContent()}
+                    <form className='search-game'>
+                        <h4>Search Game:</h4>
+                        <input
+                            placeholder='Search Game by Id'
+                            value={searchInput}
+                            onChange={e => setSearchInput(e.target.value)}
+                        />
+                        <button onClick={handleFormSubmit} >Search</button>
+                    </form>
+                    <div className='instructions'>
+                        <h5>1. Create a Game w/ Google</h5>
+                        <h5>2. Send Game link to your friends</h5>
+                        <h5>3. Add your name and click Squares you would like to fill... then save!</h5>
+                        <h5>4. Once ALL 100 squares are filled, numbers will be drawn at random for each team (0-9)</h5>
+                    </div>
+                    <div className='create-game' >
+                        {renderContent()}
                     </div>
                 </div>
             </div>
