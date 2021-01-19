@@ -29,6 +29,16 @@ ul {
     margin-top: 10px;
 }
 
+.game-title-input {
+    margin-top: 10px;
+    color: rgba(255, 255, 255, 0.877);
+}
+
+.game-title-input:focus {
+    outline: 2px solid #0a58ca;
+    border: none;
+}
+
 @media (max-width : 786px) {
 
 }    
