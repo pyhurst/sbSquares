@@ -8,7 +8,7 @@ import Header from '../../components/Header/Header';
 import ModalEditSquare from '../../components/ModalEditSquare/ModalEditSquare.js';
 import "./Game.css"
 
-
+console.log('file read')
 
 let socket;
 let pendingSquares = [];
@@ -18,8 +18,7 @@ const Game = (props) => {
     const [modalAdmin, setModalAdmin] = useState(false);
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
-    const [gameId, setGameId] = useState("");
-    const [game, setGame] = useState({ name: "schwyn" });
+    const [game, setGame] = useState({});
     const [squares, setSquares] = useState(preSetSquares);
     const [editSquareName, setSquareName] = useState("");
     const [squareId, setSquareId] = useState("");
@@ -27,6 +26,7 @@ const Game = (props) => {
     const [modalButtonColor, setModalButtonColor] = useState("");
     const [modalSquareCounter, setModalSquareCounter] = useState("");
     const [modalOptionValue, setModalOptionValue] = useState("");
+    const [showNumbers,setShowNumbers] = useState("none")
 
     let flip = [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false];
 
@@ -38,30 +38,40 @@ const Game = (props) => {
         socket.on(props.match.params.id, (game) => {
             setGame(game)
             setSquares(game.squares)
+            let show = "normal";
+            for(let i = 0; i < game.squares.length; i++){
+                if(game.squares[i].active ===  true){
+                    show = "none"
+                }
+            }
+            setShowNumbers(show);
+
         });
 
         API.getGame(props.match.params.id).then((game) => {
             if (game.data !== "") {
                 setGame(game.data)
-                setGameId(game.data.ownerId)
                 setSquares(game.data.squares)
+                let show = "normal";
+                for(let i = 0; i < game.data.squares.length; i++){
+                    if(game.data.squares[i].active ===  true){
+                        show = "none"
+                    }
+                }
+                setShowNumbers(show);
                 if (props.auth) {
-                    adminCheck();
-                } else {
-
+                    adminCheck(game.data);
                 }
             } else {
                 window.location.href = "/"
             }
         })
 
-
         return () => {
             pendingSquares = [];
             socket.disconnect()
         };
     }, [props.auth]);
-
 
     const flipFunction = (event) => {
         let chosenSquare = event.target.id
@@ -95,15 +105,11 @@ const Game = (props) => {
         }
     }
 
-    const adminCheck = () => {
-        API.getGame(props.match.params.id).then((game) => {
-            if (game.data !== "") {
-                if (props.auth._id === game.data.ownerId) {
-                    console.log("Hello Admin")
-                    setModalAdmin(true)
-                }
-            }
-        })
+    const adminCheck = (game) => {
+        if (props.auth._id === game.ownerId) {
+            console.log("Hello Admin")
+            setModalAdmin(true)
+        }
     }
 
     const adminEdit = (event) => {
@@ -112,7 +118,6 @@ const Game = (props) => {
         let colorBody = squares[choice].color.slice(0, colorIndex);
         let colorButton = "btn shadow-lg " + colorBody;
         colorBody = "modal-body " + colorBody;
-        console.log(colorButton);
         let a = 0;
         for (let i = 0; i < squares.length; i++) {
             if (squares[i].name === squares[choice].name) {
@@ -127,21 +132,25 @@ const Game = (props) => {
     }
 
     const handleChangeModal = (event) => {
-        console.log(event.target.value);
         setModalOptionValue(event.target.value)
     }
 
     const modalSubmitButton = async () => {
-        console.log(modalOptionValue);
-        console.log(squareId);
-        console.log(props.match.params.id)
-        if(modalOptionValue === "Delete"){
-            await API.updateSquare(props.match.params.id, {id: squareId});
-            socket.emit('getUpdatedGame', props.match.params.id);
+        if (modalOptionValue === "Delete") {
+            try {
+                await API.updateSquare(props.match.params.id, { id: squareId });
+                socket.emit('getUpdatedGame', props.match.params.id);
+            } catch (error) {
+                console.log(error)
+            }
         }
-        if(modalOptionValue === "Delete All"){
-            await API.deleteParticipant(props.match.params.id, editSquareName);
-            socket.emit('getUpdatedGame', props.match.params.id);
+        if (modalOptionValue === "Delete All") {
+            try {
+                await API.deleteParticipant(props.match.params.id, editSquareName);
+                socket.emit('getUpdatedGame', props.match.params.id);
+            } catch (error) {
+                console.log(error)
+            }
         }
     }
 
@@ -164,7 +173,7 @@ const Game = (props) => {
                                 <input type="name" className="input-name" placeholder="last" value={lastName} onChange={(event) => { setLastName(event.target.value) }}></input>
                             </div>
                             <div className="col-12 col-md-4 input-button">
-                                <button className="" disabled={!(firstName && lastName)} onClick={updateGame} type="button" className="btn btn-outline-danger">submit</button>
+                                <button disabled={!(firstName && lastName)} onClick={updateGame} type="button" className="btn btn-outline-danger btn-submit">submit</button>
                             </div>
                         </div>
                     </div>
@@ -176,24 +185,36 @@ const Game = (props) => {
                             <div className="col-10">
                             </div>
                             <div className="col-2 mt-5">
-                                <h2 className="text-right y-row">0</h2>
-                                <h2 className="text-right y-row">1</h2>
-                                <h2 className="text-right y-row">2</h2>
-                                <h2 className="text-right y-row">3</h2>
-                                <h2 className="text-right y-row">4</h2>
-                                <h2 className="text-right y-row">5</h2>
-                                <h2 className="text-right y-row">6</h2>
-                                <h2 className="text-right y-row">7</h2>
-                                <h2 className="text-right y-row">8</h2>
-                                <h2 className="text-right y-row">9</h2>
+                                <div className={showNumbers}>
+                                    <h2 className="text-right y-row">0</h2>
+                                    <h2 className="text-right y-row">1</h2>
+                                    <h2 className="text-right y-row">2</h2>
+                                    <h2 className="text-right y-row">3</h2>
+                                    <h2 className="text-right y-row">4</h2>
+                                    <h2 className="text-right y-row">5</h2>
+                                    <h2 className="text-right y-row">6</h2>
+                                    <h2 className="text-right y-row">7</h2>
+                                    <h2 className="text-right y-row">8</h2>
+                                    <h2 className="text-right y-row">9</h2>
+                                </div>
                             </div>
                         </div>
                     </div>
                     <div className="col-10 col-md-8">
                         <div className="row">
+                            <div className="col-12 text-left">
+                                <div className={showNumbers}>
+                                    <h2 id="h0" className="h-numbers">0</h2><h2 id="h1" className="h-numbers" >1</h2>
+                                    <h2 id="h2" className="h-numbers">2</h2><h2 id="h3" className="h-numbers">3</h2>
+                                    <h2 id="h4" className="h-numbers">4</h2><h2 id="h5" className="h-numbers">5</h2>
+                                    <h2 id="h6" className="h-numbers">6</h2><h2 id="h7" className="h-numbers">7</h2>
+                                    <h2 id="h8" className="h-numbers">8</h2><h2 id="h9" className="h-numbers">9</h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="row">
                             {rowLength.map((user, i) => (
                                 <div className="col-1" key={i}>
-                                    <h2 className="text-center">{i}</h2>
                                     <Square squareId="1-2" id={i} adminEdit={adminEdit} color={squares[i].color} modalAdmin={modalAdmin} flipFunciton={flipFunction} isFlipped={flipStatus[i]} active={squares[i].active}>
                                         {squares[i].initials}
                                     </Square>
