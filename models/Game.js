@@ -8,7 +8,9 @@ const gameSchema = new Schema({
         one: String,
         two: String,
         three: String,
-        four: String
+        four: String,
+        email: String,
+        phone: String
     },
     ownerId: String,
     squares:[],
