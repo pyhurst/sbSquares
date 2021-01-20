@@ -4,6 +4,22 @@ import "./Square.css"
 
 const Square = (props) => {
 
+    if (props.blackNumbers) {
+
+        return (
+            <>
+                <ReactCardFlip isFlipped={false} flipDirection="horizontal" flipSpeedFrontToBack="1.5" flipSpeedFrontToBack="1.5">
+                    <div style={{backgroundColor:"#1A1A1D", border:"none"}} className="text-center cardDimensions" id={props.id} data-value={props.data} onClick={props.flipFunciton}>
+                        {props.children}
+                    </div>
+
+                    <div style={{backgroundColor:"#1A1A1D"}} className="text-center justify-content-center cardDimensions" id={props.id} data-value={props.data} onClick={props.flipFunciton}>
+                    {props.children}
+                    </div>
+                </ReactCardFlip>
+            </>
+        )
+    } 
     if (props.active) {
 
         return (
