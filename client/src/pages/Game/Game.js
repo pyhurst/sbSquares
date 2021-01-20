@@ -18,7 +18,7 @@ const Game = (props) => {
     const [modalAdmin, setModalAdmin] = useState(false);
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
-    const [game, setGame] = useState({});
+    const [game, setGame] = useState();
     const [squares, setSquares] = useState(preSetSquares);
     const [editSquareName, setSquareName] = useState("");
     const [squareId, setSquareId] = useState("");
@@ -175,22 +175,45 @@ const Game = (props) => {
 
 
 
+    const renderPaymentInfo = () => {
+        if(!game) {
+            return;
+        }
+
+        const renderWhere = () => {
+            if(game.payouts.where === 'Both') {
+                return <p>Venmo or Zelle @:</p>
+            }
+    
+            return <p>{game.payouts.where} @:</p>
+        }
+
+        console.log(game)
+
+        return (
+            <>
+                <h1>{game.title}</h1>
+                <h4 className='game-direction-title'>Payment Info:</h4>
+                <p>{renderWhere()}</p>
+                <p>Email: {game.payouts.email}</p>
+                <p>Phone: {game.payouts.phone}</p>
+                <h4 className='game-direction-title'>Payouts per Quarter:</h4>
+                <p>1st: ${game.payouts.one} 2nd: ${game.payouts.two}</p>
+                <p>3rd: ${game.payouts.three} 4th: ${game.payouts.four}</p>
+            </>
+        )
+    }
 
     return (
         <>
             <Header />
             <div className='game-info'>
-                <h2>{game.title}</h2>
-                <h4>Payment Info:</h4>
-                <p>{game.payouts.one}</p>
-                <p>{game.payouts.two}</p>
-                <p>{game.payouts.three}</p>
-                <p>{game.payouts.four}</p>
+                {renderPaymentInfo()}
             </div>
             <div className="text-white justify-content-center game-square">
                 <div className="row mb-2">
-                    <div className="col-3 col-md-4">
-                    </div>
+                    <h4 className='game-direction-title'>Input your name, select Squares, and submit!</h4>
+                    <div className="col-3 col-md-4"></div>
                     <div className="col-7 col-md-5 text-center">
                         <div className="row">
                             <div className="col-6 col-md-4 pr-1">
