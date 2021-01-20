@@ -3,7 +3,7 @@
 }
 
 .y-row{
-    margin-bottom: 12px;
+    margin-top: 12px;
     color: white;
 }
 
@@ -27,44 +27,49 @@
 
 #h0{
     display: inline-block;
-    margin-left: 20px;
+    margin-left: 220px;
+    
 }
 #h1{
     display: inline-block;
-    margin-left: 50px;
+    margin-left: 30px;
+    
 }
 #h2{
     display: inline-block;
-    margin-left: 50px;
+    margin-left: 35px;
 }
 #h3{
     display: inline-block;
-    margin-left: 50px;
+    margin-left: 35px;
+   
 }
 #h4{
     display: inline-block;
-    margin-left: 50px;
+    margin-left: 35px;
+  
 }
 #h5{
     display: inline-block;
-    margin-left: 50px;
+    margin-left: 35px;
 }
 #h6{
     display: inline-block;
-    margin-left: 45px;
+    margin-left: 35px;
 }
 #h7{
     display: inline-block;
-    margin-left: 40px;
+    margin-left: 35px;
 }
 #h8{
  display: inline-block;
- margin-left: 45px;
+ margin-left: 35px;
 }
 #h9{
     display: inline-block;
-    margin-left: 48px;
-}
+    margin-left: 35px; 
+}  
+
 @media only screen and (max-width: 600px) {
 
     .game-square{
