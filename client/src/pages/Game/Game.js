@@ -26,9 +26,10 @@ const Game = (props) => {
     const [modalButtonColor, setModalButtonColor] = useState("");
     const [modalSquareCounter, setModalSquareCounter] = useState("");
     const [modalOptionValue, setModalOptionValue] = useState("");
-    const [finish, setFinish] = useState(true);
-    const [xArray, setXarray] = useState(["","","","","","","","","",""]);
-    const [yArray, setYarray] = useState(["","","","","","","","","",""]);
+    // const [finish, setFinish] = useState(true);
+    const [xArray, setXarray] = useState(["", "", "", "", "", "", "", "", "", ""]);
+    const [yArray, setYarray] = useState(["", "", "", "", "", "", "", "", "", ""]);
+    const [blackNumbers, setBlackNumbers] = useState(true)
 
     let flip = [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false];
 
@@ -40,37 +41,42 @@ const Game = (props) => {
         socket.on(props.match.params.id, (game) => {
             setGame(game)
             setSquares(game.squares)
-            setFinish(true)
+            let finish = true
             for (let i = 0; i < game.squares.length; i++) {
                 if (game.squares[i].active === true) {
-                    setFinish(false)
+                    console.log("match")
+                    finish = false
                     break;
                 }
             }
-            if(finish){
-            setXarray(game.xArray);
-            setYarray(game.yArray);
+            if (finish) {
+                setXarray(game.xArray);
+                setYarray(game.yArray);
+            } else {
+                setXarray(["", "", "", "", "", "", "", "", "", ""]);
+                setYarray(["", "", "", "", "", "", "", "", "", ""]);
             }
-            
+
         });
 
         API.getGame(props.match.params.id).then((game) => {
             if (game.data !== "") {
                 setGame(game.data)
                 setSquares(game.data.squares)
+                let finish = true
                 for (let i = 0; i < game.data.squares.length; i++) {
                     if (game.data.squares[i].active === true) {
                         console.log("match")
-                        setFinish(false)
-                        break;
+                        finish = false
+                        return;
                     }
                 }
-                if(finish){
-                setXarray(game.data.xArray);
-                setYarray(game.data.yArray);
-                }else{
-                    setXarray(["","","","","","","","","",""]);
-                    setYarray(["","","","","","","","","",""]);
+                if (finish) {
+                    setXarray(game.data.xArray);
+                    setYarray(game.data.yArray);
+                } else {
+                    setXarray(["", "", "", "", "", "", "", "", "", ""]);
+                    setYarray(["", "", "", "", "", "", "", "", "", ""]);
                 }
                 if (props.auth) {
                     adminCheck(game.data);
@@ -84,7 +90,7 @@ const Game = (props) => {
             pendingSquares = [];
             socket.disconnect()
         };
-    }, [props.auth, finish]);
+    }, [props.auth]);
 
     const flipFunction = (event) => {
         let chosenSquare = event.target.id
@@ -192,6 +198,17 @@ const Game = (props) => {
                     </div>
                     <div className="col-2 col-md-2"></div>
                 </div>
+                {/* <div className="row mb-5">
+                    <div className="col-12">
+                        <div>
+                            <h5 id="h0" className="h-numbers">{xArray[0]}</h5><h5 id="h1" className="h-numbers" >{xArray[1]}</h5>
+                            <h5 id="h2" className="h-numbers">{xArray[2]}</h5><h5 id="h3" className="h-numbers">{xArray[3]}</h5>
+                            <h5 id="h4" className="h-numbers">{xArray[4]}</h5><h5 id="h5" className="h-numbers">{xArray[5]}</h5>
+                            <h5 id="h6" className="h-numbers">{xArray[6]}</h5><h5 id="h7" className="h-numbers">{xArray[7]}</h5>
+                            <h5 id="h8" className="h-numbers">{xArray[8]}</h5><h5 id="h9" className="h-numbers">{xArray[9]}</h5>
+                        </div>
+                    </div>
+                </div> */}
                 <div className="row">
                     <div className="col-2 col-md-3 justify-content-right">
                         <div className="row">
@@ -199,6 +216,7 @@ const Game = (props) => {
                             </div>
                             <div className="col-2 mt-5">
                                 <div>
+                                    
                                     <h2 className="text-right y-row">{yArray[0]}</h2>
                                     <h2 className="text-right y-row">{yArray[1]}</h2>
                                     <h2 className="text-right y-row">{yArray[2]}</h2>
@@ -214,18 +232,23 @@ const Game = (props) => {
                         </div>
                     </div>
                     <div className="col-10 col-md-8">
+
                         <div className="row">
-                            <div className="col-12 text-left">
-                                <div>
-                                    <h2 id="h0" className="h-numbers">{xArray[0]}</h2><h2 id="h1" className="h-numbers" >{xArray[1]}</h2>
-                                    <h2 id="h2" className="h-numbers">{xArray[2]}</h2><h2 id="h3" className="h-numbers">{xArray[3]}</h2>
-                                    <h2 id="h4" className="h-numbers">{xArray[4]}</h2><h2 id="h5" className="h-numbers">{xArray[5]}</h2>
-                                    <h2 id="h6" className="h-numbers">{xArray[6]}</h2><h2 id="h7" className="h-numbers">{xArray[7]}</h2>
-                                    <h2 id="h8" className="h-numbers">{xArray[8]}</h2><h2 id="h9" className="h-numbers">{xArray[9]}</h2>
+                            {rowLength.map((user, i) => (
+                                <div className="col-1" key={i}>
+                                    <Square squareId="1-2" id={i} blackNumbers={blackNumbers} adminEdit={adminEdit} color={squares[i].color} modalAdmin={modalAdmin} flipFunciton={flipFunction} isFlipped={flipStatus[i]} active={squares[i].active}>
+                                        {xArray[i]}
+                                    </Square>
                                 </div>
-                            </div>
+                            ))}
                         </div>
+
                         <div className="row">
+                            {/* <div className="col-1" key={0}>
+                                <Square squareId="1-2" id={0} blackNumbers={blackNumbers} adminEdit={adminEdit} color={squares[0].color} modalAdmin={modalAdmin} flipFunciton={flipFunction} isFlipped={flipStatus[0]} active={squares[0].active}>
+                                    {xArray[0]}
+                                </Square>
+                            </div> */}
                             {rowLength.map((user, i) => (
                                 <div className="col-1" key={i}>
                                     <Square squareId="1-2" id={i} adminEdit={adminEdit} color={squares[i].color} modalAdmin={modalAdmin} flipFunciton={flipFunction} isFlipped={flipStatus[i]} active={squares[i].active}>
