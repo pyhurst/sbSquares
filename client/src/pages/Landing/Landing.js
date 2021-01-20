@@ -28,7 +28,7 @@ const Landing = (props) => {
         API.getGame(searchInput)
             .then(result => {
                 if(result.data === '') {
-                    return alert('sorry game not found')
+                    return alert('Sorry game not found, try again!')
                 }
 
                 history.push(`/game/${result.data._id}`)

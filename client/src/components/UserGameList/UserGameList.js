@@ -4,7 +4,7 @@ import './UserGameList.css';
 
 const UserGameList = props => {
     const copyLink = e => {
-        navigator.clipboard.writeText(`https://sb-sqaures.herokuapp.com/game/${e.target.id}`)
+        navigator.clipboard.writeText(`https://thesquaresgame.com/game/${e.target.id}`)
     }
 
     return props.userGames.map(game => {
