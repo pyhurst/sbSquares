@@ -68,7 +68,7 @@ const Game = (props) => {
                     if (game.data.squares[i].active === true) {
                         console.log("match")
                         finish = false
-                        return;
+                        break;
                     }
                 }
                 if (finish) {
@@ -179,6 +179,14 @@ const Game = (props) => {
     return (
         <>
             <Header />
+            <div className='game-info'>
+                <h2>{game.title}</h2>
+                <h4>Payment Info:</h4>
+                <p>{game.payouts.one}</p>
+                <p>{game.payouts.two}</p>
+                <p>{game.payouts.three}</p>
+                <p>{game.payouts.four}</p>
+            </div>
             <div className="text-white justify-content-center game-square">
                 <div className="row mb-2">
                     <div className="col-3 col-md-4">

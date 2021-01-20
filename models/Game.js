@@ -10,7 +10,8 @@ const gameSchema = new Schema({
         three: String,
         four: String,
         email: String,
-        phone: String
+        phone: String,
+        where: String
     },
     ownerId: String,
     squares:[],

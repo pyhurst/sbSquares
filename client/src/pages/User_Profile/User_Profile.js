@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import API from '../../utils/API';
 import UserGameList from '../../components/UserGameList/UserGameList';
 import Header from '../../components/Header/Header';
+import Footer from '../../components/Footer/Footer';
 import Modal from '../../components/Modal/Modal';
 import './User_Profile.css';
 
@@ -34,7 +35,8 @@ const UserProfile = (props) => {
                 three: payoutThree,
                 four: payoutFour,
                 email: paymentEmail,
-                phone: paymentPhone
+                phone: paymentPhone,
+                where: paymentInfo
             }
         }).then(() => getUserGames())
 
@@ -129,7 +131,7 @@ const UserProfile = (props) => {
                         </div>
                     </form>
                 </div>
-
+                <Footer />
             </>
         )
 
