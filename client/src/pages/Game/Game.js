@@ -115,8 +115,12 @@ const Game = (props) => {
     }
 
     const updateGame = async () => {
+        if(firstName === '' || lastName === '') {
+            alert('Must add a first and last name!')
+            return;
+        }
         try {
-            await API.updateGame(props.match.params.id, { pendingSquares: pendingSquares, firstName: firstName, lastName: lastName });
+            await API.updateGame(props.match.params.id, { pendingSquares: pendingSquares, firstName: firstName.toUpperCase(), lastName: lastName.toUpperCase() });
             socket.emit('getUpdatedGame', props.match.params.id);
 
         } catch (error) {
@@ -180,6 +184,21 @@ const Game = (props) => {
             return;
         }
 
+        if(game.payouts.one === '' && game.payouts.where === '') {
+            return <h1>{game.title}</h1>
+        }
+
+        if(game.payouts.where === '') {
+            return (
+                <>
+                    <h1>{game.title}</h1>
+                    <h4 className='game-direction-title'>Payouts per Quarter:</h4>
+                    <p>1st: ${game.payouts.one} 2nd: ${game.payouts.two}</p>
+                    <p>3rd: ${game.payouts.three} 4th: ${game.payouts.four}</p>
+                </>
+            )
+        }
+
         const renderWhere = () => {
             if(game.payouts.where === 'Both') {
                 return <p>Venmo or Zelle @:</p>
@@ -211,10 +230,10 @@ const Game = (props) => {
                 {renderPaymentInfo()}
             </div>
             <div className="text-white justify-content-center game-square">
+            <h4 className='game-direction-title' id='game-direction-title'>Input your name, select Squares, and submit!</h4>
                 <div className="row mb-2">
-                    <h4 className='game-direction-title'>Input your name, select Squares, and submit!</h4>
                     <div className="col-3 col-md-4"></div>
-                    <div className="col-7 col-md-5 text-center">
+                    <div className="col-7 col-md-5 text-center name-inputs-div">
                         <div className="row">
                             <div className="col-6 col-md-4 pr-1">
                                 <input type="name" className="input-name" placeholder="first" value={firstName} onChange={(event) => { setFirstName(event.target.value) }}></input>
@@ -222,8 +241,10 @@ const Game = (props) => {
                             <div className="col-6 col-md-4 pr-1">
                                 <input type="name" className="input-name" placeholder="last" value={lastName} onChange={(event) => { setLastName(event.target.value) }}></input>
                             </div>
+                            <div>
                             <div className="col-12 col-md-4 input-button">
-                                <button disabled={!(firstName && lastName)} onClick={updateGame} type="button" className="btn btn-outline-danger btn-submit">submit</button>
+                                <button onClick={updateGame} type="button" className="btn btn-outline-danger btn-submit">submit</button>
+                            </div>
                             </div>
                         </div>
                     </div>

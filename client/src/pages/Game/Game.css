@@ -4,7 +4,7 @@
 
 .y-row{
     margin-top: 12px;
-    color: white;
+    color: rgba(255, 255, 255, 0.877);
 }
 
 .normal{
@@ -16,10 +16,24 @@
 }
 
 .input-name{
-    background-color: aliceblue;
     width: 150px;
+    border: 1px solid rgba(255, 255, 255, 0.877);
+    color: rgba(255, 255, 255, 0.877);
 }
 
+.input-name:focus {
+    border: none;
+    outline: 2px solid #0a58ca;
+}
+
+.name-inputs-div {
+    margin-left: 100px;
+}
+
+.btn-submit {
+    margin-top: 10px;
+    margin-left: 110px;
+}
 
 .h-numbers{
     float: left;
@@ -68,10 +82,10 @@
 #h9{
     display: inline-block;
     margin-left: 35px; 
-}  
+}
 
-.game-direction-title {
-    font-family: 'Nova Square', cursive;
+#game-direction-title {
+    margin-left: 120px;
 }
 
 @media only screen and (max-width: 600px) {
@@ -148,6 +162,15 @@
        
         margin-left: 13px;
     }
+    #game-direction-title {
+        margin-left: 15px;
+    }
+    .btn-submit {
+        margin: 0;
+    }
+    .name-inputs-div {
+        margin-left: 0;
+    }
 
   }
 
@@ -223,6 +246,15 @@
         display: inline-block;
        
         margin-left: 13px;
+    }
+    #game-direction-title {
+        margin-left: 15px;
+    }
+    .btn-submit {
+        margin: 0;
+    }
+    .name-inputs-div {
+        margin-left: 0;
     }
 
   }
