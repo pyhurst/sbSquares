@@ -4,6 +4,12 @@ const gameSchema = new Schema({
     title: String,
     xArray: [],
     yArray:[],
+    payouts: {
+        one: String,
+        two: String,
+        three: String,
+        four: String
+    },
     ownerId: String,
     squares:[],
     date: {

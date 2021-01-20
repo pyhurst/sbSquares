@@ -11,6 +11,10 @@ const UserProfile = (props) => {
     const [isOpen, setIsOpen] = useState(false);
     const [selectedGameId, setSelectedGameId] = useState('');
     const [gameTitleInput, setGameTitleInput] = useState('');
+    const [payoutOne, setPayoutOne] = useState('');
+    const [payoutTwo, setPayoutTwo] = useState('');
+    const [payoutThree, setPayoutThree] = useState('');
+    const [payoutFour, setPayoutFour] = useState('');
 
     useEffect(() => {
         getUserGames();
@@ -20,7 +24,13 @@ const UserProfile = (props) => {
         e.preventDefault();
         API.createGame({
             ownerId: props.auth._id,
-            title: gameTitleInput
+            title: gameTitleInput,
+            payouts: {
+                one: payoutOne,
+                two: payoutTwo,
+                three: payoutThree,
+                four: payoutFour
+            }
         }).then(() => getUserGames())
 
         setGameTitleInput('');
@@ -77,11 +87,11 @@ const UserProfile = (props) => {
                             onChange={e => setGameTitleInput(e.target.value)} />
                         <div className='payout-info-div'>
                             <h5>Payouts per Quarter ($):</h5>
-                            <input className='payout-qtr-input' placeholder='1st' />
-                            <input className='payout-qtr-input' placeholder='2nd' />
+                            <input className='payout-qtr-input' placeholder='1st' value={payoutOne} onChange={e => setPayoutOne(e.target.value)} />
+                            <input className='payout-qtr-input' placeholder='2nd' value={payoutTwo} onChange={e => setPayoutTwo(e.target.value)} />
                             <br />
-                            <input className='payout-qtr-input' placeholder='3rd' />
-                            <input className='payout-qtr-input' placeholder='4th' />
+                            <input className='payout-qtr-input' placeholder='3rd' value={payoutThree} onChange={e => setPayoutThree(e.target.value)} />
+                            <input className='payout-qtr-input' placeholder='4th' value={payoutFour} onChange={e => setPayoutFour(e.target.value)} />
                         </div>
                         <div>
                             <button className='btn btn-success createbtn' onClick={createGame}>Create Game</button>
