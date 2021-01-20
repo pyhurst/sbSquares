@@ -42,7 +42,7 @@ const Game = (props) => {
             setSquares(game.squares)
             // setXarray(game.xArray);
             // setYarray(game.yArray);
-            setFinish(true)
+            // setFinish(true)
             for (let i = 0; i < game.squares.length; i++) {
                 if (game.squares[i].active === true) {
                     setFinish(false)
@@ -66,7 +66,7 @@ const Game = (props) => {
                     if (game.data.squares[i].active === true) {
                         console.log("match")
                         setFinish(false)
-                        break;
+                        return;
                     }
                 }
                 if(finish){
