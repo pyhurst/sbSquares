@@ -26,6 +26,10 @@ const UserProfile = (props) => {
 
     const createGame = e => {
         e.preventDefault();
+        if(gameTitleInput === '') {
+            alert('Must add a game title!')
+            return;
+        }
         API.createGame({
             ownerId: props.auth._id,
             title: gameTitleInput,
