@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import API from '../../utils/API';
 import UserGameList from '../../components/UserGameList/UserGameList';
 import Header from '../../components/Header/Header';
+import Footer from '../../components/Footer/Footer';
 import Modal from '../../components/Modal/Modal';
 import './User_Profile.css';
 
@@ -34,7 +35,8 @@ const UserProfile = (props) => {
                 three: payoutThree,
                 four: payoutFour,
                 email: paymentEmail,
-                phone: paymentPhone
+                phone: paymentPhone,
+                where: paymentInfo
             }
         }).then(() => getUserGames())
 
@@ -118,9 +120,11 @@ const UserProfile = (props) => {
                             <h5>Payment Info:</h5>
                             <p>(How should people pay you? Select One)</p>
                             <p>{paymentInfo}</p>
-                            <button className='payment-info-button' value='Venmo' onClick={paymentInfoClick} >Venmo</button>
-                            <button className='payment-info-button' value='Zelle' onClick={paymentInfoClick} >Zelle</button>
-                            <button className='payment-info-button' value='Both' onClick={paymentInfoClick} >Both</button>
+                            <div>
+                                <button className='payment-info-button' value='Venmo' onClick={paymentInfoClick} >Venmo</button>
+                                <button className='payment-info-button' value='Zelle' onClick={paymentInfoClick} >Zelle</button>
+                                <button className='payment-info-button' value='Both' onClick={paymentInfoClick} >Both</button>
+                            </div>
                             <input className='payment-email-input search-input' placeholder='Email' value={paymentEmail} onChange={e => setPaymentEmail(e.target.value)} />
                             <input className='payment-phone-input search-input' placeholder='Phone Number' value={paymentPhone} onChange={e => setPaymentPhone(e.target.value)} />
                         </div>
@@ -129,7 +133,7 @@ const UserProfile = (props) => {
                         </div>
                     </form>
                 </div>
-
+                <Footer />
             </>
         )
 
