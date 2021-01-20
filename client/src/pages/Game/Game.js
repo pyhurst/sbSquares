@@ -40,18 +40,20 @@ const Game = (props) => {
         socket.on(props.match.params.id, (game) => {
             setGame(game)
             setSquares(game.squares)
-            // setXarray(game.xArray);
-            // setYarray(game.yArray);
-            // setFinish(true)
-            for (let i = 0; i < game.squares.length; i++) {
-                if (game.squares[i].active === true) {
-                    setFinish(false)
-                    break;
+
+            let finish = true;
+                for (let i = 0; i < game.squares.length; i++) {
+                    if (game.squares[i].active === true) {
+                        console.log("match")
+                        finish = false;
+                    }
                 }
-            }
             if(finish){
             setXarray(game.xArray);
             setYarray(game.yArray);
+            }else{
+                setXarray(["","","","","","","","","",""]);
+                setYarray(["","","","","","","","","",""]);
             }
             
         });
@@ -60,13 +62,11 @@ const Game = (props) => {
             if (game.data !== "") {
                 setGame(game.data)
                 setSquares(game.data.squares)
-                // setXarray(game.data.xArray);
-                // setYarray(game.data.yArray);
+                let finish = true;
                 for (let i = 0; i < game.data.squares.length; i++) {
                     if (game.data.squares[i].active === true) {
                         console.log("match")
-                        setFinish(false)
-                        return;
+                        finish = false;
                     }
                 }
                 if(finish){
@@ -221,11 +221,11 @@ const Game = (props) => {
                         <div className="row">
                             <div className="col-12 text-left">
                                 <div>
-                                    <h5 id="h0" className="h-numbers">{xArray[0]}</h5><h5 id="h1" className="h-numbers" >{xArray[1]}</h5>
-                                    <h5 id="h2" className="h-numbers">{xArray[2]}</h5><h5 id="h3" className="h-numbers">{xArray[3]}</h5>
-                                    <h5 id="h4" className="h-numbers">{xArray[4]}</h5><h5 id="h5" className="h-numbers">{xArray[5]}</h5>
-                                    <h5 id="h6" className="h-numbers">{xArray[6]}</h5><h5 id="h7" className="h-numbers">{xArray[7]}</h5>
-                                    <h5 id="h8" className="h-numbers">{xArray[8]}</h5><h5 id="h9" className="h-numbers">{xArray[9]}</h5>
+                                    <div id="h0" className="h-numbers">{xArray[0]}</div><div id="h1" className="h-numbers" >{xArray[1]}</div>
+                                    <div id="h2" className="h-numbers">{xArray[2]}</div><div id="h3" className="h-numbers">{xArray[3]}</div>
+                                    <div id="h4" className="h-numbers">{xArray[4]}</div><div id="h5" className="h-numbers">{xArray[5]}</div>
+                                    <div id="h6" className="h-numbers">{xArray[6]}</div><div id="h7" className="h-numbers">{xArray[7]}</div>
+                                    <div id="h8" className="h-numbers">{xArray[8]}</div><div id="h9" className="h-numbers">{xArray[9]}</div>
                                 </div>
                             </div>
                         </div>
