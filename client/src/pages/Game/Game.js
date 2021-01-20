@@ -115,7 +115,7 @@ const Game = (props) => {
     }
 
     const updateGame = async () => {
-        if(firstName === '' || lastName === '') {
+        if (firstName === '' || lastName === '') {
             alert('Must add a first and last name!')
             return;
         }
@@ -180,15 +180,15 @@ const Game = (props) => {
 
 
     const renderPaymentInfo = () => {
-        if(!game) {
+        if (!game) {
             return;
         }
 
-        if(game.payouts.one === '' && game.payouts.where === '') {
+        if (game.payouts.one === '' && game.payouts.where === '') {
             return <h1>{game.title}</h1>
         }
 
-        if(game.payouts.where === '') {
+        if (game.payouts.where === '') {
             return (
                 <>
                     <h1>{game.title}</h1>
@@ -199,11 +199,15 @@ const Game = (props) => {
             )
         }
 
+        const copyLink = e => {
+            navigator.clipboard.writeText(`https://thesquaresgame.com/game/${e.target.id}`)
+        }
+
         const renderWhere = () => {
-            if(game.payouts.where === 'Both') {
+            if (game.payouts.where === 'Both') {
                 return <p>Venmo or Zelle @:</p>
             }
-    
+
             return <p>{game.payouts.where} @:</p>
         }
 
@@ -211,14 +215,20 @@ const Game = (props) => {
 
         return (
             <>
-                <h1>{game.title}</h1>
+                <h1 id='game-title'>{game.title}</h1>
+                <h4>Game id:</h4>
+                <h6>{game._id}</h6>
+                <button type='button' className='copybtn btn btn-outline-success btn-sm' onClick={copyLink} id={game._id}>Copy Link</button>
                 <h4 className='game-direction-title'>Payment Info:</h4>
-                <p>{renderWhere()}</p>
-                <p>Email: {game.payouts.email}</p>
-                <p>Phone: {game.payouts.phone}</p>
+                <h6>{renderWhere()}</h6>
+                <h6>Email: {game.payouts.email}</h6>
+                <h6>Phone: {game.payouts.phone}</h6>
                 <h4 className='game-direction-title'>Payouts per Quarter:</h4>
-                <p>1st: ${game.payouts.one} 2nd: ${game.payouts.two}</p>
-                <p>3rd: ${game.payouts.three} 4th: ${game.payouts.four}</p>
+                <h6 className='payouts-per-qtr'>1st: ${game.payouts.one}</h6>
+                <h6 className='payouts-per-qtr'>2nd: ${game.payouts.two}</h6>
+                <h6 className='payouts-per-qtr'>3rd: ${game.payouts.three}</h6>
+                <h6 className='payouts-per-qtr'>4th: ${game.payouts.four}</h6>
+                <h2 className='game-direction-title' id='game-direction-title'>Input your name, select Squares, and submit!</h2>
             </>
         )
     }
@@ -230,7 +240,6 @@ const Game = (props) => {
                 {renderPaymentInfo()}
             </div>
             <div className="text-white justify-content-center game-square">
-            <h4 className='game-direction-title' id='game-direction-title'>Input your name, select Squares, and submit!</h4>
                 <div className="row mb-2">
                     <div className="col-3 col-md-4"></div>
                     <div className="col-7 col-md-5 text-center name-inputs-div">
@@ -242,9 +251,9 @@ const Game = (props) => {
                                 <input type="name" className="input-name" placeholder="last" value={lastName} onChange={(event) => { setLastName(event.target.value) }}></input>
                             </div>
                             <div>
-                            <div className="col-12 col-md-4 input-button">
-                                <button onClick={updateGame} type="button" className="btn btn-outline-danger btn-submit">submit</button>
-                            </div>
+                                <div className="col-12 col-md-4 input-button">
+                                    <button onClick={updateGame} type="button" className="btn btn-outline-danger btn-submit">submit</button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -268,7 +277,7 @@ const Game = (props) => {
                             </div>
                             <div className="col-2 mt-5">
                                 <div>
-                                    
+
                                     <h2 className="text-right y-row">{yArray[0]}</h2>
                                     <h2 className="text-right y-row">{yArray[1]}</h2>
                                     <h2 className="text-right y-row">{yArray[2]}</h2>
