@@ -93,7 +93,7 @@ const UserProfile = (props) => {
             <>
                 <Header />
                 <div className='profile'>
-                    <h1>User Profile</h1>
+                    <h1 id='profile-title'>User Profile</h1>
                     <h4 id='created-games-title'>Select a Game:</h4>
                     <div className='created-games'>
                         <Modal open={isOpen} gameId={selectedGameId} deleteGame={deleteGame} onClose={() => setIsOpen(false)}>Are you sure you want to permanently delete this game?</Modal>

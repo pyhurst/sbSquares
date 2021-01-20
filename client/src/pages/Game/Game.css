@@ -2,6 +2,12 @@
     margin-right: 150px;
 }
 
+#game-title {
+    font-size: 50px;
+    margin-bottom: 40px;
+    font-family: 'Nova Square', cursive;
+}
+
 .y-row{
     margin-top: 12px;
     color: rgba(255, 255, 255, 0.877);
@@ -84,8 +90,22 @@
     margin-left: 35px; 
 }
 
-#game-direction-title {
-    margin-left: 120px;
+.copybtn {
+    margin-top: 10px;
+}
+
+.game-direction-title {
+    font-family: 'Nova Square', cursive;
+    color: green;
+    margin-top: 20px;
+}
+
+h6 {
+    font-size: 20px;
+}
+
+.payouts-per-qtr {
+    margin-top: 10px;
 }
 
 @media only screen and (max-width: 600px) {
@@ -97,7 +117,7 @@
     .y-row{
         margin-bottom: 15px;
         padding-left: 30px;
-        color: white;
+        color: rgba(255, 255, 255, 0.877);
     }
     .input-name{
         width: 88px;
@@ -182,7 +202,7 @@
     .y-row{
         margin-bottom: 15px;
         padding-left: 30px;
-        color: white;
+        color: rgba(255, 255, 255, 0.877);
     }
     .input-name{
         width: 88px;
@@ -248,13 +268,16 @@
         margin-left: 13px;
     }
     #game-direction-title {
-        margin-left: 15px;
+        margin-top: 60px;
     }
     .btn-submit {
         margin: 0;
     }
     .name-inputs-div {
         margin-left: 0;
+    }
+    .game-info {
+        min-height: 84vh;
     }
 
   }
