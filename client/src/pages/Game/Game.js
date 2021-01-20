@@ -220,13 +220,13 @@ const Game = (props) => {
                     <div className="col-10 col-md-8">
                         <div className="row">
                             <div className="col-12 text-left">
-                                <div>
+                                {/* <div>
                                     <h2 id="h0" className="h-numbers">{xArray[0]}</h2><h2 id="h1" className="h-numbers" >{xArray[1]}</h2>
                                     <h2 id="h2" className="h-numbers">{xArray[2]}</h2><h2 id="h3" className="h-numbers">{xArray[3]}</h2>
                                     <h2 id="h4" className="h-numbers">{xArray[4]}</h2><h2 id="h5" className="h-numbers">{xArray[5]}</h2>
                                     <h2 id="h6" className="h-numbers">{xArray[6]}</h2><h2 id="h7" className="h-numbers">{xArray[7]}</h2>
                                     <h2 id="h8" className="h-numbers">{xArray[8]}</h2><h2 id="h9" className="h-numbers">{xArray[9]}</h2>
-                                </div>
+                                </div> */}
                             </div>
                         </div>
                         <div className="row">
