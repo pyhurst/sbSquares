@@ -40,6 +40,7 @@ const Game = (props) => {
         socket.on(props.match.params.id, (game) => {
             setGame(game)
             setSquares(game.squares)
+
             let finish = true;
                 for (let i = 0; i < game.squares.length; i++) {
                     if (game.squares[i].active === true) {
