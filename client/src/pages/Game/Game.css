@@ -3,8 +3,16 @@
 }
 
 .y-row{
-    margin-bottom: 13px;
+    margin-bottom: 12px;
     color: white;
+}
+
+.normal{
+    display: block
+}
+
+.none{
+    display: none
 }
 
 .input-name{
@@ -12,7 +20,129 @@
     width: 150px;
 }
 
+
+.h-numbers{
+    float: left;
+}
+
+#h0{
+    display: inline-block;
+    margin-left: 20px;
+}
+#h1{
+    display: inline-block;
+    margin-left: 50px;
+}
+#h2{
+    display: inline-block;
+    margin-left: 50px;
+}
+#h3{
+    display: inline-block;
+    margin-left: 50px;
+}
+#h4{
+    display: inline-block;
+    margin-left: 50px;
+}
+#h5{
+    display: inline-block;
+    margin-left: 50px;
+}
+#h6{
+    display: inline-block;
+    margin-left: 45px;
+}
+#h7{
+    display: inline-block;
+    margin-left: 40px;
+}
+#h8{
+ display: inline-block;
+ margin-left: 45px;
+}
+#h9{
+    display: inline-block;
+    margin-left: 48px;
+}
 @media only screen and (max-width: 600px) {
+
+    .game-square{
+        margin-right: 20px;
+        padding-bottom: 350px
+    }
+    .y-row{
+        margin-bottom: 15px;
+        padding-left: 30px;
+        color: white;
+    }
+    .input-name{
+        width: 88px;
+        padding: 0px;
+    }
+    .input-button{
+        margin-top: 10px;
+        padding:0px
+    }
+    .btn-submit{
+        padding-top:2px;
+        padding-bottom:2px;
+        padding-left: 14px;
+        padding-right: 14px;
+    }
+    #h0{
+        display: inline-block;
+        margin-left: 6px;
+    }
+    #h1{
+        display: inline-block;
+     
+        margin-left: 15px;
+    }
+    #h2{
+        display: inline-block;
+      
+        margin-left: 18px;
+    }
+    #h3{
+        display: inline-block;
+      
+        margin-left: 12px;
+    }
+    #h4{
+        display: inline-block;
+       
+        margin-left: 14px;
+    }
+    #h5{
+        display: inline-block;
+        
+        margin-left: 12px;
+    }
+    #h6{
+        display: inline-block;
+        
+        margin-left: 12px;
+    }
+    #h7{
+        display: inline-block;
+       
+        margin-left: 15px;
+    }
+    #h8{
+        display: inline-block;
+        
+        margin-left: 13px;
+    }
+    #h9{
+        display: inline-block;
+       
+        margin-left: 13px;
+    }
+
+  }
+
+@media only screen and (max-width: 400px) {
 
     .game-square{
         margin-right: 20px;
@@ -28,10 +158,67 @@
     }
     .input-button{
         margin-top: 10px;
+        padding:0px
+    }
+    .btn-submit{
+        padding-top:2px;
+        padding-bottom:2px;
+        padding-left: 14px;
+        padding-right: 14px;
+    }
+    #h0{
+        display: inline-block;
+        margin-left: 6px;
+    }
+    #h1{
+        display: inline-block;
+     
+        margin-left: 10px;
+    }
+    #h2{
+        display: inline-block;
+      
+        margin-left: 12px;
+    }
+    #h3{
+        display: inline-block;
+      
+        margin-left: 12px;
+    }
+    #h4{
+        display: inline-block;
+       
+        margin-left: 11px;
+    }
+    #h5{
+        display: inline-block;
         
+        margin-left: 12px;
+    }
+    #h6{
+        display: inline-block;
+        
+        margin-left: 12px;
+    }
+    #h7{
+        display: inline-block;
+       
+        margin-left: 13px;
+    }
+    #h8{
+        display: inline-block;
+        
+        margin-left: 9px;
+    }
+    #h9{
+        display: inline-block;
+       
+        margin-left: 13px;
     }
 
   }
+
+ 
 
 
   
