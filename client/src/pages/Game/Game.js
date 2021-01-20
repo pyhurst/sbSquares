@@ -26,6 +26,7 @@ const Game = (props) => {
     const [modalButtonColor, setModalButtonColor] = useState("");
     const [modalSquareCounter, setModalSquareCounter] = useState("");
     const [modalOptionValue, setModalOptionValue] = useState("");
+    const [finish, setFinish] = useState(true);
     const [xArray, setXarray] = useState(["","","","","","","","","",""]);
     const [yArray, setYarray] = useState(["","","","","","","","","",""]);
 
@@ -39,13 +40,14 @@ const Game = (props) => {
         socket.on(props.match.params.id, (game) => {
             setGame(game)
             setSquares(game.squares)
-            let finished = true;
+            setFinish(true)
             for (let i = 0; i < game.squares.length; i++) {
                 if (game.squares[i].active === true) {
-                    finished = false
+                    setFinish(false)
+                    break;
                 }
             }
-            if(finished){
+            if(finish){
             setXarray(game.xArray);
             setYarray(game.yArray);
             }
@@ -56,15 +58,19 @@ const Game = (props) => {
             if (game.data !== "") {
                 setGame(game.data)
                 setSquares(game.data.squares)
-                let finished = true;
                 for (let i = 0; i < game.data.squares.length; i++) {
                     if (game.data.squares[i].active === true) {
-                        finished = false
+                        console.log("match")
+                        setFinish(false)
+                        break;
                     }
                 }
-                if(finished){
+                if(finish){
                 setXarray(game.data.xArray);
                 setYarray(game.data.yArray);
+                }else{
+                    setXarray(["","","","","","","","","",""]);
+                    setYarray(["","","","","","","","","",""]);
                 }
                 if (props.auth) {
                     adminCheck(game.data);
@@ -78,7 +84,7 @@ const Game = (props) => {
             pendingSquares = [];
             socket.disconnect()
         };
-    }, [props.auth]);
+    }, [props.auth, finish]);
 
     const flipFunction = (event) => {
         let chosenSquare = event.target.id
