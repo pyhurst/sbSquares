@@ -40,17 +40,19 @@ const Game = (props) => {
         socket.on(props.match.params.id, (game) => {
             setGame(game)
             setSquares(game.squares)
-            setFinish(true)
-            for (let i = 0; i < game.squares.length; i++) {
-                if (game.squares[i].active === true) {
-                    setFinish(false)
-                    break;
-                }
-            }
-            if(finish){
             setXarray(game.xArray);
             setYarray(game.yArray);
-            }
+            // setFinish(true)
+            // for (let i = 0; i < game.squares.length; i++) {
+            //     if (game.squares[i].active === true) {
+            //         setFinish(false)
+            //         break;
+            //     }
+            // }
+            // if(finish){
+            // setXarray(game.xArray);
+            // setYarray(game.yArray);
+            // }
             
         });
 
@@ -58,20 +60,22 @@ const Game = (props) => {
             if (game.data !== "") {
                 setGame(game.data)
                 setSquares(game.data.squares)
-                for (let i = 0; i < game.data.squares.length; i++) {
-                    if (game.data.squares[i].active === true) {
-                        console.log("match")
-                        setFinish(false)
-                        break;
-                    }
-                }
-                if(finish){
                 setXarray(game.data.xArray);
                 setYarray(game.data.yArray);
-                }else{
-                    setXarray(["","","","","","","","","",""]);
-                    setYarray(["","","","","","","","","",""]);
-                }
+                // for (let i = 0; i < game.data.squares.length; i++) {
+                //     if (game.data.squares[i].active === true) {
+                //         console.log("match")
+                //         setFinish(false)
+                //         break;
+                //     }
+                // }
+                // if(finish){
+                // setXarray(game.data.xArray);
+                // setYarray(game.data.yArray);
+                // }else{
+                //     setXarray(["","","","","","","","","",""]);
+                //     setYarray(["","","","","","","","","",""]);
+                // }
                 if (props.auth) {
                     adminCheck(game.data);
                 }
