@@ -186,7 +186,7 @@ const Game = (props) => {
                             <div className="col-10">
                             </div>
                             <div className="col-2 mt-5">
-                                <div className={showNumbers}>
+                                <div>
                                     <h2 className="text-right y-row">0</h2>
                                     <h2 className="text-right y-row">1</h2>
                                     <h2 className="text-right y-row">2</h2>
@@ -204,7 +204,7 @@ const Game = (props) => {
                     <div className="col-10 col-md-8">
                         <div className="row">
                             <div className="col-12 text-left">
-                                <div className={showNumbers}>
+                                <div>
                                     <h2 id="h0" className="h-numbers">0</h2><h2 id="h1" className="h-numbers" >1</h2>
                                     <h2 id="h2" className="h-numbers">2</h2><h2 id="h3" className="h-numbers">3</h2>
                                     <h2 id="h4" className="h-numbers">4</h2><h2 id="h5" className="h-numbers">5</h2>
