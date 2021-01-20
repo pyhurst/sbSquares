@@ -26,7 +26,7 @@ const Game = (props) => {
     const [modalButtonColor, setModalButtonColor] = useState("");
     const [modalSquareCounter, setModalSquareCounter] = useState("");
     const [modalOptionValue, setModalOptionValue] = useState("");
-    const [showNumbers,setShowNumbers] = useState("none")
+    const [showNumbers, setShowNumbers] = useState("none")
 
     let flip = [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false];
 
@@ -39,8 +39,8 @@ const Game = (props) => {
             setGame(game)
             setSquares(game.squares)
             let show = "normal";
-            for(let i = 0; i < game.squares.length; i++){
-                if(game.squares[i].active ===  true){
+            for (let i = 0; i < game.squares.length; i++) {
+                if (game.squares[i].active === true) {
                     show = "none"
                 }
             }
@@ -53,13 +53,12 @@ const Game = (props) => {
                 setGame(game.data)
                 setSquares(game.data.squares)
                 let show = "normal";
-                for(let i = 0; i < game.data.squares.length; i++){
-                    if(game.data.squares[i].active ===  true){
+                for (let i = 0; i < game.data.squares.length; i++) {
+                    if (game.data.squares[i].active === true) {
                         show = "none"
                     }
                 }
                 setShowNumbers(show);
-                socket.emit('getUpdatedGame', props.match.params.id);
                 if (props.auth) {
                     adminCheck(game.data);
                 }
@@ -204,13 +203,30 @@ const Game = (props) => {
                     <div className="col-10 col-md-8">
                         <div className="row">
                             <div className="col-12 text-left">
-                                <div>
-                                    <h2 id="h0" className="h-numbers">0</h2><h2 id="h1" className="h-numbers" >1</h2>
-                                    <h2 id="h2" className="h-numbers">2</h2><h2 id="h3" className="h-numbers">3</h2>
-                                    <h2 id="h4" className="h-numbers">4</h2><h2 id="h5" className="h-numbers">5</h2>
-                                    <h2 id="h6" className="h-numbers">6</h2><h2 id="h7" className="h-numbers">7</h2>
-                                    <h2 id="h8" className="h-numbers">8</h2><h2 id="h9" className="h-numbers">9</h2>
-                                </div>
+                                {(() => {
+                                    console.log(showNumbers)
+                                    if (showNumbers === "normal") {
+                                        return(
+                                        <div className="normal">
+                                            <h2 id="h0" className="h-numbers">0</h2><h2 id="h1" className="h-numbers" >1</h2>
+                                            <h2 id="h2" className="h-numbers">2</h2><h2 id="h3" className="h-numbers">3</h2>
+                                            <h2 id="h4" className="h-numbers">4</h2><h2 id="h5" className="h-numbers">5</h2>
+                                            <h2 id="h6" className="h-numbers">6</h2><h2 id="h7" className="h-numbers">7</h2>
+                                            <h2 id="h8" className="h-numbers">8</h2><h2 id="h9" className="h-numbers">9</h2>
+                                        </div>
+                                        )
+                                    } else {
+                                        return(
+                                        <div className="none">
+                                            <h2 id="h0" className="h-numbers">0</h2><h2 id="h1" className="h-numbers" >1</h2>
+                                            <h2 id="h2" className="h-numbers">2</h2><h2 id="h3" className="h-numbers">3</h2>
+                                            <h2 id="h4" className="h-numbers">4</h2><h2 id="h5" className="h-numbers">5</h2>
+                                            <h2 id="h6" className="h-numbers">6</h2><h2 id="h7" className="h-numbers">7</h2>
+                                            <h2 id="h8" className="h-numbers">8</h2><h2 id="h9" className="h-numbers">9</h2>
+                                        </div>
+                                        )
+                                    }
+                                })()}
                             </div>
                         </div>
                         <div className="row">
