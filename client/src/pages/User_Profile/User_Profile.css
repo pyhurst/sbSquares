@@ -43,6 +43,21 @@ ul {
     margin-top: 10px;
 }
 
+.payment-info {
+    margin-top: 10px;
+}
+
+.payment-info-button {
+    border: 1px solid rgba(255, 255, 255, 0.877);
+    color: rgba(255, 255, 255, 0.877);
+    margin-right: 10px;
+}
+
+.payment-info-button:focus {
+    outline: 2px solid #0a58ca;
+    border: none;
+}
+
 .payout-qtr-input {
     width: 40px;
     margin-left: 10px;
@@ -55,6 +70,14 @@ ul {
 .payout-qtr-input:focus {
     outline: 2px solid #0a58ca;
     border: none;
+}
+
+.payment-email-input {
+    margin-top: 10px;
+}
+
+.payment-phone-input {
+    margin-top: 10px;
 }
 
 @media (max-width : 786px) {

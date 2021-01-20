@@ -15,6 +15,7 @@ const UserProfile = (props) => {
     const [payoutTwo, setPayoutTwo] = useState('');
     const [payoutThree, setPayoutThree] = useState('');
     const [payoutFour, setPayoutFour] = useState('');
+    const [paymentInfo, setPaymentInfo] = useState('');
 
     useEffect(() => {
         getUserGames();
@@ -63,6 +64,11 @@ const UserProfile = (props) => {
         setIsOpen(true);
     }
 
+    const paymentInfoClick = e => {
+        e.preventDefault();
+        setPaymentInfo(e.target.value)
+    }
+
     if (!props.auth) {
         return <div>Loading...</div>
     } else {
@@ -92,6 +98,15 @@ const UserProfile = (props) => {
                             <br />
                             <input className='payout-qtr-input' placeholder='3rd' value={payoutThree} onChange={e => setPayoutThree(e.target.value)} />
                             <input className='payout-qtr-input' placeholder='4th' value={payoutFour} onChange={e => setPayoutFour(e.target.value)} />
+                        </div>
+                        <div className='payment-info'>
+                            <h5>Payment Info:</h5>
+                            <p>(How should people pay you? Select One)</p>
+                            <button className='payment-info-button' value='Venmo' onClick={paymentInfoClick} >Venmo</button>
+                            <button className='payment-info-button' value='Zelle' onClick={paymentInfoClick} >Zelle</button>
+                            <button className='payment-info-button' value='Both' onClick={paymentInfoClick} >Both</button>
+                            <input className='payment-email-input search-input' placeholder='Email' />
+                            <input className='payment-phone-input search-input' placeholder='Phone Number' />
                         </div>
                         <div>
                             <button className='btn btn-success createbtn' onClick={createGame}>Create Game</button>
