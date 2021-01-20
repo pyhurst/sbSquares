@@ -75,6 +75,14 @@ const UserProfile = (props) => {
                             placeholder='Game Title'
                             value={gameTitleInput}
                             onChange={e => setGameTitleInput(e.target.value)} />
+                        <div className='payout-info-div'>
+                            <h5>Payouts per Quarter ($):</h5>
+                            <input className='payout-qtr-input' placeholder='1st' />
+                            <input className='payout-qtr-input' placeholder='2nd' />
+                            <br />
+                            <input className='payout-qtr-input' placeholder='3rd' />
+                            <input className='payout-qtr-input' placeholder='4th' />
+                        </div>
                         <div>
                             <button className='btn btn-success createbtn' onClick={createGame}>Create Game</button>
                         </div>

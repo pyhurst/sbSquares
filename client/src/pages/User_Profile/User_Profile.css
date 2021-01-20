@@ -34,7 +34,25 @@ ul {
     color: rgba(255, 255, 255, 0.877);
 }
 
-.game-title-input:focus {
+.input:focus {
+    outline: 2px solid #0a58ca;
+    border: none;
+}
+
+.payout-info-div {
+    margin-top: 10px;
+}
+
+.payout-qtr-input {
+    width: 40px;
+    margin-left: 10px;
+    margin-top: 5px;
+    margin-right: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.877);
+    color: rgba(255, 255, 255, 0.877);
+}
+
+.payout-qtr-input:focus {
     outline: 2px solid #0a58ca;
     border: none;
 }
