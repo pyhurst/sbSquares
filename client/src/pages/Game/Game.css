@@ -268,7 +268,7 @@ h6 {
         margin-left: 13px;
     }
     #game-direction-title {
-        margin-top: 60px;
+        margin-top: 30px;
     }
     .btn-submit {
         margin: 0;
@@ -277,7 +277,7 @@ h6 {
         margin-left: 0;
     }
     .game-info {
-        min-height: 84vh;
+        min-height: 80vh;
     }
 
   }

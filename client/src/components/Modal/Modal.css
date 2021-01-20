@@ -17,3 +17,22 @@
     background-color: rgba(0, 0, 0, 0.7);
     z-index: 1000;
 }
+
+.modal-game-button {
+    margin-left: 10px;
+}
+
+
+@media (max-width : 786px) {
+
+}     
+
+@media (max-width : 414px) {
+
+}
+
+@media (max-width : 375px) {
+    .modal-game-button {
+        margin-top: 10px;
+    }    
+}

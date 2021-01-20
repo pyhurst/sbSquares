@@ -184,20 +184,20 @@ const Game = (props) => {
             return;
         }
 
-        if (game.payouts.one === '' && game.payouts.where === '') {
-            return <h1>{game.title}</h1>
-        }
+        // if (game.payouts.one === '' && game.payouts.where === '') {
+        //     return <h1>{game.title}</h1>
+        // }
 
-        if (game.payouts.where === '') {
-            return (
-                <>
-                    <h1>{game.title}</h1>
-                    <h4 className='game-direction-title'>Payouts per Quarter:</h4>
-                    <p>1st: ${game.payouts.one} 2nd: ${game.payouts.two}</p>
-                    <p>3rd: ${game.payouts.three} 4th: ${game.payouts.four}</p>
-                </>
-            )
-        }
+        // if (game.payouts.where === '') {
+        //     return (
+        //         <>
+        //             <h1>{game.title}</h1>
+        //             <h4 className='game-direction-title'>Payouts per Quarter:</h4>
+        //             <p>1st: ${game.payouts.one} 2nd: ${game.payouts.two}</p>
+        //             <p>3rd: ${game.payouts.three} 4th: ${game.payouts.four}</p>
+        //         </>
+        //     )
+        // }
 
         const copyLink = e => {
             navigator.clipboard.writeText(`https://thesquaresgame.com/game/${e.target.id}`)
@@ -205,10 +205,10 @@ const Game = (props) => {
 
         const renderWhere = () => {
             if (game.payouts.where === 'Both') {
-                return <p>Venmo or Zelle @:</p>
+                return <p>Venmo or Zelle @</p>
             }
 
-            return <p>{game.payouts.where} @:</p>
+            return <p>{game.payouts.where} @</p>
         }
 
         console.log(game)
@@ -224,10 +224,10 @@ const Game = (props) => {
                 <h6>Email: {game.payouts.email}</h6>
                 <h6>Phone: {game.payouts.phone}</h6>
                 <h4 className='game-direction-title'>Payouts per Quarter:</h4>
-                <h6 className='payouts-per-qtr'>1st: ${game.payouts.one}</h6>
-                <h6 className='payouts-per-qtr'>2nd: ${game.payouts.two}</h6>
-                <h6 className='payouts-per-qtr'>3rd: ${game.payouts.three}</h6>
-                <h6 className='payouts-per-qtr'>4th: ${game.payouts.four}</h6>
+                <h6 className='payouts-per-qtr'>1st: {game.payouts.one}</h6>
+                <h6 className='payouts-per-qtr'>2nd: {game.payouts.two}</h6>
+                <h6 className='payouts-per-qtr'>3rd: {game.payouts.three}</h6>
+                <h6 className='payouts-per-qtr'>4th: {game.payouts.four}</h6>
                 <h2 className='game-direction-title' id='game-direction-title'>Input your name, select Squares, and submit!</h2>
             </>
         )
