@@ -59,6 +59,7 @@ const Game = (props) => {
                     }
                 }
                 setShowNumbers(show);
+                socket.emit('getUpdatedGame', props.match.params.id);
                 if (props.auth) {
                     adminCheck(game.data);
                 }
