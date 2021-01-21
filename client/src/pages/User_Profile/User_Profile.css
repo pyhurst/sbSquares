@@ -31,12 +31,17 @@ ul {
 
 .game-title-input {
     margin-top: 10px;
+    margin-bottom: 10px;
     color: rgba(255, 255, 255, 0.877);
 }
 
 .input:focus {
     outline: 2px solid #0a58ca;
     border: none;
+}
+
+.game-type-div {
+    margin-bottom: 10px;
 }
 
 .payout-info-div {

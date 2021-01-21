@@ -2,8 +2,15 @@ const { Schema, model } = require("mongoose");
 
 const gameSchema = new Schema({
     title: String,
+    gameType: String,
     xArray: [],
-    yArray:[],
+    yArray: [],
+    xArrayTwo: [],
+    yArrayTwo: [],
+    xArrayThree: [],
+    yArrayThree: [],
+    xArrayFour: [],
+    yArrayFour: [],
     payouts: {
         one: String,
         two: String,

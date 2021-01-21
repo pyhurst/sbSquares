@@ -19,6 +19,26 @@ module.exports = app => {
         }
     });
 
+    app.post('/api/game/create/qtr', async (req, res) => {
+        try {
+            console.log(req.body)
+            req.body.xArray = xArray();
+            req.body.xArrayTwo = xArray();
+            req.body.xArrayThree = xArray();
+            req.body.xArrayFour = xArray();
+            req.body.yArray = yArray();
+            req.body.yArrayTwo = yArray();
+            req.body.yArrayThree = yArray();
+            req.body.yArrayFour = yArray();
+            req.body.squares = squaresPreSet();
+            let dbModel = await db.Game.create(req.body);
+            res.json(dbModel)
+
+        } catch (error) {
+            res.status(500).send();
+        }
+    });
+
     app.get('/api/game/:id', async (req, res) => {
         try {
             console.log(req.params.id)

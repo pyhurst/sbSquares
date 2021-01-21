@@ -19,6 +19,7 @@ const UserProfile = (props) => {
     const [paymentInfo, setPaymentInfo] = useState('');
     const [paymentEmail, setPaymentEmail] = useState('');
     const [paymentPhone, setPaymentPhone] = useState('');
+    const [gameType, setGameType] = useState('');
 
     useEffect(() => {
         getUserGames();
@@ -26,25 +27,44 @@ const UserProfile = (props) => {
 
     const createGame = e => {
         e.preventDefault();
-        if (gameTitleInput === '') {
-            alert('Must add a game title!')
+        if (gameTitleInput === '' || gameType === '') {
+            alert('Must add a game title and type!')
             return;
         }
-        API.createGame({
-            ownerId: props.auth._id,
-            title: gameTitleInput,
-            payouts: {
-                one: payoutOne,
-                two: payoutTwo,
-                three: payoutThree,
-                four: payoutFour,
-                email: paymentEmail,
-                phone: paymentPhone,
-                where: paymentInfo
-            }
-        }).then(() => getUserGames())
+        if (gameType === 'Single') {
+            API.createGame({
+                ownerId: props.auth._id,
+                title: gameTitleInput,
+                gameType: gameType,
+                payouts: {
+                    one: payoutOne,
+                    two: payoutTwo,
+                    three: payoutThree,
+                    four: payoutFour,
+                    email: paymentEmail,
+                    phone: paymentPhone,
+                    where: paymentInfo
+                }
+            }).then(() => getUserGames())
+        } else {
+            API.createQtrGame({
+                ownerId: props.auth._id,
+                title: gameTitleInput,
+                gameType: gameType,
+                payouts: {
+                    one: payoutOne,
+                    two: payoutTwo,
+                    three: payoutThree,
+                    four: payoutFour,
+                    email: paymentEmail,
+                    phone: paymentPhone,
+                    where: paymentInfo
+                }
+            }).then(() => getUserGames())
+        }
 
         setGameTitleInput('');
+        setGameType('');
         setPayoutOne('');
         setPayoutTwo('');
         setPayoutThree('');
@@ -86,6 +106,11 @@ const UserProfile = (props) => {
         setPaymentInfo(e.target.value)
     }
 
+    const gameTypeClick = e => {
+        e.preventDefault();
+        setGameType(e.target.value);
+    }
+
     if (!props.auth) {
         return <div>Loading...</div>
     } else {
@@ -109,6 +134,12 @@ const UserProfile = (props) => {
                                 placeholder='Game Title'
                                 value={gameTitleInput}
                                 onChange={e => setGameTitleInput(e.target.value)} />
+                            <h5 className='game-type-div'>Choose Game Type:</h5>
+                            <p>{gameType}</p>
+                            <div>
+                                <button className='payment-info-button' value='Single' onClick={gameTypeClick} >Single Number</button>
+                                <button className='payment-info-button' value='PerQtr' onClick={gameTypeClick} >Different Number per Qtr</button>
+                            </div>
                             <div className='payout-info-div'>
                                 <h5>Payouts per Quarter ($):</h5>
                                 <label>1<sup>st</sup> :</label>

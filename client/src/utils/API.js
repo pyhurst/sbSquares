@@ -13,6 +13,9 @@ export default {
   createGame: function(data){
     return axios.post("/api/game/create", data);
   },
+  createQtrGame: function(data){
+    return axios.post("/api/game/create/qtr", data);
+  },
   updateGame: function(id,data){
     return axios.put("/api/game/" + id, data);
   },
