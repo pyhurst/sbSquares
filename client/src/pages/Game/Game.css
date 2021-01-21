@@ -2,7 +2,7 @@
     position: absolute;
     font-size: 30px;
     color: #73AD21;
-    top: 330px;
+    top: 358px;
     left: 830px;
     width: 300px;
     height: 50px;
@@ -140,15 +140,15 @@ h6 {
         width: 90px;
         height: 40px;
         font-size: 20px;
-        top: 270px;
-        left: 290px;
+        top: 325px;
+        left: 320px;
     }
     .away {
         width: 90px;
         height: 40px;
         font-size: 20px;
         top: 575px;
-        left: 130px;
+        left: 160px;
     }
     .game-square {
         margin-right: 20px;
@@ -229,7 +229,7 @@ h6 {
         width: 90px;
         height: 40px;
         font-size: 20px;
-        top: 270px;
+        top: 325px;
         left: 290px;
     }
     .away {
@@ -237,7 +237,7 @@ h6 {
         height: 40px;
         font-size: 20px;
         top: 575px;
-        left: 130px;
+        left: 140px;
     }
     .game-square {
         margin-right: 20px;
