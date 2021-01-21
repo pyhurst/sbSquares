@@ -93,6 +93,10 @@ ul {
     margin-top: 10px;
 }
 
+.cost-per-square {
+    margin-bottom: 10px;
+}
+
 @media (max-width : 786px) {
 
 }    

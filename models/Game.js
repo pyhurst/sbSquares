@@ -11,6 +11,7 @@ const gameSchema = new Schema({
     yArrayThree: [],
     xArrayFour: [],
     yArrayFour: [],
+    costPerSquare: String,
     payouts: {
         one: String,
         two: String,

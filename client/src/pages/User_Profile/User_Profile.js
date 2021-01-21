@@ -20,6 +20,7 @@ const UserProfile = (props) => {
     const [paymentEmail, setPaymentEmail] = useState('');
     const [paymentPhone, setPaymentPhone] = useState('');
     const [gameType, setGameType] = useState('');
+    const [costPerSquare, setCostPerSquare] = useState('');
 
     useEffect(() => {
         getUserGames();
@@ -36,6 +37,7 @@ const UserProfile = (props) => {
                 ownerId: props.auth._id,
                 title: gameTitleInput,
                 gameType: gameType,
+                costPerSquare: costPerSquare,
                 payouts: {
                     one: payoutOne,
                     two: payoutTwo,
@@ -51,6 +53,7 @@ const UserProfile = (props) => {
                 ownerId: props.auth._id,
                 title: gameTitleInput,
                 gameType: gameType,
+                costPerSquare: costPerSquare,
                 payouts: {
                     one: payoutOne,
                     two: payoutTwo,
@@ -64,6 +67,7 @@ const UserProfile = (props) => {
         }
 
         setGameTitleInput('');
+        setCostPerSquare('');
         setGameType('');
         setPayoutOne('');
         setPayoutTwo('');
@@ -142,6 +146,8 @@ const UserProfile = (props) => {
                                 <button className='payment-info-button game-type-btn' value='PerQtr' onClick={gameTypeClick} >Different Number per Qtr</button>
                             </div>
                             <div className='payout-info-div'>
+                                <h5>How much per Square ($):</h5>
+                                <input className='payout-qtr-input cost-per-square' placeholder='$$$' value={costPerSquare} onChange={e => setCostPerSquare(e.target.value)} />
                                 <h5>Payouts per Quarter ($):</h5>
                                 <label>1<sup>st</sup> :</label>
                                 <input className='payout-qtr-input' placeholder='1st' value={payoutOne} onChange={e => setPayoutOne(e.target.value)} />
