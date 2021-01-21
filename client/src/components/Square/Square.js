@@ -25,7 +25,7 @@ const Square = (props) => {
         return (
             <>
                 <ReactCardFlip isFlipped={props.isFlipped} flipDirection="horizontal" flipSpeedFrontToBack="1.5" flipSpeedFrontToBack="1.5">
-                    <div className="bg-warning text-center cardDimensions" id={props.id} data-value={props.data} onClick={props.flipFunciton}>
+                    <div style={{backgroundColor:"#1A1A1D"}}className="text-center cardDimensions" id={props.id} data-value={props.data} onClick={props.flipFunciton}>
 
                     </div>
 
