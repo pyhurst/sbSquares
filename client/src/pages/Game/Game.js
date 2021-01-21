@@ -239,7 +239,7 @@ const Game = (props) => {
         // }
 
         const copyLink = e => {
-            navigator.clipboard.writeText(`http://www.thesquaresgame.com/game/${e.target.id}`)
+            navigator.clipboard.writeText(`https://www.thesquaresgame.com/game/${e.target.id}`)
         }
 
         const renderWhere = () => {
