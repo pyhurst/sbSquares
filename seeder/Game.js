@@ -4,7 +4,6 @@ let db = require("../models");
 
 
 
-console.log(process.env.MONGO_DB)
 mongoose.connect(process.env.MONGO_DB, {
   useNewUrlParser: true,
   useUnifiedTopology: true
@@ -31,8 +30,6 @@ while (xArray.length < 10) {
 
 }
 
-console.log(xArray);
-
 //Y Array feeder
 let yArray = []
 
@@ -52,14 +49,9 @@ while(yArray.length < 10) {
 
 }
 
-console.log(yArray)
-
-
 //squares seeder
 
 let squareArray = [];
-
-
 
 for (var i = 0; i < 100; i++) {
     let squareSeed =
@@ -74,11 +66,6 @@ for (var i = 0; i < 100; i++) {
     squareArray[i]._id = "" + i;
 }
 
-console.log(squareArray)
-
-
-
-
 let gameSeed = 
   {
     ownerId: 1,
@@ -91,12 +78,9 @@ let gameSeed =
 
 
 let start = async ()=> {
-  console.time()
   await db.Game.deleteMany({})
   let data = await db.Game.create(gameSeed);
   await db.Game.updateOne({ _id: data._id }, { squares: squareArray });
-  console.log(data);
-  console.timeEnd()
   process.exit(0);
 }
 

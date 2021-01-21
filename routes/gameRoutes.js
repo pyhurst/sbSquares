@@ -7,7 +7,6 @@ module.exports = app => {
 
     app.post('/api/game/create/', async (req, res) => {
         try {
-            console.log(req.body)
             req.body.xArray = xArray();
             req.body.yArray = yArray();
             req.body.squares = squaresPreSet();
@@ -21,7 +20,6 @@ module.exports = app => {
 
     app.post('/api/game/create/qtr', async (req, res) => {
         try {
-            console.log(req.body)
             req.body.xArray = xArray();
             req.body.xArrayTwo = xArray();
             req.body.xArrayThree = xArray();
@@ -41,9 +39,7 @@ module.exports = app => {
 
     app.get('/api/game/:id', async (req, res) => {
         try {
-            console.log(req.params.id)
             let game = await db.Game.find({ _id: req.params.id })
-            console.log(game)
             for (let i = 0; i < game[0].squares.length; i++) {
                 let index = game[0].squares[i].name.indexOf(" ");
                 game[0].squares[i].initials = game[0].squares[i].name[0] + game[0].squares[i].name[index + 1]
@@ -55,14 +51,12 @@ module.exports = app => {
     })
 
     app.get('/api/games/:id', (req, res) => {
-        console.log(req.params.id);
         db.Game.find({ ownerId: req.params.id })
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err))
     });
 
     app.delete('/api/game/:id', (req, res) => {
-        console.log(req.params.id);
         db.Game.deleteOne({ _id: req.params.id })
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err))
@@ -74,14 +68,12 @@ module.exports = app => {
             let game = await db.Game.find({ _id: req.params.id });
             let squares = game[0].squares;
             let color = classArray[Math.floor(Math.random() * classArray.length)];
-            console.log(color)
             for (let i = 0; i < squares.length; i++) {
                 if (squares[i].name.toUpperCase() === name.toUpperCase()) {
                     color = squares[i].color
                     break;
                 }
             }
-            console.log(color)
             for (let i = 0; i < req.body.pendingSquares.length; i++) {
                 if (squares[parseInt(req.body.pendingSquares[i])].active === true) {
                     squares[parseInt(req.body.pendingSquares[i])].name = name;
@@ -102,8 +94,6 @@ module.exports = app => {
     });
 
     app.put("/api/square/:id", async (req, res) => {
-        console.log(req.params.id);
-        console.log(req.body)
         let game = await db.Game.find({ _id: req.params.id });
         let squares = game[0].squares;
         squares[req.body.id].name = "";
@@ -113,7 +103,6 @@ module.exports = app => {
 
     })
     app.delete("/api/square/:id/:name", async (req, res) => {
-        console.log(req.params.name);
         let game = await db.Game.find({ _id: req.params.id });
         let squares = game[0].squares;
         for (let i = 0; i < squares.length; i++) {

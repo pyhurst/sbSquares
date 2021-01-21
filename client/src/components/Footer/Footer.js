@@ -3,7 +3,9 @@ import './Footer.css';
 
 const Footer = () => {
     return (
-        <div className='footer'></div>
+        <div className='footer'>
+            <p>Created by Phil Hurst & Schwyn Francis</p>
+        </div>
     )
 }
 

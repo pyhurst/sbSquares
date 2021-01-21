@@ -24,7 +24,6 @@ const Landing = (props) => {
 
     const handleFormSubmit = e => {
         e.preventDefault();
-        console.log(searchInput);
         API.getGame(searchInput)
             .then(result => {
                 if(result.data === '') {

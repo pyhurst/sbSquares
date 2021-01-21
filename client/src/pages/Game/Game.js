@@ -9,8 +9,6 @@ import Footer from '../../components/Footer/Footer';
 import ModalEditSquare from '../../components/ModalEditSquare/ModalEditSquare.js';
 import "./Game.css"
 
-console.log('file read')
-
 let socket;
 let pendingSquares = [];
 
@@ -27,7 +25,6 @@ const Game = (props) => {
     const [modalButtonColor, setModalButtonColor] = useState("");
     const [modalSquareCounter, setModalSquareCounter] = useState("");
     const [modalOptionValue, setModalOptionValue] = useState("");
-    // const [finish, setFinish] = useState(true);
     const [xArray, setXarray] = useState(["", "", "", "", "", "", "", "", "", ""]);
     const [yArray, setYarray] = useState(["", "", "", "", "", "", "", "", "", ""]);
     const [blackNumbers, setBlackNumbers] = useState(true);
@@ -46,7 +43,6 @@ const Game = (props) => {
             let finish = true
             for (let i = 0; i < game.squares.length; i++) {
                 if (game.squares[i].active === true) {
-                    console.log("match")
                     finish = false
                     break;
                 }
@@ -68,7 +64,6 @@ const Game = (props) => {
                 let finish = true
                 for (let i = 0; i < game.data.squares.length; i++) {
                     if (game.data.squares[i].active === true) {
-                        console.log("match")
                         finish = false
                         break;
                     }
@@ -169,7 +164,6 @@ const Game = (props) => {
 
     const adminCheck = (game) => {
         if (props.auth._id === game.ownerId) {
-            console.log("Hello Admin")
             setModalAdmin(true)
         }
     }
@@ -249,8 +243,6 @@ const Game = (props) => {
 
             return <p>{game.payouts.where} @</p>
         }
-
-        console.log(game)
 
         return (
             <>
