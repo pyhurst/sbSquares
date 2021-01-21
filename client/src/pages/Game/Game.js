@@ -30,7 +30,8 @@ const Game = (props) => {
     // const [finish, setFinish] = useState(true);
     const [xArray, setXarray] = useState(["", "", "", "", "", "", "", "", "", ""]);
     const [yArray, setYarray] = useState(["", "", "", "", "", "", "", "", "", ""]);
-    const [blackNumbers, setBlackNumbers] = useState(true)
+    const [blackNumbers, setBlackNumbers] = useState(true);
+    const [qtrView, setQtrView] = useState('');
 
     let flip = [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false];
 
@@ -113,6 +114,38 @@ const Game = (props) => {
             flip[pendingSquares[i]] = !flip[pendingSquares[i]]
         }
         setFlipStatus(flip);
+    }
+
+    const renderQuarterClick = e => {
+        if(e.target.value === 'One') {
+            setXarray(game.xArray)
+            setYarray(game.yArray)
+        } else if (e.target.value === 'Two') {
+            setXarray(game.xArrayTwo)
+            setYarray(game.yArrayTwo)
+        } else if (e.target.value === 'Three') {
+            setXarray(game.xArrayThree)
+            setYarray(game.yArrayThree)
+        } else {
+            setXarray(game.xArrayFour)
+            setYarray(game.yArrayFour)
+        }
+        
+    }
+
+    const renderQtrOptions = () => {
+        if (!game || game.gameType === 'Single') {
+            return;
+        }
+
+        return (
+            <>
+                <button className='payment-info-button' value='One' onClick={renderQuarterClick} >1st Qtr</button>
+                <button className='payment-info-button' value='Two' onClick={renderQuarterClick} >2nd Qtr</button>
+                <button className='payment-info-button' value='Three' onClick={renderQuarterClick} >3rd Qtr</button>
+                <button className='payment-info-button' value='Four' onClick={renderQuarterClick} >4th Qtr</button>
+            </>
+        )
     }
 
     const updateGame = async () => {
@@ -262,19 +295,9 @@ const Game = (props) => {
                     </div>
                 </div>
 
+                <div>{renderQtrOptions()}</div>
+
                 <div className="row game-box">
-                    {/* <div className="col-1">
-                        <h2 className="y-row">{yArray[0]}</h2>
-                        <h2 className="y-row">{yArray[1]}</h2>
-                        <h2 className="y-row">{yArray[2]}</h2>
-                        <h2 className="y-row">{yArray[3]}</h2>
-                        <h2 className="y-row">{yArray[4]}</h2>
-                        <h2 className="y-row">{yArray[5]}</h2>
-                        <h2 className="y-row">{yArray[6]}</h2>
-                        <h2 className="y-row">{yArray[7]}</h2>
-                        <h2 className="y-row">{yArray[8]}</h2>
-                        <h2 className="y-row">{yArray[9]}</h2>
-                    </div> */}
                     <div className="col-11">
                         <div className="row square-rows">
                             <div className="col-1" />
