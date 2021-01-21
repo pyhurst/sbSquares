@@ -138,7 +138,8 @@ const UserProfile = (props) => {
                             <p>{gameType}</p>
                             <div>
                                 <button className='payment-info-button' value='Single' onClick={gameTypeClick} >Single Number</button>
-                                <button className='payment-info-button' value='PerQtr' onClick={gameTypeClick} >Different Number per Qtr</button>
+                                <br />
+                                <button className='payment-info-button game-type-btn' value='PerQtr' onClick={gameTypeClick} >Different Number per Qtr</button>
                             </div>
                             <div className='payout-info-div'>
                                 <h5>Payouts per Quarter ($):</h5>

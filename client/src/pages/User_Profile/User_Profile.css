@@ -89,6 +89,10 @@ ul {
     margin-top: 10px;
 }
 
+.game-type-btn {
+    margin-top: 10px;
+}
+
 @media (max-width : 786px) {
 
 }    

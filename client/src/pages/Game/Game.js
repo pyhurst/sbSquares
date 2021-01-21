@@ -118,15 +118,19 @@ const Game = (props) => {
 
     const renderQuarterClick = e => {
         if(e.target.value === 'One') {
+            setQtrView('1st Quarter')
             setXarray(game.xArray)
             setYarray(game.yArray)
         } else if (e.target.value === 'Two') {
+            setQtrView('2nd Quarter')
             setXarray(game.xArrayTwo)
             setYarray(game.yArrayTwo)
         } else if (e.target.value === 'Three') {
+            setQtrView('3rd Quarter')
             setXarray(game.xArrayThree)
             setYarray(game.yArrayThree)
         } else {
+            setQtrView('4th Quarter')
             setXarray(game.xArrayFour)
             setYarray(game.yArrayFour)
         }
@@ -140,10 +144,11 @@ const Game = (props) => {
 
         return (
             <>
-                <button className='payment-info-button' value='One' onClick={renderQuarterClick} >1st Qtr</button>
-                <button className='payment-info-button' value='Two' onClick={renderQuarterClick} >2nd Qtr</button>
-                <button className='payment-info-button' value='Three' onClick={renderQuarterClick} >3rd Qtr</button>
-                <button className='payment-info-button' value='Four' onClick={renderQuarterClick} >4th Qtr</button>
+                <button className='payment-info-button qtr-view-btns' value='One' onClick={renderQuarterClick} >1st Qtr</button>
+                <button className='payment-info-button qtr-view-btns' value='Two' onClick={renderQuarterClick} >2nd Qtr</button>
+                <br />
+                <button className='payment-info-button qtr-view-btns' value='Three' onClick={renderQuarterClick} >3rd Qtr</button>
+                <button className='payment-info-button qtr-view-btns' value='Four' onClick={renderQuarterClick} >4th Qtr</button>
             </>
         )
     }
@@ -296,6 +301,7 @@ const Game = (props) => {
                 </div>
 
                 <div>{renderQtrOptions()}</div>
+                <h4>{qtrView}</h4>
 
                 <div className="row game-box">
                     <div className="col-11">
