@@ -5,6 +5,7 @@ import API from "../../utils/API";
 import socketIOClient from "socket.io-client";
 import { preSetSquares } from "../../utils/statesPrimer";
 import Header from '../../components/Header/Header';
+import Footer from '../../components/Footer/Footer';
 import ModalEditSquare from '../../components/ModalEditSquare/ModalEditSquare.js';
 import "./Game.css"
 
@@ -235,11 +236,13 @@ const Game = (props) => {
 
     return (
         <>
-            <Header />
-            <div className='game-info'>
-                {renderPaymentInfo()}
+            <div className='container'>
+                <Header />
+                <div className='game-info'>
+                    {renderPaymentInfo()}
+                </div>
             </div>
-            <div className="text-white justify-content-center game-square" style={{position:"relative"}}>
+            <div className="game-square">
                 <div className="row mb-2">
                     <div className="col-3 col-md-4"></div>
                     <div className="col-7 col-md-5 text-center name-inputs-div">
@@ -248,43 +251,33 @@ const Game = (props) => {
                                 <input type="name" className="input-name" placeholder="first" value={firstName} onChange={(event) => { setFirstName(event.target.value) }}></input>
                             </div>
                             <div className="col-6 col-md-4 pr-1">
-                                <input type="name" className="input-name" placeholder="last" value={lastName} onChange={(event) => { setLastName(event.target.value) }}></input>
+                                <input type="name" className="input-name" id='last-name-input' placeholder="last" value={lastName} onChange={(event) => { setLastName(event.target.value) }}></input>
                             </div>
                             <div>
                                 <div className="col-12 col-md-4 input-button">
-                                    <button onClick={updateGame} type="button" className="btn btn-outline-danger btn-submit">submit</button>
+                                    <button onClick={updateGame} type="button" className="btn btn-outline-danger btn-submit">Submit</button>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div className="col-2 col-md-2"></div>
                 </div>
-               
-                <div className="row pb-1">
-                    <div className="col-2 col-md-3 justify-content-right">
-                        <div className="row">
-                            <div className="col-10">
-                            </div>
-                            <div className="col-2 mt-5">
-                                <div>
 
-                                    <h2 className="text-right y-row">{yArray[0]}</h2>
-                                    <h2 className="text-right y-row">{yArray[1]}</h2>
-                                    <h2 className="text-right y-row">{yArray[2]}</h2>
-                                    <h2 className="text-right y-row">{yArray[3]}</h2>
-                                    <h2 className="text-right y-row">{yArray[4]}</h2>
-                                    <h2 className="text-right y-row">{yArray[5]}</h2>
-                                    <h2 className="text-right y-row">{yArray[6]}</h2>
-                                    <h2 className="text-right y-row">{yArray[7]}</h2>
-                                    <h2 className="text-right y-row">{yArray[8]}</h2>
-                                    <h2 className="text-right y-row">{yArray[9]}</h2>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col-10 col-md-8 game-box">
-
-                        <div className="row text-white">
+                <div className="row game-box">
+                    {/* <div className="col-1">
+                        <h2 className="y-row">{yArray[0]}</h2>
+                        <h2 className="y-row">{yArray[1]}</h2>
+                        <h2 className="y-row">{yArray[2]}</h2>
+                        <h2 className="y-row">{yArray[3]}</h2>
+                        <h2 className="y-row">{yArray[4]}</h2>
+                        <h2 className="y-row">{yArray[5]}</h2>
+                        <h2 className="y-row">{yArray[6]}</h2>
+                        <h2 className="y-row">{yArray[7]}</h2>
+                        <h2 className="y-row">{yArray[8]}</h2>
+                        <h2 className="y-row">{yArray[9]}</h2>
+                    </div> */}
+                    <div className="col-11">
+                        <div className="row square-rows">
+                            <div className="col-1" />
                             {rowLength.map((user, i) => (
                                 <div className="col-1" key={i}>
                                     <Square squareId="1-2" id={i} blackNumbers={blackNumbers} adminEdit={adminEdit} color={squares[i].color} modalAdmin={modalAdmin} flipFunciton={flipFunction} isFlipped={flipStatus[i]} active={squares[i].active}>
@@ -293,7 +286,10 @@ const Game = (props) => {
                                 </div>
                             ))}
                         </div>
-                        <div className="row">
+                        <div className="row square-rows">
+                            <div className='col-1 y-row'>
+                                <p className='y-numbers'>{yArray[0]}</p>
+                            </div>
                             {rowLength.map((user, i) => (
                                 <div className="col-1" key={i}>
                                     <Square squareId="1-2" id={i} adminEdit={adminEdit} color={squares[i].color} modalAdmin={modalAdmin} flipFunciton={flipFunction} isFlipped={flipStatus[i]} active={squares[i].active}>
@@ -302,7 +298,10 @@ const Game = (props) => {
                                 </div>
                             ))}
                         </div>
-                        <div className="row">
+                        <div className="row square-rows">
+                            <div className='col-1 y-row'>
+                                <p className='y-numbers'>{yArray[1]}</p>
+                            </div>
                             {rowLength.map((user, i) => (
                                 <div className="col-1" key={i + 10}>
                                     <Square squareId="1-2" id={i + 10} adminEdit={adminEdit} color={squares[i + 10].color} modalAdmin={modalAdmin} flipFunciton={flipFunction} isFlipped={flipStatus[i + 10]} active={squares[i + 10].active}>
@@ -311,7 +310,10 @@ const Game = (props) => {
                                 </div>
                             ))}
                         </div>
-                        <div className="row">
+                        <div className="row square-rows">
+                            <div className='col-1 y-row'>
+                                <p className='y-numbers'>{yArray[2]}</p>
+                            </div>
                             {rowLength.map((user, i) => (
                                 <div className="col-1" key={i + 20}>
                                     <Square squareId="1-2" id={i + 20} adminEdit={adminEdit} color={squares[i + 20].color} modalAdmin={modalAdmin} flipFunciton={flipFunction} isFlipped={flipStatus[i + 20]} active={squares[i + 20].active}>
@@ -320,7 +322,10 @@ const Game = (props) => {
                                 </div>
                             ))}
                         </div>
-                        <div className="row">
+                        <div className="row square-rows">
+                            <div className='col-1 y-row'>
+                                <p className='y-numbers'>{yArray[3]}</p>
+                            </div>
                             {rowLength.map((user, i) => (
                                 <div className="col-1" key={i + 30}>
                                     <Square squareId="1-2" id={i + 30} adminEdit={adminEdit} color={squares[i + 30].color} modalAdmin={modalAdmin} flipFunciton={flipFunction} isFlipped={flipStatus[i + 30]} active={squares[i + 30].active}>
@@ -329,7 +334,10 @@ const Game = (props) => {
                                 </div>
                             ))}
                         </div>
-                        <div className="row">
+                        <div className="row square-rows">
+                            <div className='col-1 y-row'>
+                                <p className='y-numbers'>{yArray[4]}</p>
+                            </div>
                             {rowLength.map((user, i) => (
                                 <div className="col-1" key={i + 40}>
                                     <Square squareId="1-2" id={i + 40} adminEdit={adminEdit} color={squares[i + 40].color} modalAdmin={modalAdmin} flipFunciton={flipFunction} isFlipped={flipStatus[i + 40]} active={squares[i + 40].active}>
@@ -338,7 +346,10 @@ const Game = (props) => {
                                 </div>
                             ))}
                         </div>
-                        <div className="row">
+                        <div className="row square-rows">
+                            <div className='col-1 y-row'>
+                                <p className='y-numbers'>{yArray[5]}</p>
+                            </div>
                             {rowLength.map((user, i) => (
                                 <div className="col-1" key={i + 50}>
                                     <Square squareId="1-2" id={i + 50} adminEdit={adminEdit} color={squares[i + 50].color} modalAdmin={modalAdmin} flipFunciton={flipFunction} isFlipped={flipStatus[i + 50]} active={squares[i + 50].active}>
@@ -347,7 +358,10 @@ const Game = (props) => {
                                 </div>
                             ))}
                         </div>
-                        <div className="row">
+                        <div className="row square-rows">
+                            <div className='col-1 y-row'>
+                                <p className='y-numbers'>{yArray[6]}</p>
+                            </div>
                             {rowLength.map((user, i) => (
                                 <div className="col-1" key={i + 60}>
                                     <Square squareId="1-2" id={i + 60} adminEdit={adminEdit} color={squares[i + 60].color} modalAdmin={modalAdmin} flipFunciton={flipFunction} isFlipped={flipStatus[i + 60]} active={squares[i + 60].active}>
@@ -356,7 +370,10 @@ const Game = (props) => {
                                 </div>
                             ))}
                         </div>
-                        <div className="row">
+                        <div className="row square-rows">
+                            <div className='col-1 y-row'>
+                                <p className='y-numbers'>{yArray[7]}</p>
+                            </div>
                             {rowLength.map((user, i) => (
                                 <div className="col-1" key={i + 70}>
                                     <Square squareId="1-2" id={i + 70} adminEdit={adminEdit} color={squares[i + 70].color} modalAdmin={modalAdmin} flipFunciton={flipFunction} isFlipped={flipStatus[i + 70]} active={squares[i + 70].active}>
@@ -365,7 +382,10 @@ const Game = (props) => {
                                 </div>
                             ))}
                         </div>
-                        <div className="row">
+                        <div className="row square-rows">
+                            <div className='col-1 y-row'>
+                                <p className='y-numbers'>{yArray[8]}</p>
+                            </div>
                             {rowLength.map((user, i) => (
                                 <div className="col-1" key={i + 80}>
                                     <Square squareId="1-2" id={i + 80} adminEdit={adminEdit} color={squares[i + 80].color} modalAdmin={modalAdmin} flipFunciton={flipFunction} isFlipped={flipStatus[i + 80]} active={squares[i + 80].active}>
@@ -374,7 +394,10 @@ const Game = (props) => {
                                 </div>
                             ))}
                         </div>
-                        <div className="row">
+                        <div className="row square-rows">
+                            <div className='col-1 y-row'>
+                                <p className='y-numbers'>{yArray[9]}</p>
+                            </div>
                             {rowLength.map((user, i) => (
                                 <div className="col-1" key={i + 90}>
                                     <Square squareId="1-2" id={i + 90} adminEdit={adminEdit} color={squares[i + 90].color} modalAdmin={modalAdmin} flipFunciton={flipFunction} isFlipped={flipStatus[i + 90]} active={squares[i + 90].active}>
@@ -384,13 +407,15 @@ const Game = (props) => {
                             ))}
                         </div>
                     </div>
+                    <p className='home'>Home</p>
                 </div>
-                <div className="col-1 home">Home</div>
-                <div className="col-1 away">Away</div>
+                <div className="row">
+                    <p className='away'>Away</p>
+                </div>
                 <ModalEditSquare modalAdmin={modalAdmin} squareId={squareId} editSquareName={editSquareName} modalColor={modalColor} modalButtonColor={modalButtonColor} modalSquareCounter={modalSquareCounter} handleChangeModal={handleChangeModal} modalOptionValue={modalOptionValue} modalSubmitButton={modalSubmitButton}></ModalEditSquare>
                 {/* container end div */}
             </div>
-
+            <Footer />
         </>
     )
 

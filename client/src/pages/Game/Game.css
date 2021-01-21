@@ -1,27 +1,33 @@
 .home {
-    position: absolute;
-    font-size: 30px;
+    position: relative;
     color: #73AD21;
-    top: 358px;
-    left: 830px;
-    width: 300px;
-    height: 50px;
-    border: 3px solid #73AD21;
     transform: rotateZ(90deg);
+    font-size: 40px;
+    left: 350px;
+    bottom: 330px;
 }
 
 .away {
-    position: absolute;
+    position: relative;
     width: 300px;
     color: #73AD21;
-    font-size: 30px;
+    font-size: 40px;
     height: 50px;
-    left: 470px;
-    border: 3px solid #73AD21;
+    left: 750px;
+    bottom: 70px;
 }
 
-.game-square {
-    margin-right: 150px;
+.game-box {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.y-numbers {
+    font-size: 30px;;
+}
+
+#last-name-input {
+    margin-left: -150px;
 }
 
 #game-title {
@@ -31,7 +37,6 @@
 }
 
 .y-row {
-    margin-top: 12px;
     color: rgba(255, 255, 255, 0.877);
 }
 
@@ -135,121 +140,45 @@ h6 {
     margin-top: 10px;
 }
 
-@media only screen and (max-width: 600px) {
-    .home {
-        width: 90px;
-        height: 40px;
-        font-size: 20px;
-        top: 325px;
-        left: 320px;
-    }
-    .away {
-        width: 90px;
-        height: 40px;
-        font-size: 20px;
-        top: 575px;
-        left: 160px;
-    }
-    .game-square {
-        margin-right: 20px;
-        padding-bottom: 200px;
-    }
-    .y-row {
-        margin-bottom: 15px;
-        padding-left: 30px;
-        color: rgba(255, 255, 255, 0.877);
-    }
-    .input-name {
-        width: 88px;
-        padding: 0px;
-    }
-    .input-button {
-        margin-top: 10px;
-        padding: 0px
-    }
-    .btn-submit {
-        padding-top: 2px;
-        padding-bottom: 2px;
-        padding-left: 14px;
-        padding-right: 14px;
-    }
-    #h0 {
-        display: inline-block;
-        margin-left: 6px;
-    }
-    #h1 {
-        display: inline-block;
-        margin-left: 15px;
-    }
-    #h2 {
-        display: inline-block;
-        margin-left: 18px;
-    }
-    #h3 {
-        display: inline-block;
-        margin-left: 12px;
-    }
-    #h4 {
-        display: inline-block;
-        margin-left: 14px;
-    }
-    #h5 {
-        display: inline-block;
-        margin-left: 12px;
-    }
-    #h6 {
-        display: inline-block;
-        margin-left: 12px;
-    }
-    #h7 {
-        display: inline-block;
-        margin-left: 15px;
-    }
-    #h8 {
-        display: inline-block;
-        margin-left: 13px;
-    }
-    #h9 {
-        display: inline-block;
-        margin-left: 13px;
-    }
-    #game-direction-title {
-        margin-left: 15px;
-    }
-    .btn-submit {
-        margin: 0;
-    }
-    .name-inputs-div {
+@media (max-width: 1200px) {
+    #last-name-input {
         margin-left: 0;
     }
 }
 
-@media only screen and (max-width: 400px) {
+@media only screen and (max-width: 600px) {
     .home {
-        width: 90px;
+        left: 355px;
+        bottom: 235px;
+        width: 80px;
         height: 40px;
-        font-size: 20px;
-        top: 325px;
-        left: 290px;
+        font-size: 30px;
     }
     .away {
         width: 90px;
         height: 40px;
-        font-size: 20px;
-        top: 575px;
-        left: 140px;
+        font-size: 30px;
+        left: 170px;
+        bottom: 48px;
     }
-    .game-square {
-        margin-right: 20px;
+    #last-name-input {
+        margin-left: 0;
     }
     .y-row {
-        margin-bottom: 15px;
-        padding-left: 30px;
-        color: rgba(255, 255, 255, 0.877);
+        padding-right: 0px;
+        padding-left: 15px;
+        margin-left: 5px;
+    }
+    .y-numbers {
+        padding-top: 6px;
+        font-size: 16px;
+    }
+    .square-rows {
+        margin: 0;
+        max-height: 42px;
     }
     .input-name {
         width: 88px;
-        padding: 0px;
     }
     .input-button {
         margin-top: 10px;
@@ -260,6 +189,7 @@ h6 {
         padding-bottom: 2px;
         padding-left: 14px;
         padding-right: 14px;
+        margin: 0;
     }
     #h0 {
         display: inline-block;
@@ -304,11 +234,101 @@ h6 {
     #game-direction-title {
         margin-top: 30px;
     }
-    .btn-submit {
-        margin: 0;
+    .game-info {
+        min-height: 80vh;
     }
-    .name-inputs-div {
+}
+
+@media only screen and (max-width: 400px) {
+    .home {
+        left: 315px;
+        bottom: 235px;
+        width: 80px;
+        height: 40px;
+        font-size: 28px;
+    }
+    .away {
+        width: 90px;
+        height: 40px;
+        font-size: 28px;
+        left: 155px;
+        bottom: 47px;
+    }
+    #last-name-input {
         margin-left: 0;
+    }
+    .y-row {
+        max-width: 31px;
+        padding-right: 0px;
+        padding-left: 15px;
+        margin-left: 5px;
+    }
+    .y-numbers {
+        padding-top: 6px;
+        font-size: 16px;
+    }
+    .square-rows {
+        margin: 0;
+        max-height: 42px;
+    }
+    .input-name {
+        width: 88px;
+        margin-left: -10px;
+    }
+    .input-button {
+        margin-top: 10px;
+        padding: 0px
+    }
+    .btn-submit {
+        padding-top: 2px;
+        padding-bottom: 2px;
+        padding-left: 14px;
+        padding-right: 14px;
+        margin: 0;
+        margin-right: 20px;
+    }
+    #h0 {
+        display: inline-block;
+        margin-left: 6px;
+    }
+    #h1 {
+        display: inline-block;
+        margin-left: 10px;
+    }
+    #h2 {
+        display: inline-block;
+        margin-left: 12px;
+    }
+    #h3 {
+        display: inline-block;
+        margin-left: 12px;
+    }
+    #h4 {
+        display: inline-block;
+        margin-left: 11px;
+    }
+    #h5 {
+        display: inline-block;
+        margin-left: 12px;
+    }
+    #h6 {
+        display: inline-block;
+        margin-left: 12px;
+    }
+    #h7 {
+        display: inline-block;
+        margin-left: 13px;
+    }
+    #h8 {
+        display: inline-block;
+        margin-left: 9px;
+    }
+    #h9 {
+        display: inline-block;
+        margin-left: 13px;
+    }
+    #game-direction-title {
+        margin-top: 30px;
     }
     .game-info {
         min-height: 80vh;
