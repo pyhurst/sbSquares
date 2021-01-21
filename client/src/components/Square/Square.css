@@ -1,77 +1,106 @@
 .cardDimensions{
-    width: 65px; 
-    height: 50px;
-    border: 1px solid #73AD21;;
+    width: 70px; 
+    height: 60px;
+    border: 1px solid #73AD21;
     font-size: 30px;
 }
 
-@media only screen and (max-width: 600px) {
-    .cardDimensions {
-        width: 30px; 
-        height: 45px;
-        font-size: 18px;
-        padding-top: 5px;
-        padding-right: 4px;
-    }
-  }
-
 .color1{
-    background-color: rgba(68, 0, 255, 0.87);
+    background-color: rgba(87, 31, 241, 0.993);
+    color: rgba(255, 255, 255, 0.877);
 }
 .color2{
-    background-color: rgb(0, 255, 0);
+    background-color: rgb(17, 211, 17);
+    color: rgba(255, 255, 255, 0.877);
 }
 .color3{
     background-color: rgb(255, 208, 0);
+    color: rgba(255, 255, 255, 0.877);
 }
 .color4{
     background-color: rgb(255, 136, 0);
+    color: rgba(255, 255, 255, 0.877);
 }
 .color5{
     background-color: rgb(0, 60, 255);
+    color: rgba(255, 255, 255, 0.877);
 }
 .color6{
     background-color: rgb(204, 0, 255);
+    color: rgba(255, 255, 255, 0.877);
 }
 .color7{
     background-color: rgb(179, 255, 0);
+    color: rgba(255, 255, 255, 0.877);
 }
 .color8{
     background-color: rgb(204, 0, 255);
+    color: rgba(255, 255, 255, 0.877);
 }
 .color9{
     background-color: rgb(157, 255, 0);
+    color: rgba(255, 255, 255, 0.877);
 }
 .color10{
     background-color: rgb(255, 153, 0);
+    color: rgba(255, 255, 255, 0.877);
 }
 .color11{
-    background-color: rgb(136, 255, 0);
+    background-color: rgb(121, 228, 0);
+    color: rgba(255, 255, 255, 0.877);
 }
 .color12{
     background-color: rgb(255, 0, 0);
+    color: rgba(255, 255, 255, 0.877);
 }
 .color13{
     background-color: rgb(255, 238, 0);
+    color: rgba(255, 255, 255, 0.877);
 }
 .color14{
     background-color: rgb(255, 115, 0);
+    color: rgba(255, 255, 255, 0.877);
 }
 .color15{
     background-color: rgb(0, 47, 255);
+    color: rgba(255, 255, 255, 0.877);
 }
 .color16{
     background-color: rgb(234, 0, 255);
+    color: rgba(255, 255, 255, 0.877);
 }
 .color17{
     background-color: rgb(255, 153, 0);
+    color: rgba(255, 255, 255, 0.877);
 }
 .color18{
     background-color: rgb(255, 0, 191);
+    color: rgba(255, 255, 255, 0.877);
 }
 .color19{
     background-color: rgb(187, 255, 0);
+    color: rgba(255, 255, 255, 0.877);
 }
 .color20{
     background-color: rgb(250, 215, 215);
+    color: rgba(255, 255, 255, 0.877);
 }
+
+@media only screen and (max-width: 500px) {
+    .cardDimensions {
+        max-width: 35px; 
+        font-size: 18px;
+        padding-top: 6px;
+        max-height: 45px;
+        padding-right: 5px;
+    }
+}
+
+@media only screen and (max-width: 400px) {
+    .cardDimensions {
+        max-width: 31px; 
+        font-size: 18px;
+        padding-top: 6px;
+        padding-right: 4px;
+    }
+  }

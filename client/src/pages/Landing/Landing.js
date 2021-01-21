@@ -38,7 +38,7 @@ const Landing = (props) => {
 
     return (
         <>
-            <div className='container'>
+            <div className='container landing-container'>
                 <h1 id='landing-title'>Squares</h1>
                 <div id='title-box'>
                     <form className='search-game'>
