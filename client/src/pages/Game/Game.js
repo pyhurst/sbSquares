@@ -29,6 +29,7 @@ const Game = (props) => {
     const [yArray, setYarray] = useState(["", "", "", "", "", "", "", "", "", ""]);
     const [blackNumbers, setBlackNumbers] = useState(true);
     const [qtrView, setQtrView] = useState('');
+    const [showQtrOptions, setShowQtrOptions] = useState(false);
 
     let flip = [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false];
 
@@ -50,6 +51,7 @@ const Game = (props) => {
             if (finish) {
                 setXarray(game.xArray);
                 setYarray(game.yArray);
+                setShowQtrOptions(true);
             } else {
                 setXarray(["", "", "", "", "", "", "", "", "", ""]);
                 setYarray(["", "", "", "", "", "", "", "", "", ""]);
@@ -134,6 +136,10 @@ const Game = (props) => {
 
     const renderQtrOptions = () => {
         if (!game || game.gameType === 'Single') {
+            return;
+        }
+
+        if (showQtrOptions === false) {
             return;
         }
 
@@ -250,6 +256,8 @@ const Game = (props) => {
                 <h4>Game id:</h4>
                 <h6>{game._id}</h6>
                 <button type='button' className='copybtn btn btn-outline-success btn-sm' onClick={copyLink} id={game._id}>Copy Link</button>
+                <h4 className='game-direction-title'>Cost per Square:</h4>
+                <h6 className='payouts-per-qtr'>{game.costPerSquare}</h6>
                 <h4 className='game-direction-title'>Payment Info:</h4>
                 <h6>{renderWhere()}</h6>
                 <h6>Email: {game.payouts.email}</h6>
