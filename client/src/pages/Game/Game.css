@@ -1,4 +1,26 @@
-.game-square{
+.home {
+    position: absolute;
+    font-size: 30px;
+    color: #73AD21;
+    top: 330px;
+    left: 830px;
+    width: 300px;
+    height: 50px;
+    border: 3px solid #73AD21;
+    transform: rotateZ(90deg);
+}
+
+.away {
+    position: absolute;
+    width: 300px;
+    color: #73AD21;
+    font-size: 30px;
+    height: 50px;
+    left: 470px;
+    border: 3px solid #73AD21;
+}
+
+.game-square {
     margin-right: 150px;
 }
 
@@ -8,20 +30,20 @@
     font-family: 'Nova Square', cursive;
 }
 
-.y-row{
+.y-row {
     margin-top: 12px;
     color: rgba(255, 255, 255, 0.877);
 }
 
-.normal{
+.normal {
     display: block
 }
 
-.none{
+.none {
     display: none
 }
 
-.input-name{
+.input-name {
     width: 150px;
     border: 1px solid rgba(255, 255, 255, 0.877);
     color: rgba(255, 255, 255, 0.877);
@@ -41,53 +63,58 @@
     margin-left: 110px;
 }
 
-.h-numbers{
+.h-numbers {
     float: left;
 }
 
-#h0{
+#h0 {
     display: inline-block;
     margin-left: 220px;
-    
 }
-#h1{
+
+#h1 {
     display: inline-block;
     margin-left: 30px;
-    
 }
-#h2{
+
+#h2 {
     display: inline-block;
     margin-left: 35px;
 }
-#h3{
-    display: inline-block;
-    margin-left: 35px;
-   
-}
-#h4{
-    display: inline-block;
-    margin-left: 35px;
-  
-}
-#h5{
+
+#h3 {
     display: inline-block;
     margin-left: 35px;
 }
-#h6{
+
+#h4 {
     display: inline-block;
     margin-left: 35px;
 }
-#h7{
+
+#h5 {
     display: inline-block;
     margin-left: 35px;
 }
-#h8{
- display: inline-block;
- margin-left: 35px;
-}
-#h9{
+
+#h6 {
     display: inline-block;
-    margin-left: 35px; 
+    margin-left: 35px;
+}
+
+#h7 {
+    display: inline-block;
+    margin-left: 35px;
+}
+
+#h8 {
+    display: inline-block;
+    margin-left: 35px;
+}
+
+#h9 {
+    display: inline-block;
+    margin-left: 35px;
 }
 
 .copybtn {
@@ -109,77 +136,81 @@ h6 {
 }
 
 @media only screen and (max-width: 600px) {
-
-    .game-square{
+    .home {
+        width: 90px;
+        height: 40px;
+        font-size: 20px;
+        top: 270px;
+        left: 290px;
+    }
+    .away {
+        width: 90px;
+        height: 40px;
+        font-size: 20px;
+        top: 575px;
+        left: 130px;
+    }
+    .game-square {
         margin-right: 20px;
         padding-bottom: 200px;
     }
-    .y-row{
+    .y-row {
         margin-bottom: 15px;
         padding-left: 30px;
         color: rgba(255, 255, 255, 0.877);
     }
-    .input-name{
+    .input-name {
         width: 88px;
         padding: 0px;
     }
-    .input-button{
+    .input-button {
         margin-top: 10px;
-        padding:0px
+        padding: 0px
     }
-    .btn-submit{
-        padding-top:2px;
-        padding-bottom:2px;
+    .btn-submit {
+        padding-top: 2px;
+        padding-bottom: 2px;
         padding-left: 14px;
         padding-right: 14px;
     }
-    #h0{
+    #h0 {
         display: inline-block;
         margin-left: 6px;
     }
-    #h1{
+    #h1 {
         display: inline-block;
-     
         margin-left: 15px;
     }
-    #h2{
+    #h2 {
         display: inline-block;
-      
         margin-left: 18px;
     }
-    #h3{
+    #h3 {
         display: inline-block;
-      
         margin-left: 12px;
     }
-    #h4{
+    #h4 {
         display: inline-block;
-       
         margin-left: 14px;
     }
-    #h5{
+    #h5 {
         display: inline-block;
-        
         margin-left: 12px;
     }
-    #h6{
+    #h6 {
         display: inline-block;
-        
         margin-left: 12px;
     }
-    #h7{
+    #h7 {
         display: inline-block;
-       
         margin-left: 15px;
     }
-    #h8{
+    #h8 {
         display: inline-block;
-        
         margin-left: 13px;
     }
-    #h9{
+    #h9 {
         display: inline-block;
-       
         margin-left: 13px;
     }
     #game-direction-title {
@@ -191,80 +222,83 @@ h6 {
     .name-inputs-div {
         margin-left: 0;
     }
-
-  }
+}
 
 @media only screen and (max-width: 400px) {
-
-    .game-square{
+    .home {
+        width: 90px;
+        height: 40px;
+        font-size: 20px;
+        top: 270px;
+        left: 290px;
+    }
+    .away {
+        width: 90px;
+        height: 40px;
+        font-size: 20px;
+        top: 575px;
+        left: 130px;
+    }
+    .game-square {
         margin-right: 20px;
     }
-    .y-row{
+    .y-row {
         margin-bottom: 15px;
         padding-left: 30px;
         color: rgba(255, 255, 255, 0.877);
     }
-    .input-name{
+    .input-name {
         width: 88px;
         padding: 0px;
     }
-    .input-button{
+    .input-button {
         margin-top: 10px;
-        padding:0px
+        padding: 0px
     }
-    .btn-submit{
-        padding-top:2px;
-        padding-bottom:2px;
+    .btn-submit {
+        padding-top: 2px;
+        padding-bottom: 2px;
         padding-left: 14px;
         padding-right: 14px;
     }
-    #h0{
+    #h0 {
         display: inline-block;
         margin-left: 6px;
     }
-    #h1{
+    #h1 {
         display: inline-block;
-     
         margin-left: 10px;
     }
-    #h2{
+    #h2 {
         display: inline-block;
-      
         margin-left: 12px;
     }
-    #h3{
+    #h3 {
         display: inline-block;
-      
         margin-left: 12px;
     }
-    #h4{
+    #h4 {
         display: inline-block;
-       
         margin-left: 11px;
     }
-    #h5{
+    #h5 {
         display: inline-block;
-        
         margin-left: 12px;
     }
-    #h6{
+    #h6 {
         display: inline-block;
-        
         margin-left: 12px;
     }
-    #h7{
+    #h7 {
         display: inline-block;
-       
         margin-left: 13px;
     }
-    #h8{
+    #h8 {
         display: inline-block;
-        
         margin-left: 9px;
     }
-    #h9{
+    #h9 {
         display: inline-block;
-       
         margin-left: 13px;
     }
     #game-direction-title {
@@ -279,10 +313,4 @@ h6 {
     .game-info {
         min-height: 80vh;
     }
-
-  }
-
- 
-
-
-  
+}
