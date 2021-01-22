@@ -59,6 +59,7 @@ const Game = (props) => {
                 setXarray(["", "", "", "", "", "", "", "", "", ""]);
                 setYarray(["", "", "", "", "", "", "", "", "", ""]);
                 setShowQtrOptions(false);
+                setQtrView('');
             }
 
         });
