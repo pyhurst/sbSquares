@@ -73,6 +73,7 @@ const Game = (props) => {
                 if (finish) {
                     setXarray(game.data.xArray);
                     setYarray(game.data.yArray);
+                    setShowQtrOptions(true);
                 } else {
                     setXarray(["", "", "", "", "", "", "", "", "", ""]);
                     setYarray(["", "", "", "", "", "", "", "", "", ""]);
