@@ -281,12 +281,12 @@ const Game = (props) => {
                 </div>
             </div>
             <div className="game-square">
-                <div className="row mb-2">
-                    <div className="col-3 col-md-4"></div>
-                    <div className="col-7 col-md-5 text-center name-inputs-div">
-                        <div className="row">
+                <div className="row mb-2 maybe">
+                    <div className="col-1 col-md-3"></div>
+                    <div className="col-8 col-md-6 text-center name-inputs-div" id="name-div">
+                        <div className="row input-box">
                             <div className="col-6 col-md-4 pr-1">
-                                <input type="name" className="input-name" placeholder="first" value={firstName} onChange={(event) => { setFirstName(event.target.value) }}></input>
+                                <input type="name" className="input-name" id='first-name-input' placeholder="first" value={firstName} onChange={(event) => { setFirstName(event.target.value) }}></input>
                             </div>
                             <div className="col-6 col-md-4 pr-1">
                                 <input type="name" className="input-name" id='last-name-input' placeholder="last" value={lastName} onChange={(event) => { setLastName(event.target.value) }}></input>
