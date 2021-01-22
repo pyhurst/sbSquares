@@ -51,7 +51,9 @@ const Game = (props) => {
             if (finish) {
                 setXarray(game.xArray);
                 setYarray(game.yArray);
-                setShowQtrOptions(true);
+                if(game.data.gameType === 'PerQtr') {
+                    setShowQtrOptions(true);
+                }
             } else {
                 setXarray(["", "", "", "", "", "", "", "", "", ""]);
                 setYarray(["", "", "", "", "", "", "", "", "", ""]);
@@ -73,7 +75,9 @@ const Game = (props) => {
                 if (finish) {
                     setXarray(game.data.xArray);
                     setYarray(game.data.yArray);
-                    setShowQtrOptions(true);
+                    if(game.data.gameType === 'PerQtr') {
+                        setShowQtrOptions(true);
+                    }
                 } else {
                     setXarray(["", "", "", "", "", "", "", "", "", ""]);
                     setYarray(["", "", "", "", "", "", "", "", "", ""]);
