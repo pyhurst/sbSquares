@@ -88,19 +88,19 @@
 
 @media only screen and (max-width: 500px) {
     .cardDimensions {
-        max-width: 35px; 
-        font-size: 18px;
-        padding-top: 6px;
-        max-height: 45px;
-        padding-right: 5px;
+        max-width: 25px; 
+        font-size: 15px;
+        padding-top: 5px;
+        max-height: 40px;
+        padding-right: 3px;
     }
 }
 
 @media only screen and (max-width: 400px) {
     .cardDimensions {
-        max-width: 31px; 
-        font-size: 18px;
+        max-width: 25px; 
+        font-size: 16px;
         padding-top: 6px;
-        padding-right: 4px;
+        padding-right: 2px;
     }
   }
