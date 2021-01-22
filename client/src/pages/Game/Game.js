@@ -285,10 +285,10 @@ const Game = (props) => {
                     <div className="col-1 col-md-3"></div>
                     <div className="col-8 col-md-6 text-center name-inputs-div" id="name-div">
                         <div className="row input-box">
-                            <div className="col-6 col-md-4 pr-1">
+                            <div className="col-6 col-md-4 pr-1" id="please">
                                 <input type="name" className="input-name" id='first-name-input' placeholder="first" value={firstName} onChange={(event) => { setFirstName(event.target.value) }}></input>
                             </div>
-                            <div className="col-6 col-md-4 pr-1">
+                            <div className="col-6 col-md-4" id="please">
                                 <input type="name" className="input-name" id='last-name-input' placeholder="last" value={lastName} onChange={(event) => { setLastName(event.target.value) }}></input>
                             </div>
                             <div>
