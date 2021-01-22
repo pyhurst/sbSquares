@@ -49,12 +49,7 @@ const Game = (props) => {
                 }
             }
             if (finish) {
-                setXarray(game.xArray);
-                setYarray(game.yArray);
-                if(game.gameType === 'PerQtr') {
-                    setShowQtrOptions(true);
-                    setQtrView('1st Quarter')
-                }
+                window.location.href = `/game/${props.match.params.id}`;
             } else {
                 setXarray(["", "", "", "", "", "", "", "", "", ""]);
                 setYarray(["", "", "", "", "", "", "", "", "", ""]);
