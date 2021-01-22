@@ -53,10 +53,12 @@ const Game = (props) => {
                 setYarray(game.yArray);
                 if(game.gameType === 'PerQtr') {
                     setShowQtrOptions(true);
+                    setQtrView('1st Quarter')
                 }
             } else {
                 setXarray(["", "", "", "", "", "", "", "", "", ""]);
                 setYarray(["", "", "", "", "", "", "", "", "", ""]);
+                setShowQtrOptions(false);
             }
 
         });
@@ -77,6 +79,7 @@ const Game = (props) => {
                     setYarray(game.data.yArray);
                     if(game.data.gameType === 'PerQtr') {
                         setShowQtrOptions(true);
+                        setQtrView('1st Quarter')
                     }
                 } else {
                     setXarray(["", "", "", "", "", "", "", "", "", ""]);
