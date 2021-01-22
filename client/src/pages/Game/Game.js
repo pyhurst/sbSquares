@@ -51,7 +51,7 @@ const Game = (props) => {
             if (finish) {
                 setXarray(game.xArray);
                 setYarray(game.yArray);
-                if(game.data.gameType === 'PerQtr') {
+                if(game.gameType === 'PerQtr') {
                     setShowQtrOptions(true);
                 }
             } else {
