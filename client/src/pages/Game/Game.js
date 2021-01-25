@@ -159,8 +159,8 @@ const Game = (props) => {
     }
 
     const updateGame = async () => {
-        if (firstName === '' || lastName === '') {
-            alert('Must add a first and last name!')
+        if (firstName.length <= 1 || lastName.length <= 1) {
+            alert('Must add FULL fisrt and last name!')
             return;
         }
         try {
