@@ -52,8 +52,8 @@ const Landing = (props) => {
                     </form>
                     <div className='instructions'>
                         <h5>1. Create a Game w/ Google</h5>
-                        <h5>2. Send Game link to your friends</h5>
-                        <h5>3. Add your name and click Squares you would like to fill... then save!</h5>
+                        <h5>2. Send Game link to your friends (NO login required)</h5>
+                        <h5>3. Friends add their name, pick Squares, and SUBMIT! (Live updating game board!)</h5>
                         <h5>4. Once ALL 100 squares are filled, numbers will be drawn at random for each team (0-9)</h5>
                     </div>
                     <div className='create-game' >
