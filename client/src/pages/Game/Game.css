@@ -181,6 +181,9 @@ h6 {
 }
 
 @media only screen and (max-width: 600px) {
+    .container {
+        padding-left: 0;
+    }
     .home {
         left: 285px;
         bottom: 230px;
@@ -289,6 +292,9 @@ h6 {
 }
 
 @media only screen and (max-width: 400px) {
+    .container {
+        padding-left: 0;
+    }
     #please{
         padding: 0px;
     }
