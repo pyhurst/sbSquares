@@ -148,13 +148,13 @@ const Game = (props) => {
         }
 
         return (
-            <>
+            <div className='all-qtr-btns'>
                 <button className='payment-info-button qtr-view-btns' value='One' onClick={renderQuarterClick} >1st Qtr</button>
                 <button className='payment-info-button qtr-view-btns' value='Two' onClick={renderQuarterClick} >2nd Qtr</button>
                 <br />
                 <button className='payment-info-button qtr-view-btns' value='Three' onClick={renderQuarterClick} >3rd Qtr</button>
                 <button className='payment-info-button qtr-view-btns' value='Four' onClick={renderQuarterClick} >4th Qtr</button>
-            </>
+            </div>
         )
     }
 
@@ -305,7 +305,7 @@ const Game = (props) => {
                 </div>
 
                 <div>{renderQtrOptions()}</div>
-                <h4>{qtrView}</h4>
+                <h4 className='all-qtr-btns'>{qtrView}</h4>
 
                 <div className="row game-box">
                     <div className="col-11">
