@@ -440,10 +440,10 @@ const Game = (props) => {
                             ))}
                         </div>
                     </div>
-                    <p className='home'>NFC</p>
+                    <p className='home'>Bucs</p>
                 </div>
                 <div className="row">
-                    <p className='away'>AFC</p>
+                    <p className='away'>Chiefs</p>
                 </div>
                 <ModalEditSquare modalAdmin={modalAdmin} squareId={squareId} editSquareName={editSquareName} modalColor={modalColor} modalButtonColor={modalButtonColor} modalSquareCounter={modalSquareCounter} handleChangeModal={handleChangeModal} modalOptionValue={modalOptionValue} modalSubmitButton={modalSubmitButton}></ModalEditSquare>
                 {/* container end div */}
