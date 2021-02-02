@@ -310,7 +310,7 @@ const Game = (props) => {
                 <div className="row game-box">
                     <div className="col-11">
                         <div className="row square-rows">
-                            <div className="col-1" />
+                            <div className="col-1 x-num-row" />
                             {rowLength.map((user, i) => (
                                 <div className="col-1" key={i}>
                                     <Square squareId="1-2" id={i} blackNumbers={blackNumbers} adminEdit={adminEdit} color={squares[i].color} modalAdmin={modalAdmin} flipFunciton={flipFunction} isFlipped={flipStatus[i]} active={squares[i].active}>

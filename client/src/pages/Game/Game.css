@@ -157,6 +157,23 @@ h6 {
     width: 80px;
 }
 
+@media (max-width: 1920px) {
+    .away {
+        width: 90px;
+        height: 40px;
+        font-size: 30px;
+        left: 860px;
+        bottom: 50px;
+    }
+    .btn-submit {
+        margin-top: 10px;
+        margin-left: 260px;
+    }
+    .name-inputs-div {
+        margin-left: 135px;
+    }
+}
+
 @media (max-width: 1200px) {
     #last-name-input {
         margin-left: 0;
@@ -287,7 +304,9 @@ h6 {
     .game-box{
         padding-right: 30px;
     }
-    
+    .x-num-row{
+        margin-left: 5px;
+    }
    
 }
 
@@ -406,5 +425,8 @@ h6 {
     }
     .game-square{
         margin-left: 25px;
+    }
+    .x-num-row{
+        margin-left: 5px;
     }
 }
