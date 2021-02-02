@@ -164,7 +164,7 @@ const Game = (props) => {
             return;
         }
         try {
-            await API.updateGame(props.match.params.id, { pendingSquares: pendingSquares, firstName: firstName.toUpperCase(), lastName: lastName.toUpperCase() });
+            await API.updateGame(props.match.params.id, { pendingSquares: pendingSquares, firstName: firstName.toUpperCase().trim(), lastName: lastName.toUpperCase().trim() });
             socket.emit('getUpdatedGame', props.match.params.id);
 
         } catch (error) {
