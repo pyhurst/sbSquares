@@ -20,7 +20,8 @@ const ChatModal = props => {
 
     const updateChat = async () =>{
         if (chatName === "" || chatMessage === "") {
-            alert("You must enter a name and message!")
+            alert("You must enter a name and message!");
+            return;
         }
         try {
             await API.updateChat(props.chatId, { name: chatName, message: chatMessage});
