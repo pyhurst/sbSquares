@@ -50,7 +50,7 @@ const Square = (props) => {
         return (
 
             <ReactCardFlip   isFlipped={false} flipDirection="horizontal" flipSpeedFrontToBack="1.5" flipSpeedFrontToBack="1.5" onClick={props}>
-                <div className={props.color} id={props.id}>
+                <div className={props.color} id={props.id} onClick={props.adminEdit} data-bs-toggle="modal" data-bs-target="#exampleModal" >
                     {props.children}
                 </div>
                 <div className="bg-info text-center justify-content-center" id={props.id}>

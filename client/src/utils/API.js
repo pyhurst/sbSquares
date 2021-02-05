@@ -27,7 +27,12 @@ export default {
   },
   deleteParticipant: function(id,name){
     return axios.delete("/api/square/" + id + "/"+ name)
-  }
-
+  },
+  getChat: function(id){
+    return axios.get("/api/chat/" + id);
+  },
+  updateChat: function(id,data){
+    return axios.put("/api/chat/" + id, data);
+  },
 
 };

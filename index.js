@@ -40,6 +40,7 @@ app.io = io;
 
 require('./routes/authRoutes')(app);
 require('./routes/gameRoutes')(app);
+require('./routes/chatRoutes')(app);
 
 
 app.use((req, res) => {
