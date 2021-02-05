@@ -16,7 +16,7 @@ let pendingSquares = [];
 const Game = (props) => {
 
     const [paramsId, setParamsId] = useState(props.match.params.id);
-    const [chat, setChat] = useState([])
+    const [chat, setChat] = useState()
     const [modalAdmin, setModalAdmin] = useState(false);
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
@@ -33,6 +33,7 @@ const Game = (props) => {
     const [blackNumbers, setBlackNumbers] = useState(true);
     const [qtrView, setQtrView] = useState('');
     const [showQtrOptions, setShowQtrOptions] = useState(false);
+    const [chatId, setChatId] = useState("");
 
     let flip = [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false];
 
@@ -64,13 +65,15 @@ const Game = (props) => {
 
         socket.on(props.match.params.id + "chat", (chatData) => {
             console.log(chatData)
-            setChat(chatData)
+            setChat(chatData[0].chat)
+            setChatId(chatData[0]._id)
         });
 
         API.getGame(props.match.params.id).then((game) => {
             if (game.data !== "") {
                 setGame(game.data)
                 setSquares(game.data.squares)
+                socketUpdatedChat();
                 let finish = true
                 for (let i = 0; i < game.data.squares.length; i++) {
                     if (game.data.squares[i].active === true) {
@@ -456,7 +459,7 @@ const Game = (props) => {
                 <div className="row">
                     <p className='away'>Chiefs</p>
                 </div>
-                <ChatBox  chat={chat} socketUpdatedChat={socketUpdatedChat} paramsId={paramsId} chat={chat}></ChatBox>
+                <ChatBox  chat={chat} socketUpdatedChat={socketUpdatedChat} paramsId={paramsId} chatId={chatId}></ChatBox>
                 <ModalEditSquare modalAdmin={modalAdmin} squareId={squareId} editSquareName={editSquareName} modalColor={modalColor} modalButtonColor={modalButtonColor} modalSquareCounter={modalSquareCounter} handleChangeModal={handleChangeModal} modalOptionValue={modalOptionValue} modalSubmitButton={modalSubmitButton}></ModalEditSquare>
                 {/* container end div */}
             </div>

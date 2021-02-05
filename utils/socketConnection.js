@@ -14,7 +14,15 @@ module.exports = io => {
             io.emit(gameId, game[0]);
         })
         socket.on('socketUpdatedChat', async (chatId)=>{
-            let chatData = await db.Chat.find({chatId:chatId});
+            console.log(chatId)
+            console.log('hi')
+            let chatData = await db.Chat.find({ chatId: chatId })
+            if (chatData.length < 1) {
+                let firstMessage = await db.Chat.create({ chatId: chatId, chat: [{ "name": "Chat Bot", "message": "Hi, Welcome to Chat!" }] })
+                console.log("first")
+                console.log(firstMessage);
+                res.json(firstMessage)
+            }
             console.log(chatData)
             io.emit(chatId + "chat", chatData);
         })

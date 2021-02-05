@@ -116,7 +116,7 @@ const UserProfile = (props) => {
     }
 
     if (!props.auth) {
-        return <div>Loading...</div>
+        return <div>Please Log In at https://www.thesquaresgame.com</div>
     } else {
         return (
             <>

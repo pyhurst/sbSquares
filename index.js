@@ -15,7 +15,7 @@ const server = http.createServer(app);
 const io = socketIo(server);
 
 
-mongoose.connect(keys.mongoURI, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(keys.mongoURI, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false });
 
 
 require("./utils/socketConnection")(io);
