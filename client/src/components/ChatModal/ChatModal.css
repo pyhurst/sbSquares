@@ -20,7 +20,7 @@
 }
 
 @media (max-width : 375px) {
-    /* .input-name {
-        margin-right: 20px;
-    } */
+    .input-name {
+        margin-right: 15px;
+    }
 }
