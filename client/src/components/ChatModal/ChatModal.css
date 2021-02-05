@@ -1,9 +1,10 @@
 .chat-msg-div {
     overflow: auto;
-    /* height: 400px; */
+    height: 500px;
     /* display: flex;
     flex-direction: column-reverse; */
     padding-bottom: 20px;
+    padding-top: 20px;
 }
 
 .chat-name {

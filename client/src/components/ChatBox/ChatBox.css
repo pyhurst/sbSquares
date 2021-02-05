@@ -28,3 +28,21 @@
   background-color: rgba(0, 0, 0, 0.7);
   z-index: 1000;
 }
+
+@media (max-width : 786px) {
+
+}      
+
+@media (max-width : 414px) {
+  .chat-div {
+    padding-top: 5px;
+    right: 40px;
+  }
+}
+
+@media (max-width : 375px) {
+    .chat-div {
+      padding-top: 5px;
+      right: 40px;
+    }
+}
