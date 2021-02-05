@@ -13,6 +13,11 @@ module.exports = io => {
             }
             io.emit(gameId, game[0]);
         })
+        socket.on('socketUpdatedChat', async (chatId)=>{
+            let chatData = await db.Chat.find({chatId:chatId});
+            console.log(chatData)
+            io.emit(chatId + "chat", chatData);
+        })
         socket.on('disconnect', () => {
             console.log('user disconnected');
         });

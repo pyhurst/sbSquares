@@ -7,6 +7,7 @@ import { preSetSquares } from "../../utils/statesPrimer";
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
 import ModalEditSquare from '../../components/ModalEditSquare/ModalEditSquare.js';
+import ChatBox from '../../components/ChatBox/ChatBox.js';
 import "./Game.css"
 
 let socket;
@@ -14,6 +15,8 @@ let pendingSquares = [];
 
 const Game = (props) => {
 
+    const [paramsId, setParamsId] = useState(props.match.params.id);
+    const [chat, setChat] = useState([])
     const [modalAdmin, setModalAdmin] = useState(false);
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
@@ -59,6 +62,11 @@ const Game = (props) => {
 
         });
 
+        socket.on(props.match.params.id + "chat", (chatData) => {
+            console.log(chatData)
+            setChat(chatData)
+        });
+
         API.getGame(props.match.params.id).then((game) => {
             if (game.data !== "") {
                 setGame(game.data)
@@ -95,6 +103,9 @@ const Game = (props) => {
         };
     }, [props.auth]);
 
+    const socketUpdatedChat = async () =>{
+        socket.emit('socketUpdatedChat', props.match.params.id);
+    }
     const flipFunction = (event) => {
         let chosenSquare = event.target.id
         let chosenAlready = false;
@@ -445,6 +456,7 @@ const Game = (props) => {
                 <div className="row">
                     <p className='away'>Chiefs</p>
                 </div>
+                <ChatBox  chat={chat} socketUpdatedChat={socketUpdatedChat} paramsId={paramsId} chat={chat}></ChatBox>
                 <ModalEditSquare modalAdmin={modalAdmin} squareId={squareId} editSquareName={editSquareName} modalColor={modalColor} modalButtonColor={modalButtonColor} modalSquareCounter={modalSquareCounter} handleChangeModal={handleChangeModal} modalOptionValue={modalOptionValue} modalSubmitButton={modalSubmitButton}></ModalEditSquare>
                 {/* container end div */}
             </div>
