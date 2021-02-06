@@ -17,11 +17,16 @@
 }      
 
 @media (max-width : 414px) {
-    
+    .chat-msg-div {
+        height: 450px;
+    }
 }
 
 @media (max-width : 375px) {
     .input-name {
         margin-right: 15px;
+    }
+    .chat-msg-div {
+        height: 450px;
     }
 }
