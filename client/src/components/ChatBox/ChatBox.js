@@ -10,8 +10,6 @@ const ChatBox = (props) => {
     const [chatName, setChatName] = useState("");
     const [chatMessage, setChatMessage] = useState("");
     const [chat, setChat] = useState([]);
-
-    console.log(props);
     
     useEffect(() => {
         if (!props.chat) return null;
@@ -19,30 +17,12 @@ const ChatBox = (props) => {
         setChat(props.chat)
     }, [props.chat]);
 
-//     if(props.chat.length > 0){
-//         return (
-//             <>
-//                 <button className="chat-div" onClick={updateChat}>
-//                     <h3>{props.chat[0].name}</h3>
-//                 </button>
-//             </>
-//         )
-//     }
-//    if(chat.length > 0){
-//     return (
-//         <>
-//             <button className="chat-div" onClick={updateChat}>
-//                 <h3>{chat[0].name}</h3>
-//             </button>
-//         </>
-//     )
-//    }
     return (
         <>
             <div className="chat-div" data-bs-toggle="modal" data-bs-target="#ChatModal">
                 <h3>CHAT</h3>
             </div>
-            <ChatModal chat={chat} socketUpdatedChat={props.socketUpdatedChat} paramsId={props.paramsId} chatId={props.chatId}></ChatModal>
+            <ChatModal chat={chat} socketGetUpdatedChat={props.socketGetUpdatedChat} paramsId={props.paramsId} chatId={props.chatId}></ChatModal>
         </>
     )
 

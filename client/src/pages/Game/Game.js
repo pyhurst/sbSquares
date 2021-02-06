@@ -64,16 +64,18 @@ const Game = (props) => {
         });
 
         socket.on(props.match.params.id + "chat", (chatData) => {
-            console.log(chatData)
             setChat(chatData[0].chat)
             setChatId(chatData[0]._id)
         });
+
+        socket.on("activeUsersOnGamePage", (userCount)=>{
+            console.log("Total Users on Game Page" + " " + userCount);
+        })
 
         API.getGame(props.match.params.id).then((game) => {
             if (game.data !== "") {
                 setGame(game.data)
                 setSquares(game.data.squares)
-                socketUpdatedChat();
                 let finish = true
                 for (let i = 0; i < game.data.squares.length; i++) {
                     if (game.data.squares[i].active === true) {
@@ -99,6 +101,15 @@ const Game = (props) => {
                 window.location.href = "/"
             }
         })
+        API.getChat(props.match.params.id).then((chatData) => {
+            if(chatData.data.chat){
+                setChat(chatData.data.chat)
+                setChatId(chatData.data._id)
+            }else{
+                setChat(chatData.data[0].chat);
+                setChatId(chatData.data[0]._id)
+            }
+        })
 
         return () => {
             pendingSquares = [];
@@ -106,8 +117,8 @@ const Game = (props) => {
         };
     }, [props.auth]);
 
-    const socketUpdatedChat = async () =>{
-        socket.emit('socketUpdatedChat', props.match.params.id);
+    const socketGetUpdatedChat = async () =>{
+        socket.emit('getUpdatedChat', props.match.params.id);
     }
     const flipFunction = (event) => {
         let chosenSquare = event.target.id
@@ -240,21 +251,6 @@ const Game = (props) => {
         if (!game) {
             return;
         }
-
-        // if (game.payouts.one === '' && game.payouts.where === '') {
-        //     return <h1>{game.title}</h1>
-        // }
-
-        // if (game.payouts.where === '') {
-        //     return (
-        //         <>
-        //             <h1>{game.title}</h1>
-        //             <h4 className='game-direction-title'>Payouts per Quarter:</h4>
-        //             <p>1st: ${game.payouts.one} 2nd: ${game.payouts.two}</p>
-        //             <p>3rd: ${game.payouts.three} 4th: ${game.payouts.four}</p>
-        //         </>
-        //     )
-        // }
 
         const copyLink = e => {
             navigator.clipboard.writeText(`https://www.thesquaresgame.com/game/${e.target.id}`)
@@ -459,7 +455,7 @@ const Game = (props) => {
                 <div className="row">
                     <p className='away'>Chiefs</p>
                 </div>
-                <ChatBox  chat={chat} socketUpdatedChat={socketUpdatedChat} paramsId={paramsId} chatId={chatId}></ChatBox>
+                <ChatBox  chat={chat} socketGetUpdatedChat={socketGetUpdatedChat} paramsId={paramsId} chatId={chatId}></ChatBox>
                 <ModalEditSquare modalAdmin={modalAdmin} squareId={squareId} editSquareName={editSquareName} modalColor={modalColor} modalButtonColor={modalButtonColor} modalSquareCounter={modalSquareCounter} handleChangeModal={handleChangeModal} modalOptionValue={modalOptionValue} modalSubmitButton={modalSubmitButton}></ModalEditSquare>
                 {/* container end div */}
             </div>
