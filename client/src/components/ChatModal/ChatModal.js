@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import ScrollableFeed from 'react-scrollable-feed'
 import API from "../../utils/API";
 import './ChatModal.css';
 
@@ -8,9 +9,9 @@ const ChatModal = props => {
 
     const renderChat = props => {
         if (props.chat.length > 0) {
-            return props.chat.map(msg => {
+            return props.chat.map((msg,i) => {
                 return (
-                    <p><span className="chat-name">{msg.name}</span>: {msg.message}</p>
+                    <p key={i}><span className="chat-name">{msg.name}</span>: {msg.message}</p>
                 )
             })
         }
@@ -25,7 +26,7 @@ const ChatModal = props => {
         }
         try {
             await API.updateChat(props.chatId, { name: chatName, message: chatMessage});
-            props.socketUpdatedChat();
+            props.socketGetUpdatedChat();
             setChatMessage("");
 
         } catch (error) {
@@ -42,7 +43,9 @@ const ChatModal = props => {
                             <h5 className="modal-title" id="exampleModalLabel">Game Chat</h5>
                         </div>
                         <div className="chat-msg-div" style={{ fontSize: "20px" }}>
+                        <ScrollableFeed>
                             {renderChat(props)}
+                        </ScrollableFeed>
                         </div>
                         <div className="modal-footer bg-foot">
                             <input className="input-name" placeholder="Name" value={chatName} onChange={e => setChatName(e.target.value)} />
