@@ -43,7 +43,7 @@ const ChatModal = props => {
                             <h5 className="modal-title" id="exampleModalLabel">Game Chat</h5>
                         </div>
                         <div className="chat-msg-div" style={{ fontSize: "20px" }}>
-                        <ScrollableFeed>
+                        <ScrollableFeed forceScroll={true} >
                             {renderChat(props)}
                         </ScrollableFeed>
                         </div>
