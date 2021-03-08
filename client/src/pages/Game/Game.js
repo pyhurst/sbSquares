@@ -450,10 +450,10 @@ const Game = (props) => {
                             ))}
                         </div>
                     </div>
-                    <p className='home'>Bucs</p>
+                    <p className='home'>Home</p>
                 </div>
                 <div className="row">
-                    <p className='away'>Chiefs</p>
+                    <p className='away'>Away</p>
                 </div>
                 <ChatBox  chat={chat} socketGetUpdatedChat={socketGetUpdatedChat} paramsId={paramsId} chatId={chatId}></ChatBox>
                 <ModalEditSquare modalAdmin={modalAdmin} squareId={squareId} editSquareName={editSquareName} modalColor={modalColor} modalButtonColor={modalButtonColor} modalSquareCounter={modalSquareCounter} handleChangeModal={handleChangeModal} modalOptionValue={modalOptionValue} modalSubmitButton={modalSubmitButton}></ModalEditSquare>
