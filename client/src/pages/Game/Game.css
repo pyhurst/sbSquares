@@ -160,6 +160,14 @@ h6 {
     margin-right: 40px;
 }
 
+.input-button {
+    margin-top: -20px;
+}
+
+.red {
+    color: red;
+}
+
 @media (max-width: 1920px) {
     .away {
         width: 90px;
@@ -263,10 +271,6 @@ h6 {
     .input-name {
         width: 88px;
     }
-    .input-button {
-        margin-top: 10px;
-        padding: 0px
-    }
     .btn-submit {
         padding-top: 2px;
         padding-bottom: 2px;
@@ -330,7 +334,9 @@ h6 {
     .x-num-row{
         margin-left: 5px;
     }
-   
+    .input-button {
+        margin-top: -40px;
+    }
 }
 
 @media only screen and (max-width: 400px) {
@@ -386,11 +392,6 @@ h6 {
     .input-name {
         width: 88px;
         margin-left: -10px;
-    }
-    .input-button {
-        margin-top: 5px;
-        padding: 0px;
-        padding-right: 10px;
     }
     .btn-submit {
         padding-top: 2px;
@@ -454,5 +455,129 @@ h6 {
     }
     .all-qtr-btns{
         margin-top: 10px;
+    }
+    .input-button {
+        margin-top: -20px;
+    }
+}
+
+@media only screen and (width: 390px) {
+    .container {
+        padding-left: 0;
+    }
+    #please{
+        padding: 0px;
+    }
+
+    .game-box{
+        padding-right: 0px;
+    }
+    .name-input-div{
+        margin-left: 0px;
+    }
+    .home {
+        left: 300px;
+        bottom: 225px;
+        width: 80px;
+        height: 30px;
+        font-size: 28px;
+        margin-bottom: 0px;
+    }
+    .away {
+        width: 90px;
+        height: 30px;
+        font-size: 28px;
+        left: 142px;
+        bottom: 25px;
+    }
+    #last-name-input {
+        margin-left: 10px;
+    }
+    .maybe{
+        padding-top: 10px;
+    }
+    .y-row {
+        max-width: 31px;
+        padding-right: 0px;
+        padding-left: 15px;
+        margin-left: 5px;
+    }
+    .y-numbers {
+        padding-top: 6px;
+        font-size: 16px;
+    }
+    .square-rows {
+        margin: 0;
+        max-height: 42px;
+    }
+    .input-name {
+        width: 88px;
+        margin-left: -10px;
+    }
+    .btn-submit {
+        padding-top: 2px;
+        padding-bottom: 2px;
+        padding-left: 14px;
+        padding-right: 14px;
+        margin-top: 10px;
+        margin-left: 17px;
+    }
+    #h0 {
+        display: inline-block;
+        margin-left: 6px;
+    }
+    #h1 {
+        display: inline-block;
+        margin-left: 10px;
+    }
+    #h2 {
+        display: inline-block;
+        margin-left: 12px;
+    }
+    #h3 {
+        display: inline-block;
+        margin-left: 12px;
+    }
+    #h4 {
+        display: inline-block;
+        margin-left: 11px;
+    }
+    #h5 {
+        display: inline-block;
+        margin-left: 12px;
+    }
+    #h6 {
+        display: inline-block;
+        margin-left: 12px;
+    }
+    #h7 {
+        display: inline-block;
+        margin-left: 13px;
+    }
+    #h8 {
+        display: inline-block;
+        margin-left: 9px;
+    }
+    #h9 {
+        display: inline-block;
+        margin-left: 13px;
+    }
+    #game-direction-title {
+        margin-top: 30px;
+    }
+    .game-info {
+        min-height: 80vh;
+    }
+    .game-square{
+        margin-left: 25px;
+    }
+    .x-num-row{
+        margin-left: 5px;
+    }
+    .all-qtr-btns{
+        margin-top: 10px;
+    }
+    .input-button {
+        margin-top: -20px;
     }
 }

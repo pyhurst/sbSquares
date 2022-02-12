@@ -4,7 +4,7 @@ import './Footer.css';
 const Footer = () => {
     return (
         <div className='footer'>
-            <p>Created by Phil Hurst & Schwyn Francis</p>
+            {/* <p>Created by Phil Hurst & Schwyn Francis</p> */}
         </div>
     )
 }

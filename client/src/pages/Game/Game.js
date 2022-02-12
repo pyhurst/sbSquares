@@ -245,7 +245,11 @@ const Game = (props) => {
         }
     }
 
-
+    const isMobile = () => {
+        if (window.innerWidth < 1200) {
+            return true
+        }
+    }
 
     const renderPaymentInfo = () => {
         if (!game) {
@@ -281,7 +285,7 @@ const Game = (props) => {
                 <h6 className='payouts-per-qtr'>2nd: {game.payouts.two}</h6>
                 <h6 className='payouts-per-qtr'>3rd: {game.payouts.three}</h6>
                 <h6 className='payouts-per-qtr'>4th: {game.payouts.four}</h6>
-                <h2 className='game-direction-title' id='game-direction-title'>Input your name, select Squares, and submit!</h2>
+                <h2 className='game-direction-title' id='game-direction-title'>Input your name, select Squares, and <span className="game-direction-title red">Submit!</span></h2>
             </>
         )
     }
@@ -304,11 +308,6 @@ const Game = (props) => {
                             </div>
                             <div className="col-6 col-md-4" id="please">
                                 <input type="name" className="input-name" id='last-name-input' placeholder="last" value={lastName} onChange={(event) => { setLastName(event.target.value) }}></input>
-                            </div>
-                            <div>
-                                <div className="col-12 col-md-4 input-button">
-                                    <button onClick={updateGame} type="button" className="btn btn-outline-danger btn-submit">Submit</button>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -450,10 +449,13 @@ const Game = (props) => {
                             ))}
                         </div>
                     </div>
-                    <p className='home'>Home</p>
+                    <p className='home'>Rams</p>
                 </div>
                 <div className="row">
-                    <p className='away'>Away</p>
+                    <p className='away'>Bengals</p>
+                </div>
+                <div className={isMobile() ? `col-12 input-button` : `col-10 input-button`}>
+                    <button onClick={updateGame} type="button" className="btn-lg btn-outline-danger btn-submit">Submit</button>
                 </div>
                 <ChatBox  chat={chat} socketGetUpdatedChat={socketGetUpdatedChat} paramsId={paramsId} chatId={chatId}></ChatBox>
                 <ModalEditSquare modalAdmin={modalAdmin} squareId={squareId} editSquareName={editSquareName} modalColor={modalColor} modalButtonColor={modalButtonColor} modalSquareCounter={modalSquareCounter} handleChangeModal={handleChangeModal} modalOptionValue={modalOptionValue} modalSubmitButton={modalSubmitButton}></ModalEditSquare>
