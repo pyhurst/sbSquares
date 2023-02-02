@@ -40,7 +40,7 @@ const Game = (props) => {
     const [flipStatus, setFlipStatus] = useState(flip);
     const rowLength = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
-    useEffect(() => {
+    useEffect(() => { 
         socket = socketIOClient();
         socket.on(props.match.params.id, (game) => {
             setGame(game)
