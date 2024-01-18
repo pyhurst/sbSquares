@@ -449,10 +449,10 @@ const Game = (props) => {
                             ))}
                         </div>
                     </div>
-                    <p className='home'>NFC</p>
+                    <p className='home'>Home</p>
                 </div>
                 <div className="row">
-                    <p className='away'>AFC</p>
+                    <p className='away'>Away</p>
                 </div>
                 <div className={isMobile() ? `col-12 input-button` : `col-10 input-button`}>
                     <button onClick={updateGame} type="button" className="btn-lg btn-outline-danger btn-submit">Submit</button>
